@@ -113,9 +113,7 @@ a:hover{
   padding: 22px 24px 30px 24px;
   border: 2px solid #ffffff;
   border-radius: 10px;
-  transform: translateX(-25px);
   background: rgba(255,255,255,0.96);
-  overflow-x: hidden;
   box-sizing: border-box;
 }
 
@@ -185,54 +183,76 @@ a:hover{
   margin-right: 14px;
 }
 
-/* ---------- HEART HEALTH EVALUATION TABLE ---------- */
-.form-table.heart-eval td{
-  white-space: normal;
-  vertical-align: top;
-}
-
-.form-table.heart-eval td:nth-child(1),
-.form-table.heart-eval td:nth-child(2),
-.form-table.heart-eval td:nth-child(3),
-.form-table.heart-eval td:nth-child(4),
-.form-table.heart-eval td:nth-child(5),
-.form-table.heart-eval td:nth-child(6){
+/* ---------- HEART HEALTH (matches compact reference layout) ---------- */
+/* Global rule sets td:nth-child(1) to 150px — heart table uses one full-width cell per row */
+.form-table.heart-eval > tbody > tr > td:nth-child(1){
   width: auto;
   max-width: 100%;
 }
 
-.form-table.heart-eval .inline-options{
+.form-table.heart-eval td{
+  white-space: normal;
+  vertical-align: middle;
+}
+
+.form-table.heart-eval td.heart-eval-full{
+  width: 100%;
+  max-width: 100%;
+  padding: 10px 6px;
+  box-sizing: border-box;
+}
+
+.heart-eval-line{
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 10px 16px;
-  white-space: normal;
+  gap: 10px 18px;
 }
 
-.form-table.heart-eval tr:first-child .inline-options label{
+.heart-eval-line .heart-lead{
+  flex: 0 0 auto;
+}
+
+.heart-inline-opts{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+}
+
+.heart-inline-opts label{
+  margin-right: 0;
   white-space: nowrap;
 }
 
-.heart-eval-compact{
-  flex-wrap: wrap;
-  gap: 18px 28px !important;
+.heart-eval-split{
+  justify-content: flex-start;
+  gap: 16px 28px;
 }
 
-.heart-q-block{
+.heart-group{
   display: inline-flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 8px 12px;
 }
 
-.heart-q-label{
+.heart-q{
   font-weight: 700;
-  margin-right: 4px;
+}
+
+.heart-divider{
+  width: 1px;
+  align-self: stretch;
+  min-height: 28px;
+  background: #bdbdbd;
+  flex: 0 0 auto;
 }
 
 .form-table.heart-eval input[type="range"]{
-  max-width: 100%;
   vertical-align: middle;
+  min-width: 120px;
+  max-width: 220px;
 }
 
 /* ---------- BUTTONS ---------- */
