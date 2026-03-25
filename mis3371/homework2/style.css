@@ -336,3 +336,13 @@ a:hover{
 .footer-link:hover{
   text-decoration: underline;
 }
+
+/* HW2 alignment override: force section headings to match form-table left edge */
+.core-box .section-title{
+  max-width: 900px;
+  margin: 20px auto !important;
+  padding-left: 0 !important;
+  box-sizing: border-box;
+  position: relative;
+  left: -16px; /* move headings left to line up with table content */
+}
