@@ -1,6 +1,6 @@
 <!--
 Program name: patient-form.html
-Version 2.2
+Version 2.3
 Author: Federica Nakashima
 Date created: 2026-03-01
 Date last edited: 2026-03-25
@@ -275,7 +275,7 @@ Patient registration form for MIS 3371 Homework 2.
                   <option>NY|New York</option>
                   <option>NC|North Carolina</option>
                   <option>ND|North Dakota</option>
-                  <option>OH|Ohio</option>
+              <option>OH|Ohio</option>
                   <option>OK|Oklahoma</option>
                   <option>OR|Oregon</option>
                   <option>PA|Pennsylvania</option>
@@ -368,6 +368,18 @@ Patient registration form for MIS 3371 Homework 2.
             </tr>
           </table>
 
+          <!-- SYMPTOMS (optional; Homework 2) -->
+          <h3 class="section-title">Current Symptoms (optional)</h3>
+
+          <table class="form-table">
+            <tr>
+              <td>Describe symptoms</td>
+              <td colspan="5">
+                <textarea name="symptoms" class="wide-textarea" rows="3" cols="50" placeholder="Describe your current symptoms (optional)."></textarea>
+              </td>
+            </tr>
+          </table>
+
           <!-- ACCOUNT SETUP -->
           <h3 class="section-title">Account Setup</h3>
 
@@ -398,49 +410,84 @@ Patient registration form for MIS 3371 Homework 2.
 
         </form>
 
-        <!-- REVIEW PANEL (Homework 2) -->
-        <div id="review-panel" class="review-panel" style="display:none; margin-top:22px;">
-          <h3 class="section-title" style="margin-top:0;">PLEASE REVIEW THIS INFORMATION</h3>
+        <!-- REVIEW PANEL — professor-style layout -->
+        <div id="review-panel" class="review-panel" style="display:none;">
+          <h3 class="review-main-title">PLEASE REVIEW THIS INFORMATION</h3>
 
-          <div class="review-row">
-            <span class="review-label">First, MI, Last Name</span>
-            <span id="rv-name" class="review-value"></span>
- </div>
+          <div class="review-prof-grid">
+            <div class="review-prof-row">
+              <span class="review-prof-label">First, MI, Last Name</span>
+              <span id="rv-name" class="review-prof-value"></span>
+              <span id="rv-name-st" class="review-prof-status"></span>
+            </div>
 
-          <div class="review-row">
-            <span class="review-label">Date of Birth</span>
-            <span id="rv-dob" class="review-value"></span>
+            <div class="review-prof-row">
+              <span class="review-prof-label">Date of Birth</span>
+              <span id="rv-dob" class="review-prof-value"></span>
+              <span id="rv-dob-st" class="review-prof-status"></span>
+            </div>
+
+            <div class="review-prof-row">
+              <span class="review-prof-label">Email address</span>
+              <span id="rv-email" class="review-prof-value"></span>
+              <span id="rv-email-st" class="review-prof-status"></span>
+            </div>
+
+            <div class="review-prof-row">
+              <span class="review-prof-label">Phone number</span>
+              <span id="rv-phone" class="review-prof-value"></span>
+              <span id="rv-phone-st" class="review-prof-status"></span>
+            </div>
+
+            <div class="review-prof-row review-prof-row-address">
+              <span class="review-prof-label">Address</span>
+              <div class="review-prof-value review-prof-address-block">
+                <div id="rv-addr-line1"></div>
+                <div id="rv-addr-line2"></div>
+                <div id="rv-city-line"></div>
+              </div>
+              <span id="rv-address-st" class="review-prof-status"></span>
+            </div>
           </div>
 
-          <div class="review-row">
-            <span class="review-label">Email address</span>
-            <span id="rv-email" class="review-value"></span>
+          <h4 class="review-sub-title">REQUESTED INFO</h4>
+
+          <div class="review-requested-wrap">
+            <div class="review-requested-col">
+              <div class="review-y-row"><span class="review-y-lbl">High Blood Pressure</span><span id="rv-y-bp" class="review-y-val">N</span></div>
+              <div class="review-y-row"><span class="review-y-lbl">High Cholesterol</span><span id="rv-y-chol" class="review-y-val">N</span></div>
+              <div class="review-y-row"><span class="review-y-lbl">Diabetes</span><span id="rv-y-dm" class="review-y-val">N</span></div>
+              <div class="review-y-row"><span class="review-y-lbl">Smoker</span><span id="rv-y-smoke" class="review-y-val">N</span></div>
+              <div class="review-y-row"><span class="review-y-lbl">History of heart disease</span><span id="rv-y-fam" class="review-y-val">N</span></div>
+            </div>
+            <div class="review-requested-col review-requested-right">
+              <div class="review-y-row"><span class="review-y-lbl">Chest pain recently?</span><span id="rv-y-chest" class="review-y-val">—</span></div>
+              <div class="review-y-row"><span class="review-y-lbl">Insurance?</span><span id="rv-y-ins" class="review-y-val">—</span></div>
+              <div class="review-y-row"><span class="review-y-lbl">Prior heart treatment?</span><span id="rv-y-hx" class="review-y-val">—</span></div>
+              <div class="review-y-row"><span class="review-y-lbl">Level of Pain indicated</span><span id="rv-pain-label" class="review-y-val">—</span></div>
+            </div>
           </div>
 
-          <div class="review-row">
-            <span class="review-label">Phone number</span>
-            <span id="rv-phone" class="review-value"></span>
+          <div class="review-prof-grid review-prof-grid-tight">
+            <div class="review-prof-row">
+              <span class="review-prof-label">Described Symptoms</span>
+              <span id="rv-symptoms" class="review-prof-value review-prof-multiline"></span>
+              <span id="rv-symptoms-st" class="review-prof-status"></span>
+            </div>
+
+            <div class="review-prof-row">
+              <span class="review-prof-label">User ID</span>
+              <span id="rv-userid" class="review-prof-value"></span>
+              <span id="rv-userid-st" class="review-prof-status"></span>
+            </div>
+
+            <div class="review-prof-row">
+              <span class="review-prof-label">Password</span>
+              <span id="rv-password-note" class="review-prof-value">(shown for assignment only)</span>
+              <span id="rv-password-st" class="review-prof-status"></span>
+            </div>
           </div>
 
-          <div class="review-row">
-            <span class="review-label">Address</span>
-            <span id="rv-address" class="review-value"></span>
-          </div>
-
-          <div class="review-row">
-            <span class="review-label">State</span>
-            <span id="rv-state" class="review-value"></span>
-          </div>
-
-          <div class="review-row">
-            <span class="review-label">Zip Code</span>
-            <span id="rv-zip" class="review-value"></span>
-          </div>
-
-          <div class="review-row">
-            <span class="review-label">User ID</span>
-            <span id="rv-userid" class="review-value"></span>
-          </div>
         </div>
 
       </div>
