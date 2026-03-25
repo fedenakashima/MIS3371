@@ -1,10 +1,10 @@
 <!--
 Program name: patient-form.html
-Version 2.0
+Version 2.2
 Author: Federica Nakashima
 Date created: 2026-03-01
 Date last edited: 2026-03-25
-Patient registration form for MIS 3371 Homework 2 (adds Review panel).
+Patient registration form for MIS 3371 Homework 2.
 -->
 
 <!DOCTYPE html>
@@ -314,44 +314,56 @@ Patient registration form for MIS 3371 Homework 2 (adds Review panel).
           <!-- HEART HEALTH EVALUATION -->
           <h3 class="section-title">Heart Health Evaluation</h3>
 
-          <table class="form-table">
+          <table class="form-table heart-eval">
             <tr>
-              <td>Check all that apply</td>
-              <td colspan="6" class="inline-options">
-                <label><input type="checkbox" name="hxHighBP" value="High Blood Pressure"> High Blood Pressure</label>
-                <label><input type="checkbox" name="hxHighChol" value="High Cholesterol"> High Cholesterol</label>
-                <label><input type="checkbox" name="hxDiabetes" value="Diabetes"> Diabetes</label>
-                <label><input type="checkbox" name="hxSmoker" value="Smoker"> Smoker</label>
-                <label><input type="checkbox" name="hxFamily" value="Family History"> Family history of heart disease</label>
+              <td colspan="6" class="heart-eval-full">
+                <div class="heart-eval-line">
+                  <span class="heart-lead"><strong>Check all that apply</strong></span>
+                  <span class="heart-inline-opts">
+                    <label><input type="checkbox" name="hxHighBP" value="High Blood Pressure"> High Blood Pressure</label>
+                    <label><input type="checkbox" name="hxHighChol" value="High Cholesterol"> High Cholesterol</label>
+                    <label><input type="checkbox" name="hxDiabetes" value="Diabetes"> Diabetes</label>
+                    <label><input type="checkbox" name="hxSmoker" value="Smoker"> Smoker</label>
+                    <label><input type="checkbox" name="hxFamily" value="Family History"> History of heart disease</label>
+                  </span>
+                </div>
               </td>
             </tr>
 
             <tr>
-              <td>Have you recently experienced chest pain?</td>
-              <td colspan="2" class="inline-options">
-                <label><input type="radio" name="chestPain" value="Yes" required> Yes</label>
-                <label><input type="radio" name="chestPain" value="No"> No</label>
-              </td>
-
-              <td>Rate your pain (1–10)</td>
-              <td colspan="2">
-                <input type="range" id="painLevel" name="painLevel" min="1" max="10" step="1" value="1"
-                       oninput="document.getElementById('painOutput').value = this.value;">
-                <output id="painOutput">1</output>
+              <td colspan="6" class="heart-eval-full">
+                <div class="heart-eval-line heart-eval-split">
+                  <div class="heart-group">
+                    <span class="heart-q">Have you recently experienced chest pain?</span>
+                    <label><input type="radio" name="chestPain" value="Yes" required> Yes</label>
+                    <label><input type="radio" name="chestPain" value="No"> No</label>
+                  </div>
+                  <div class="heart-divider" aria-hidden="true"></div>
+                  <div class="heart-group">
+                    <span class="heart-q">Rate your pain (1–10)</span>
+                    <input type="range" id="painLevel" name="painLevel" min="1" max="10" step="1" value="1"
+                           oninput="document.getElementById('painOutput').value = this.value;">
+                    <output id="painOutput">1</output>
+                  </div>
+                </div>
               </td>
             </tr>
 
             <tr>
-              <td>Do you have insurance?</td>
-              <td colspan="2" class="inline-options">
-                <label><input type="radio" name="insurance" value="Yes" required> Yes</label>
-                <label><input type="radio" name="insurance" value="No"> No</label>
-              </td>
-
-              <td>Have you previously been treated for a heart condition?</td>
-              <td colspan="2" class="inline-options">
-                <label><input type="radio" name="vaccinated" value="Yes" required> Yes</label>
-                <label><input type="radio" name="vaccinated" value="No"> No</label>
+              <td colspan="6" class="heart-eval-full">
+                <div class="heart-eval-line heart-eval-split">
+                  <div class="heart-group">
+                    <span class="heart-q">Do you have insurance?</span>
+                    <label><input type="radio" name="insurance" value="Yes" required> Yes</label>
+                    <label><input type="radio" name="insurance" value="No"> No</label>
+                  </div>
+                  <div class="heart-divider" aria-hidden="true"></div>
+                  <div class="heart-group">
+                    <span class="heart-q">Have you previously been treated for a heart condition?</span>
+                    <label><input type="radio" name="vaccinated" value="Yes" required> Yes</label>
+                    <label><input type="radio" name="vaccinated" value="No"> No</label>
+                  </div>
+                </div>
               </td>
             </tr>
           </table>
@@ -393,7 +405,7 @@ Patient registration form for MIS 3371 Homework 2 (adds Review panel).
           <div class="review-row">
             <span class="review-label">First, MI, Last Name</span>
             <span id="rv-name" class="review-value"></span>
-          </div>
+ </div>
 
           <div class="review-row">
             <span class="review-label">Date of Birth</span>
