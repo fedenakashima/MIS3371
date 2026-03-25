@@ -127,17 +127,22 @@ a:hover{
 /* ---------- SECTION TITLES ---------- */
 /* Align section headings with the centered table content */
 .section-title{
+  width: 100%;
   max-width: 900px;
-  margin: 20px auto;
-  padding-left: 14px; /* matches table border-spacing feel */
-  text-align: left;
 
+  /* same centering approach as .form-table */
+  margin: 20px auto;
+
+  /* crucial: no extra padding-left (or it shifts right) */
+  padding-left: 0;
+
+  box-sizing: border-box;
+
+  text-align: left;
   color: #7a3a3a;
   font-size: 22px;
   font-weight: 900;
   font-family: "Georgia", "Times New Roman", serif;
-
-  box-sizing: border-box;
 }
 
 /* ---------- FORM TABLE ---------- */
