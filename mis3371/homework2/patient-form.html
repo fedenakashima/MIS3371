@@ -3,8 +3,8 @@ Program name: patient-form.html
 Version 2.0
 Author: Federica Nakashima
 Date created: 2026-03-01
-Date last edited: 2026-03-25 at 3:00 PM
-Patient registration form for MIS 3371 Homework 2.
+Date last edited: 2026-03-25
+Patient registration form for MIS 3371 Homework 2 (adds Review panel).
 -->
 
 <!DOCTYPE html>
@@ -43,12 +43,12 @@ Patient registration form for MIS 3371 Homework 2.
     <p class="form-date">Today is: <span id="todayDate"></span></p>
   </div>
 
-    <!-- PANEL -->
-    <div class="form-panel">
+  <!-- PANEL -->
+  <div class="form-panel">
     <div class="form-container">
-    <div class="core-box">
+      <div class="core-box">
 
-        <form action="thankyou.html">
+        <form id="patientForm" action="thankyou.html">
 
           <!-- PATIENT INFORMATION -->
           <h3 class="section-title">Patient Information</h3>
@@ -119,61 +119,61 @@ Patient registration form for MIS 3371 Homework 2.
 
               <td>State</td>
               <td>
-  <select name="emgState">
-                <option value="">Select</option>
-                <option>AL|Alabama</option>
-                <option>AK|Alaska</option>
-                <option>AZ|Arizona</option>
-                <option>AR|Arkansas</option>
-                <option>CA|California</option>
-                <option>CO|Colorado</option>
-                <option>CT|Connecticut</option>
-                <option>DE|Delaware</option>
-                <option>FL|Florida</option>
-                <option>GA|Georgia</option>
-                <option>HI|Hawaii</option>
-                <option>ID|Idaho</option>
-                <option>IL|Illinois</option>
-                <option>IN|Indiana</option>
-                <option>IA|Iowa</option>
-                <option>KS|Kansas</option>
-                <option>KY|Kentucky</option>
-                <option>LA|Louisiana</option>
-                <option>ME|Maine</option>
-                <option>MD|Maryland</option>
-                <option>MA|Massachusetts</option>
-                <option>MI|Michigan</option>
-                <option>MN|Minnesota</option>
-                <option>MS|Mississippi</option>
-                <option>MO|Missouri</option>
-                <option>MT|Montana</option>
-                <option>NE|Nebraska</option>
-                <option>NV|Nevada</option>
-                <option>NH|New Hampshire</option>
-                <option>NJ|New Jersey</option>
-                <option>NM|New Mexico</option>
-                <option>NY|New York</option>
-                <option>NC|North Carolina</option>
-                <option>ND|North Dakota</option>
-                <option>OH|Ohio</option>
-                <option>OK|Oklahoma</option>
-                <option>OR|Oregon</option>
-                <option>PA|Pennsylvania</option>
-                <option>RI|Rhode Island</option>
-                <option>SC|South Carolina</option>
-                <option>SD|South Dakota</option>
-                <option>TN|Tennessee</option>
-                <option>TX|Texas</option>
-                <option>UT|Utah</option>
-                <option>VT|Vermont</option>
-                <option>VA|Virginia</option>
-                <option>WA|Washington</option>
-                <option>WV|West Virginia</option>
-                <option>WI|Wisconsin</option>
-                <option>WY|Wyoming</option>
-                <option>DC|District of Columbia</option>
-                <option>PR|Puerto Rico</option>
-              </select>
+                <select name="emgState">
+                  <option value="">Select</option>
+                  <option>AL|Alabama</option>
+                  <option>AK|Alaska</option>
+                  <option>AZ|Arizona</option>
+                  <option>AR|Arkansas</option>
+                  <option>CA|California</option>
+                  <option>CO|Colorado</option>
+                  <option>CT|Connecticut</option>
+                  <option>DE|Delaware</option>
+                  <option>FL|Florida</option>
+                  <option>GA|Georgia</option>
+                  <option>HI|Hawaii</option>
+                  <option>ID|Idaho</option>
+                  <option>IL|Illinois</option>
+                  <option>IN|Indiana</option>
+                  <option>IA|Iowa</option>
+                  <option>KS|Kansas</option>
+                  <option>KY|Kentucky</option>
+                  <option>LA|Louisiana</option>
+                  <option>ME|Maine</option>
+                  <option>MD|Maryland</option>
+                  <option>MA|Massachusetts</option>
+                  <option>MI|Michigan</option>
+                  <option>MN|Minnesota</option>
+                  <option>MS|Mississippi</option>
+                  <option>MO|Missouri</option>
+                  <option>MT|Montana</option>
+                  <option>NE|Nebraska</option>
+                  <option>NV|Nevada</option>
+                  <option>NH|New Hampshire</option>
+                  <option>NJ|New Jersey</option>
+                  <option>NM|New Mexico</option>
+                  <option>NY|New York</option>
+                  <option>NC|North Carolina</option>
+                  <option>ND|North Dakota</option>
+                  <option>OH|Ohio</option>
+                  <option>OK|Oklahoma</option>
+                  <option>OR|Oregon</option>
+                  <option>PA|Pennsylvania</option>
+                  <option>RI|Rhode Island</option>
+                  <option>SC|South Carolina</option>
+                  <option>SD|South Dakota</option>
+                  <option>TN|Tennessee</option>
+                  <option>TX|Texas</option>
+                  <option>UT|Utah</option>
+                  <option>VT|Vermont</option>
+                  <option>VA|Virginia</option>
+                  <option>WA|Washington</option>
+                  <option>WV|West Virginia</option>
+                  <option>WI|Wisconsin</option>
+                  <option>WY|Wyoming</option>
+                  <option>DC|District of Columbia</option>
+                  <option>PR|Puerto Rico</option>
+                </select>
               </td>
 
               <td>Zip Code</td>
@@ -232,68 +232,68 @@ Patient registration form for MIS 3371 Homework 2.
               <td>Address Line 2</td>
               <td colspan="5"><input type="text" name="address2" maxlength="30" class="wide-input"></td>
             </tr>
-            
+
             <tr>
               <td>City</td>
               <td><input type="text" name="emgCity" maxlength="30"></td>
 
               <td>State</td>
               <td>
-  <select name="emgState">
-                <option value="">Select</option>
-                <option>AL|Alabama</option>
-                <option>AK|Alaska</option>
-                <option>AZ|Arizona</option>
-                <option>AR|Arkansas</option>
-                <option>CA|California</option>
-                <option>CO|Colorado</option>
-                <option>CT|Connecticut</option>
-                <option>DE|Delaware</option>
-                <option>FL|Florida</option>
-                <option>GA|Georgia</option>
-                <option>HI|Hawaii</option>
-                <option>ID|Idaho</option>
-                <option>IL|Illinois</option>
-                <option>IN|Indiana</option>
-                <option>IA|Iowa</option>
-                <option>KS|Kansas</option>
-                <option>KY|Kentucky</option>
-                <option>LA|Louisiana</option>
-                <option>ME|Maine</option>
-                <option>MD|Maryland</option>
-                <option>MA|Massachusetts</option>
-                <option>MI|Michigan</option>
-                <option>MN|Minnesota</option>
-                <option>MS|Mississippi</option>
-                <option>MO|Missouri</option>
-                <option>MT|Montana</option>
-                <option>NE|Nebraska</option>
-                <option>NV|Nevada</option>
-                <option>NH|New Hampshire</option>
-                <option>NJ|New Jersey</option>
-                <option>NM|New Mexico</option>
-                <option>NY|New York</option>
-                <option>NC|North Carolina</option>
-                <option>ND|North Dakota</option>
-                <option>OH|Ohio</option>
-                <option>OK|Oklahoma</option>
-                <option>OR|Oregon</option>
-                <option>PA|Pennsylvania</option>
-                <option>RI|Rhode Island</option>
-                <option>SC|South Carolina</option>
-                <option>SD|South Dakota</option>
-                <option>TN|Tennessee</option>
-                <option>TX|Texas</option>
-                <option>UT|Utah</option>
-                <option>VT|Vermont</option>
-                <option>VA|Virginia</option>
-                <option>WA|Washington</option>
-                <option>WV|West Virginia</option>
-                <option>WI|Wisconsin</option>
-                <option>WY|Wyoming</option>
-                <option>DC|District of Columbia</option>
-                <option>PR|Puerto Rico</option>
-              </select>
+                <select name="emgState">
+                  <option value="">Select</option>
+                  <option>AL|Alabama</option>
+                  <option>AK|Alaska</option>
+                  <option>AZ|Arizona</option>
+                  <option>AR|Arkansas</option>
+                  <option>CA|California</option>
+                  <option>CO|Colorado</option>
+                  <option>CT|Connecticut</option>
+                  <option>DE|Delaware</option>
+                  <option>FL|Florida</option>
+                  <option>GA|Georgia</option>
+                  <option>HI|Hawaii</option>
+                  <option>ID|Idaho</option>
+                  <option>IL|Illinois</option>
+                  <option>IN|Indiana</option>
+                  <option>IA|Iowa</option>
+                  <option>KS|Kansas</option>
+                  <option>KY|Kentucky</option>
+                  <option>LA|Louisiana</option>
+                  <option>ME|Maine</option>
+                  <option>MD|Maryland</option>
+                  <option>MA|Massachusetts</option>
+                  <option>MI|Michigan</option>
+                  <option>MN|Minnesota</option>
+                  <option>MS|Mississippi</option>
+                  <option>MO|Missouri</option>
+                  <option>MT|Montana</option>
+                  <option>NE|Nebraska</option>
+                  <option>NV|Nevada</option>
+                  <option>NH|New Hampshire</option>
+                  <option>NJ|New Jersey</option>
+                  <option>NM|New Mexico</option>
+                  <option>NY|New York</option>
+                  <option>NC|North Carolina</option>
+                  <option>ND|North Dakota</option>
+                  <option>OH|Ohio</option>
+                  <option>OK|Oklahoma</option>
+                  <option>OR|Oregon</option>
+                  <option>PA|Pennsylvania</option>
+                  <option>RI|Rhode Island</option>
+                  <option>SC|South Carolina</option>
+                  <option>SD|South Dakota</option>
+                  <option>TN|Tennessee</option>
+                  <option>TX|Texas</option>
+                  <option>UT|Utah</option>
+                  <option>VT|Vermont</option>
+                  <option>VA|Virginia</option>
+                  <option>WA|Washington</option>
+                  <option>WV|West Virginia</option>
+                  <option>WI|Wisconsin</option>
+                  <option>WY|Wyoming</option>
+                  <option>DC|District of Columbia</option>
+                  <option>PR|Puerto Rico</option>
+                </select>
               </td>
 
               <td>Zip Code</td>
@@ -315,7 +315,6 @@ Patient registration form for MIS 3371 Homework 2.
           <h3 class="section-title">Heart Health Evaluation</h3>
 
           <table class="form-table">
-
             <tr>
               <td>Check all that apply</td>
               <td colspan="6" class="inline-options">
@@ -333,13 +332,14 @@ Patient registration form for MIS 3371 Homework 2.
                 <label><input type="radio" name="chestPain" value="Yes" required> Yes</label>
                 <label><input type="radio" name="chestPain" value="No"> No</label>
               </td>
-              
+
               <td>Rate your pain (1–10)</td>
               <td colspan="2">
                 <input type="range" id="painLevel" name="painLevel" min="1" max="10" step="1" value="1"
                        oninput="document.getElementById('painOutput').value = this.value;">
                 <output id="painOutput">1</output>
               </td>
+            </tr>
 
             <tr>
               <td>Do you have insurance?</td>
@@ -347,7 +347,7 @@ Patient registration form for MIS 3371 Homework 2.
                 <label><input type="radio" name="insurance" value="Yes" required> Yes</label>
                 <label><input type="radio" name="insurance" value="No"> No</label>
               </td>
-    
+
               <td>Have you previously been treated for a heart condition?</td>
               <td colspan="2" class="inline-options">
                 <label><input type="radio" name="vaccinated" value="Yes" required> Yes</label>
@@ -379,16 +379,60 @@ Patient registration form for MIS 3371 Homework 2.
 
           <!-- BUTTONS -->
           <div class="button-row">
-            <input type="reset" value="Clear" class="btn">
-            <input type="submit" value="Submit" class="btn">
+            <input id="clearBtn" type="reset" value="Clear and Start Over" class="btn">
+            <input id="reviewBtn" type="button" value="Review" class="btn">
+            <input id="submitBtn" type="submit" value="Submit" class="btn">
           </div>
 
         </form>
 
-      </div>
+        <!-- REVIEW PANEL (Homework 2) -->
+        <div id="review-panel" class="review-panel" style="display:none; margin-top:22px;">
+          <h3 class="section-title" style="margin-top:0;">PLEASE REVIEW THIS INFORMATION</h3>
 
+          <div class="review-row">
+            <span class="review-label">First, MI, Last Name</span>
+            <span id="rv-name" class="review-value"></span>
+          </div>
+
+          <div class="review-row">
+            <span class="review-label">Date of Birth</span>
+            <span id="rv-dob" class="review-value"></span>
+          </div>
+
+          <div class="review-row">
+            <span class="review-label">Email address</span>
+            <span id="rv-email" class="review-value"></span>
+          </div>
+
+          <div class="review-row">
+            <span class="review-label">Phone number</span>
+            <span id="rv-phone" class="review-value"></span>
+          </div>
+
+          <div class="review-row">
+            <span class="review-label">Address</span>
+            <span id="rv-address" class="review-value"></span>
+          </div>
+
+          <div class="review-row">
+            <span class="review-label">State</span>
+            <span id="rv-state" class="review-value"></span>
+          </div>
+
+          <div class="review-row">
+            <span class="review-label">Zip Code</span>
+            <span id="rv-zip" class="review-value"></span>
+          </div>
+
+          <div class="review-row">
+            <span class="review-label">User ID</span>
+            <span id="rv-userid" class="review-value"></span>
+          </div>
+        </div>
+
+      </div>
     </div>
-    
   </div>
 
   <!-- FOOTER -->
@@ -414,9 +458,8 @@ Patient registration form for MIS 3371 Homework 2.
     </div>
   </div>
 
-  <script 
-    src="homework2.js">
-  </script>
+  <script src="homework2.js"></script>
 
+  <!-- END OF DOCUMENT: patient-form.html -->
 </body>
 </html>
