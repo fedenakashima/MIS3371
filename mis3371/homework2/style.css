@@ -3,17 +3,13 @@ Program name: style.css
 Author: Federica Nakashima
 Date created: 2026-03-01
 Date last edited: 2026-03-25
-Patient registration form for MIS 3371 Homework 2 (adds Review panel styling).
+Patient registration form for MIS 3371 Homework 2.
 */
 
 body{
   margin: 0;
   padding: 0;
-
-  /* Non-default body font */
   font-family: "Trebuchet MS", "Verdana", Arial, sans-serif;
-
-  /* Non-default background */
   background: linear-gradient(180deg, #f3f6f7 0%, #e7f1f2 60%, #f3f6f7 100%);
   color: #0d1b1f;
 }
@@ -55,10 +51,7 @@ a:hover{
   margin: 0;
   font-size: 54px;
   font-weight: 900;
-
-  /* Heading font variation */
   font-family: "Georgia", "Times New Roman", serif;
-
   color: #0b4a4f;
 }
 
@@ -122,22 +115,17 @@ a:hover{
   border-radius: 10px;
   transform: translateX(-25px);
   background: rgba(255,255,255,0.96);
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 /* ---------- SECTION TITLES ---------- */
-/* Align section headings with the centered table content */
 .section-title{
   width: 100%;
   max-width: 900px;
-
-  /* same centering approach as .form-table */
   margin: 20px auto;
-
-  /* crucial: no extra padding-left (or it shifts right) */
   padding-left: 0;
-
   box-sizing: border-box;
-
   text-align: left;
   color: #7a3a3a;
   font-size: 22px;
@@ -153,6 +141,7 @@ a:hover{
   border-collapse: separate;
   border-spacing: 14px 16px;
   color: #000;
+  table-layout: auto;
 }
 
 .form-table td{
@@ -181,7 +170,6 @@ a:hover{
   width: 60px;
 }
 
-/* wide fields */
 .wide-input{
   width: 520px;
   max-width: 95%;
@@ -197,14 +185,64 @@ a:hover{
   margin-right: 14px;
 }
 
+/* ---------- HEART HEALTH EVALUATION TABLE ---------- */
+.form-table.heart-eval td{
+  white-space: normal;
+  vertical-align: top;
+}
+
+.form-table.heart-eval td:nth-child(1),
+.form-table.heart-eval td:nth-child(2),
+.form-table.heart-eval td:nth-child(3),
+.form-table.heart-eval td:nth-child(4),
+.form-table.heart-eval td:nth-child(5),
+.form-table.heart-eval td:nth-child(6){
+  width: auto;
+  max-width: 100%;
+}
+
+.form-table.heart-eval .inline-options{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+  white-space: normal;
+}
+
+.form-table.heart-eval tr:first-child .inline-options label{
+  white-space: nowrap;
+}
+
+.heart-eval-compact{
+  flex-wrap: wrap;
+  gap: 18px 28px !important;
+}
+
+.heart-q-block{
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+}
+
+.heart-q-label{
+  font-weight: 700;
+  margin-right: 4px;
+}
+
+.form-table.heart-eval input[type="range"]{
+  max-width: 100%;
+  vertical-align: middle;
+}
+
 /* ---------- BUTTONS ---------- */
 .button-row{
   display: flex;
   justify-content: space-between;
   gap: 12px;
-
-  max-width: 760px; /* allow 3 buttons to fit nicely */
+  max-width: 760px;
   margin: 30px auto 0;
+  flex-wrap: wrap;
 }
 
 .btn{
@@ -215,8 +253,6 @@ a:hover{
   border-radius: 22px;
   font-weight: 900;
   cursor: pointer;
-
-  /* slightly nicer button shape */
   box-shadow: 0 2px 0 rgba(0,0,0,0.08);
   min-width: 190px;
 }
@@ -226,11 +262,17 @@ a:hover{
   transform: translateY(-1px);
 }
 
-/* ---------- REVIEW PANEL (Homework 2) ---------- */
+/* ---------- REVIEW PANEL ---------- */
 .review-panel{
   max-width: 900px;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 22px;
+  padding: 16px 18px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 2px solid #cfcfcf;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
   box-sizing: border-box;
 }
 
@@ -242,7 +284,6 @@ a:hover{
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-
   padding: 10px 6px;
   border-bottom: 1px solid #e6e6e6;
 }
@@ -289,10 +330,7 @@ a:hover{
 .footer-title{
   font-weight: 900;
   font-size: 18px;
-
-  /* Heading font variation */
   font-family: "Georgia", "Times New Roman", serif;
-
   color: #000;
 }
 
@@ -314,7 +352,6 @@ a:hover{
   border-radius: 20px;
   font-weight: 900;
   cursor: pointer;
-
   box-shadow: 0 2px 0 rgba(0,0,0,0.08);
 }
 
@@ -335,14 +372,4 @@ a:hover{
 
 .footer-link:hover{
   text-decoration: underline;
-}
-
-/* HW2 alignment override: force section headings to match form-table left edge */
-.core-box .section-title{
-  max-width: 900px;
-  margin: 20px auto !important;
-  padding-left: 0 !important;
-  box-sizing: border-box;
-  position: relative;
-  left: -16px; /* move headings left to line up with table content */
 }
