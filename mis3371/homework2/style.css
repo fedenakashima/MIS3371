@@ -3,7 +3,7 @@ Program name: style.css
 Author: Federica Nakashima
 Date created: 2026-03-01
 Date last edited: 2026-03-25
-Patient registration form for MIS 3371 Homework 2.
+Patient registration + Homework 2 review panel styling.
 */
 
 body{
@@ -183,8 +183,7 @@ a:hover{
   margin-right: 14px;
 }
 
-/* ---------- HEART HEALTH (matches compact reference layout) ---------- */
-/* Global rule sets td:nth-child(1) to 150px — heart table uses one full-width cell per row */
+/* ---------- HEART HEALTH ---------- */
 .form-table.heart-eval > tbody > tr > td:nth-child(1){
   width: auto;
   max-width: 100%;
@@ -282,13 +281,11 @@ a:hover{
   transform: translateY(-1px);
 }
 
-/* ---------- REVIEW PANEL ---------- */
+/* ---------- REVIEW PANEL (professor-style) ---------- */
 .review-panel{
   max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 22px;
-  padding: 16px 18px;
+  margin: 28px auto 0;
+  padding: 20px 22px 24px;
   border-radius: 12px;
   background: #ffffff;
   border: 2px solid #cfcfcf;
@@ -296,35 +293,119 @@ a:hover{
   box-sizing: border-box;
 }
 
-.review-panel h3{
+/* Title: PLEASE REVIEW THIS INFORMATION */
+.review-panel .review-main-title,
+.review-panel h3.review-main-title{
+  margin: 0 0 18px 0;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 18px;
+  font-weight: 900;
+  font-family: "Georgia", "Times New Roman", serif;
   color: #7a3a3a;
 }
 
-.review-row{
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  padding: 10px 6px;
-  border-bottom: 1px solid #e6e6e6;
+/* Label | Value | pass / ERROR */
+.review-row-3{
+  display: grid;
+  grid-template-columns: minmax(140px, 220px) 1fr minmax(120px, 260px);
+  gap: 12px 18px;
+  align-items: start;
+  padding: 12px 4px;
+  border-bottom: 1px solid #e8e8e8;
 }
 
-.review-row:last-child{
+.review-row-3:last-of-type{
   border-bottom: none;
 }
 
-.review-label{
-  font-weight: 900;
+.review-field-label{
+  font-weight: 800;
   color: #0b4a4f;
-  font-size: 15px;
-  flex: 0 0 260px;
+  line-height: 1.35;
 }
 
-.review-value{
-  font-weight: 800;
+.review-field-value{
+  font-weight: 700;
   color: #111;
-  text-align: right;
-  flex: 1;
+  line-height: 1.4;
   word-break: break-word;
+  white-space: pre-line;
+}
+
+.review-field-value a{
+  color: #0645ad;
+  text-decoration: underline;
+  font-weight: 700;
+}
+
+.review-field-status{
+  font-weight: 900;
+  font-size: 14px;
+  line-height: 1.35;
+  text-align: right;
+}
+
+.review-pass{
+  color: #157a3a;
+}
+
+.review-error{
+  color: #b00020;
+}
+
+/* REQUESTED INFO */
+.review-subtitle{
+  margin: 22px 0 14px 0;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 15px;
+  font-weight: 900;
+  color: #0b4a4f;
+}
+
+.review-requested-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 36px;
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.review-kv{
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  font-weight: 700;
+}
+
+.review-kv .review-k{
+  color: #111;
+}
+
+.review-kv .review-v{
+  color: #111;
+  font-weight: 800;
+}
+
+/* Symptoms + account rows can reuse review-row-3 or a simpler 2-col */
+.review-row-2{
+  display: grid;
+  grid-template-columns: minmax(140px, 220px) 1fr;
+  gap: 12px 18px;
+  align-items: start;
+  padding: 12px 4px;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.review-note{
+  font-style: italic;
+  font-weight: 600;
+  color: #444;
+  font-size: 13px;
 }
 
 /* ---------- FOOTER ---------- */
@@ -392,4 +473,17 @@ a:hover{
 
 .footer-link:hover{
   text-decoration: underline;
+}
+
+/* narrow screens: stack review columns */
+@media (max-width: 760px){
+  .review-row-3{
+    grid-template-columns: 1fr;
+  }
+  .review-field-status{
+    text-align: left;
+  }
+  .review-requested-grid{
+    grid-template-columns: 1fr;
+  }
 }
