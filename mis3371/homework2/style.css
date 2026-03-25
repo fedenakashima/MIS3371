@@ -1,0 +1,246 @@
+/*
+Program name: style.css
+Author: Federica Nakashima
+Date created: 2026-01-25
+Date last edited: 2026-02-27 at 8:00 PM
+Patient registration form for MIS 3371 Homework 1.
+*/
+
+body{
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f3f6f7;
+}
+
+/* ---------- TOP BANNER ---------- */
+.top-banner{
+  background: #ffffff;
+  display: grid;
+  grid-template-columns: 170px 1fr 260px;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 22px;
+  border-bottom: 2px solid #cfcfcf;
+}
+
+.logo{
+  width: 130px;
+  height: auto;
+  display: block;
+}
+
+.brand-wrap{
+  text-align: center;
+}
+
+.company-name{
+  margin: 0;
+  font-size: 54px;
+  font-weight: 900;
+  color: #000;
+}
+
+.slogan{
+  margin: 8px 0 0 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #7a3a3a;
+}
+
+.info-wrap{
+  text-align: right;
+  font-size: 14px;
+  line-height: 1.35;
+  color: #111;
+}
+.doc-line{
+  margin: 2px 0;
+}
+
+/* ---------- TITLE BAR ---------- */
+.title-bar{
+  background: #6fa9ad;
+  text-align: center;
+  padding: 14px 10px 16px 10px;
+}
+
+.title-bar h2{
+  margin: 0;
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.form-date{
+  margin: 6px 0 0 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* ---------- PANEL ---------- */
+.form-panel{
+  background: #6fa9ad;
+  padding: 30px 0 50px 0;
+}
+
+.form-container{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.core-box{
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 22px 24px 30px 24px;
+  border: 2px solid #ffffff;
+  border-radius: 10px;
+  transform: translateX(-25px);
+}
+
+/* ---------- SECTION TITLES ---------- */
+.section-title{
+  text-align: left;
+  margin: 20px 0;
+  color: #7a3a3a;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.form-table{
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  border-collapse: separate;
+  border-spacing: 14px 16px;
+  color: #000;
+}
+
+.form-table td{
+  vertical-align: middle;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.form-table td:nth-child(1),
+.form-table td:nth-child(3),
+.form-table td:nth-child(5){
+  width: 150px;
+}
+
+.form-table input,
+.form-table select,
+.form-table textarea{
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid #cfcfcf;
+}
+
+.mi{
+  width: 60px;
+}
+
+/* wide fields */
+.wide-input{
+  width: 520px;
+  max-width: 95%;
+}
+
+.wide-textarea{
+  width: 520px;
+  max-width: 95%;
+  resize: vertical;
+}
+
+.inline-options label{
+  margin-right: 14px;
+}
+
+/* ---------- BUTTONS ---------- */
+.button-row{
+  display: flex;
+  justify-content: space-between;
+  max-width: 520px;
+  margin: 30px auto 0;
+}
+
+.btn{
+  background: #8b3a3a;
+  color: #ffffff;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 22px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.btn:hover{
+  opacity: 0.95;
+}
+
+/* ---------- FOOTER ---------- */
+.footer{
+  background: #ffffff;
+  border-top: 2px solid #cfcfcf;
+  padding: 16px 18px;
+}
+
+.footer-inner{
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-left{
+  text-align: left;
+}
+
+.footer-title{
+  font-weight: 900;
+  font-size: 18px;
+  color: #000;
+}
+
+.footer-sub{
+  font-weight: 700;
+  font-size: 13px;
+  color: #7a3a3a;
+}
+
+.footer-mid{
+  text-align: center;
+}
+
+.footer-btn{
+  background: #8b3a3a;
+  color: #ffffff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 20px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.footer-right{
+  text-align: right;
+}
+
+.footer-link{
+  margin-left: 10px;
+  color: #0b4a4f;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.footer-link:visited{
+  color: #6b2f2f;
+}
+
+.footer-link:hover{
+  text-decoration: underline;
+}
