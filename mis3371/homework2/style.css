@@ -2,15 +2,32 @@
 Program name: style.css
 Author: Federica Nakashima
 Date created: 2026-03-01
-Date last edited: 2026-03-25 at 3:00 PM
-Patient registration form for MIS 3371 Homework 2.
+Date last edited: 2026-03-25
+Patient registration form for MIS 3371 Homework 2 (adds Review panel styling).
 */
 
 body{
   margin: 0;
   padding: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background: #f3f6f7;
+
+  /* Non-default body font */
+  font-family: "Trebuchet MS", "Verdana", Arial, sans-serif;
+
+  /* Non-default background */
+  background: linear-gradient(180deg, #f3f6f7 0%, #e7f1f2 60%, #f3f6f7 100%);
+  color: #0d1b1f;
+}
+
+a:link{
+  color: #0b4a4f;
+  text-decoration: none;
+  font-weight: 700;
+}
+a:visited{
+  color: #6b2f2f;
+}
+a:hover{
+  text-decoration: underline;
 }
 
 /* ---------- TOP BANNER ---------- */
@@ -38,14 +55,19 @@ body{
   margin: 0;
   font-size: 54px;
   font-weight: 900;
-  color: #000;
+
+  /* Heading font variation */
+  font-family: "Georgia", "Times New Roman", serif;
+
+  color: #0b4a4f;
 }
 
 .slogan{
   margin: 8px 0 0 0;
   font-size: 22px;
-  font-weight: 700;
+  font-weight: 800;
   color: #7a3a3a;
+  letter-spacing: 0.2px;
 }
 
 .info-wrap{
@@ -69,13 +91,14 @@ body{
   margin: 0;
   color: #ffffff;
   font-size: 28px;
-  font-weight: 800;
+  font-weight: 900;
+  font-family: "Georgia", "Times New Roman", serif;
 }
 
 .form-date{
   margin: 6px 0 0 0;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 800;
   color: #ffffff;
 }
 
@@ -98,6 +121,7 @@ body{
   border: 2px solid #ffffff;
   border-radius: 10px;
   transform: translateX(-25px);
+  background: rgba(255,255,255,0.96);
 }
 
 /* ---------- SECTION TITLES ---------- */
@@ -106,9 +130,12 @@ body{
   margin: 20px 0;
   color: #7a3a3a;
   font-size: 22px;
-  font-weight: 800;
+  font-weight: 900;
+
+  font-family: "Georgia", "Times New Roman", serif;
 }
 
+/* ---------- FORM TABLE ---------- */
 .form-table{
   width: 100%;
   max-width: 900px;
@@ -120,7 +147,7 @@ body{
 
 .form-table td{
   vertical-align: middle;
-  font-weight: 600;
+  font-weight: 700;
   white-space: nowrap;
 }
 
@@ -136,6 +163,8 @@ body{
   padding: 6px 8px;
   border-radius: 6px;
   border: 1px solid #cfcfcf;
+  background: #ffffff;
+  color: #0d1b1f;
 }
 
 .mi{
@@ -162,7 +191,9 @@ body{
 .button-row{
   display: flex;
   justify-content: space-between;
-  max-width: 520px;
+  gap: 12px;
+
+  max-width: 760px; /* allow 3 buttons to fit nicely */
   margin: 30px auto 0;
 }
 
@@ -172,12 +203,62 @@ body{
   border: none;
   padding: 10px 22px;
   border-radius: 22px;
-  font-weight: 800;
+  font-weight: 900;
   cursor: pointer;
+
+  /* slightly nicer button shape */
+  box-shadow: 0 2px 0 rgba(0,0,0,0.08);
+  min-width: 190px;
 }
 
 .btn:hover{
   opacity: 0.95;
+  transform: translateY(-1px);
+}
+
+/* ---------- REVIEW PANEL (Homework 2) ---------- */
+.review-panel{
+  margin-top: 22px;
+  padding: 16px 18px;
+  border-radius: 12px;
+
+  background: #ffffff;
+  border: 2px solid #cfcfcf;
+
+  /* subtle separation */
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+.review-panel h3{
+  color: #7a3a3a;
+}
+
+.review-row{
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+
+  padding: 10px 6px;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.review-row:last-child{
+  border-bottom: none;
+}
+
+.review-label{
+  font-weight: 900;
+  color: #0b4a4f;
+  font-size: 15px;
+  flex: 0 0 260px;
+}
+
+.review-value{
+  font-weight: 800;
+  color: #111;
+  text-align: right;
+  flex: 1;
+  word-break: break-word;
 }
 
 /* ---------- FOOTER ---------- */
@@ -203,11 +284,15 @@ body{
 .footer-title{
   font-weight: 900;
   font-size: 18px;
+
+  /* Heading font variation */
+  font-family: "Georgia", "Times New Roman", serif;
+
   color: #000;
 }
 
 .footer-sub{
-  font-weight: 700;
+  font-weight: 800;
   font-size: 13px;
   color: #7a3a3a;
 }
@@ -222,8 +307,10 @@ body{
   border: none;
   padding: 10px 18px;
   border-radius: 20px;
-  font-weight: 800;
+  font-weight: 900;
   cursor: pointer;
+
+  box-shadow: 0 2px 0 rgba(0,0,0,0.08);
 }
 
 .footer-right{
@@ -234,7 +321,7 @@ body{
   margin-left: 10px;
   color: #0b4a4f;
   text-decoration: none;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .footer-link:visited{
