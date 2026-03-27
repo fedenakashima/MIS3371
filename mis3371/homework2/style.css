@@ -2,7 +2,7 @@
 Program name: style.css
 Author: Federica Nakashima
 Date created: 2026-03-01
-Date last edited: 2026-03-25
+Date last edited: 2026-03-27
 Patient registration form for MIS 3371 Homework 2.
 */
 
@@ -78,6 +78,7 @@ a:hover{ text-decoration: underline; }
   padding: 0 20px;
 }
 
+/* NO translateX — it visually shifts the whole card */
 .core-box{
   max-width: 980px;
   margin: 0 auto;
@@ -86,13 +87,14 @@ a:hover{ text-decoration: underline; }
   border-radius: 10px;
   background: rgba(255,255,255,0.96);
   box-sizing: border-box;
+  overflow-x: hidden; /* safety if something still overflows on tiny widths */
 }
 
 .section-title{
   width: 100%;
   max-width: 900px;
-  margin: 20px auto;
-  padding-left: 0;
+  margin: 20px 0;
+  padding: 0;
   box-sizing: border-box;
   text-align: left;
   color: #7a3a3a;
@@ -101,31 +103,43 @@ a:hover{ text-decoration: underline; }
   font-family: "Georgia", "Times New Roman", serif;
 }
 
+/* ---------- MAIN FORM TABLES (fit inside white box) ---------- */
 .form-table{
   width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0;
   border-collapse: separate;
-  border-spacing: 14px 16px;
+  border-spacing: 8px 12px;
   color: #000;
-  table-layout: auto;
+  table-layout: fixed; /* prevents runaway column widths */
 }
 
 .form-table td{
   vertical-align: middle;
   font-weight: 700;
-  white-space: nowrap;
+  white-space: normal; /* IMPORTANT: allows wrapping vs nowrap explosion */
+  word-break: break-word;
+  min-width: 0;        /* IMPORTANT: lets columns shrink inside fixed layout */
 }
 
+/* label columns get a stable but modest width (not 150px × many columns wide total) */
 .form-table td:nth-child(1),
 .form-table td:nth-child(3),
 .form-table td:nth-child(5){
-  width: 150px;
+  width: 18%;
+}
+
+.form-table td:nth-child(2),
+.form-table td:nth-child(4),
+.form-table td:nth-child(6){
+  width: 14%;
 }
 
 .form-table input,
 .form-table select,
 .form-table textarea{
+  width: 100%;
+  max-width: 100%;
   padding: 6px 8px;
   border-radius: 6px;
   border: 1px solid #cfcfcf;
@@ -134,18 +148,28 @@ a:hover{ text-decoration: underline; }
   box-sizing: border-box;
 }
 
-.mi{ width: 60px; }
-
-.wide-input{
-  width: 520px;
-  max-width: 95%;
+.mi{
+  width: 100%;
+  max-width: 72px;
 }
 
-.inline-options label{ margin-right: 14px; }
+/* was forcing 520px wide; that commonly blows past the card */
+.wide-input{
+  width: 100%;
+  max-width: 100%;
+}
+
+.inline-options{
+  white-space: normal;
+}
+
+.inline-options label{
+  margin-right: 12px;
+  white-space: nowrap; /* keep each checkbox/radio label tidy */
+}
 
 /* Insurance provider */
 #insuranceProvider{
-  min-width: 260px;
   max-width: 100%;
 }
 
@@ -165,11 +189,11 @@ a:hover{ text-decoration: underline; }
 .other-provider-wrap label{ font-weight: 700; }
 
 #otherProvider{
-  width: 280px;
-  max-width: 100%;
+  width: 100%;
+  max-width: 320px;
 }
 
-/* Heart Health */
+/* ---------- HEART HEALTH ---------- */
 .form-table.heart-eval > tbody > tr > td:nth-child(1){
   width: auto;
   max-width: 100%;
@@ -183,7 +207,7 @@ a:hover{ text-decoration: underline; }
 .form-table.heart-eval td.heart-eval-full{
   width: 100%;
   max-width: 100%;
-  padding: 10px 6px;
+  padding: 10px 4px;
   box-sizing: border-box;
 }
 
@@ -225,9 +249,10 @@ a:hover{ text-decoration: underline; }
 .form-table.heart-eval input[type="range"]{
   min-width: 120px;
   max-width: 220px;
-  vertical-align: middle;
+  width: auto;
 }
 
+/* ---------- BUTTONS ---------- */
 .button-row{
   display: flex;
   justify-content: space-between;
@@ -251,8 +276,9 @@ a:hover{ text-decoration: underline; }
 
 .btn:hover{ opacity: 0.95; transform: translateY(-1px); }
 
+/* ---------- REVIEW ---------- */
 .review-panel{
-  max-width: 900px;
+  max-width: 100%;
   margin: 22px auto 0;
   padding: 16px 18px;
   border-radius: 12px;
@@ -266,6 +292,7 @@ a:hover{ text-decoration: underline; }
   display: flex;
   align-items: baseline;
   justify-content: space-between;
+  gap: 12px;
   padding: 10px 6px;
   border-bottom: 1px solid #e6e6e6;
 }
@@ -276,7 +303,7 @@ a:hover{ text-decoration: underline; }
   font-weight: 900;
   color: #0b4a4f;
   font-size: 15px;
-  flex: 0 0 260px;
+  flex: 0 0 240px;
 }
 
 .review-value{
@@ -287,6 +314,7 @@ a:hover{ text-decoration: underline; }
   word-break: break-word;
 }
 
+/* ---------- FOOTER ---------- */
 .footer{
   background: #ffffff;
   border-top: 2px solid #cfcfcf;
@@ -324,7 +352,7 @@ a:hover{ text-decoration: underline; }
   box-shadow: 0 2px 0 rgba(0,0,0,0.08);
 }
 
-.footer-right{ text-align: right; }
+.footer-right{ text-align:	right; }
 
 .footer-link{
   margin-left: 10px;
