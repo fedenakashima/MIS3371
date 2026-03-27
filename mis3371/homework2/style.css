@@ -14,19 +14,10 @@ body{
   color: #0d1b1f;
 }
 
-a:link{
-  color: #0b4a4f;
-  text-decoration: none;
-  font-weight: 700;
-}
-a:visited{
-  color: #6b2f2f;
-}
-a:hover{
-  text-decoration: underline;
-}
+a:link{ color: #0b4a4f; text-decoration: none; font-weight: 700; }
+a:visited{ color: #6b2f2f; }
+a:hover{ text-decoration: underline; }
 
-/* ---------- TOP BANNER ---------- */
 .top-banner{
   background: #ffffff;
   display: grid;
@@ -37,15 +28,8 @@ a:hover{
   border-bottom: 2px solid #cfcfcf;
 }
 
-.logo{
-  width: 130px;
-  height: auto;
-  display: block;
-}
-
-.brand-wrap{
-  text-align: center;
-}
+.logo{ width: 130px; height: auto; display: block; }
+.brand-wrap{ text-align: center; }
 
 .company-name{
   margin: 0;
@@ -60,21 +44,11 @@ a:hover{
   font-size: 22px;
   font-weight: 800;
   color: #7a3a3a;
-  letter-spacing: 0.2px;
 }
 
-.info-wrap{
-  text-align: right;
-  font-size: 14px;
-  line-height: 1.35;
-  color: #111;
-}
+.info-wrap{ text-align: right; font-size: 14px; line-height: 1.35; color: #111; }
+.doc-line{ margin: 2px 0; }
 
-.doc-line{
-  margin: 2px 0;
-}
-
-/* ---------- TITLE BAR ---------- */
 .title-bar{
   background: #6fa9ad;
   text-align: center;
@@ -96,11 +70,7 @@ a:hover{
   color: #ffffff;
 }
 
-/* ---------- PANEL ---------- */
-.form-panel{
-  background: #6fa9ad;
-  padding: 30px 0 50px 0;
-}
+.form-panel{ background: #6fa9ad; padding: 30px 0 50px 0; }
 
 .form-container{
   max-width: 1100px;
@@ -118,7 +88,6 @@ a:hover{
   box-sizing: border-box;
 }
 
-/* ---------- SECTION TITLES ---------- */
 .section-title{
   width: 100%;
   max-width: 900px;
@@ -132,7 +101,6 @@ a:hover{
   font-family: "Georgia", "Times New Roman", serif;
 }
 
-/* ---------- FORM TABLE ---------- */
 .form-table{
   width: 100%;
   max-width: 900px;
@@ -166,29 +134,24 @@ a:hover{
   box-sizing: border-box;
 }
 
-.mi{
-  width: 60px;
-}
+.mi{ width: 60px; }
 
 .wide-input{
   width: 520px;
   max-width: 95%;
 }
 
-.wide-textarea{
-  width: 520px;
-  max-width: 95%;
-  resize: vertical;
-}
+.inline-options label{ margin-right: 14px; }
 
-.inline-options label{
-  margin-right: 14px;
-}
-
-/* ---------- NEW INSURANCE PROVIDER BLOCK ---------- */
+/* Insurance provider */
 #insuranceProvider{
   min-width: 260px;
   max-width: 100%;
+}
+
+#insuranceProvider:disabled{
+  opacity: 0.55;
+  cursor: not-allowed;
 }
 
 .other-provider-wrap{
@@ -199,16 +162,14 @@ a:hover{
   flex-wrap: wrap;
 }
 
-.other-provider-wrap label{
-  font-weight: 700;
-}
+.other-provider-wrap label{ font-weight: 700; }
 
 #otherProvider{
   width: 280px;
   max-width: 100%;
 }
 
-/* ---------- HEART HEALTH EVALUATION ---------- */
+/* Heart Health */
 .form-table.heart-eval > tbody > tr > td:nth-child(1){
   width: auto;
   max-width: 100%;
@@ -233,10 +194,6 @@ a:hover{
   gap: 10px 18px;
 }
 
-.heart-eval-line .heart-lead{
-  flex: 0 0 auto;
-}
-
 .heart-inline-opts{
   display: flex;
   flex-wrap: wrap;
@@ -244,15 +201,9 @@ a:hover{
   gap: 8px 16px;
 }
 
-.heart-inline-opts label{
-  margin-right: 0;
-  white-space: nowrap;
-}
+.heart-inline-opts label{ margin-right: 0; white-space: nowrap; }
 
-.heart-eval-split{
-  justify-content: flex-start;
-  gap: 16px 28px;
-}
+.heart-eval-split{ justify-content: flex-start; gap: 16px 28px; }
 
 .heart-group{
   display: inline-flex;
@@ -261,9 +212,7 @@ a:hover{
   gap: 8px 12px;
 }
 
-.heart-q{
-  font-weight: 700;
-}
+.heart-q{ font-weight: 700; }
 
 .heart-divider{
   width: 1px;
@@ -279,7 +228,6 @@ a:hover{
   vertical-align: middle;
 }
 
-/* ---------- BUTTONS ---------- */
 .button-row{
   display: flex;
   justify-content: space-between;
@@ -301,27 +249,17 @@ a:hover{
   min-width: 190px;
 }
 
-.btn:hover{
-  opacity: 0.95;
-  transform: translateY(-1px);
-}
+.btn:hover{ opacity: 0.95; transform: translateY(-1px); }
 
-/* ---------- REVIEW PANEL ---------- */
 .review-panel{
   max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 22px;
+  margin: 22px auto 0;
   padding: 16px 18px;
   border-radius: 12px;
   background: #ffffff;
   border: 2px solid #cfcfcf;
   box-shadow: 0 6px 18px rgba(0,0,0,0.06);
   box-sizing: border-box;
-}
-
-.review-panel h3{
-  color: #7a3a3a;
 }
 
 .review-row{
@@ -332,9 +270,7 @@ a:hover{
   border-bottom: 1px solid #e6e6e6;
 }
 
-.review-row:last-child{
-  border-bottom: none;
-}
+.review-row:last-child{ border-bottom: none; }
 
 .review-label{
   font-weight: 900;
@@ -351,7 +287,6 @@ a:hover{
   word-break: break-word;
 }
 
-/* ---------- FOOTER ---------- */
 .footer{
   background: #ffffff;
   border-top: 2px solid #cfcfcf;
@@ -367,10 +302,6 @@ a:hover{
   gap: 12px;
 }
 
-.footer-left{
-  text-align: left;
-}
-
 .footer-title{
   font-weight: 900;
   font-size: 18px;
@@ -378,15 +309,9 @@ a:hover{
   color: #000;
 }
 
-.footer-sub{
-  font-weight: 800;
-  font-size: 13px;
-  color: #7a3a3a;
-}
+.footer-sub{ font-weight: 800; font-size: 13px; color: #7a3a3a; }
 
-.footer-mid{
-  text-align: center;
-}
+.footer-mid{ text-align: center; }
 
 .footer-btn{
   background: #8b3a3a;
@@ -399,9 +324,7 @@ a:hover{
   box-shadow: 0 2px 0 rgba(0,0,0,0.08);
 }
 
-.footer-right{
-  text-align: right;
-}
+.footer-right{ text-align: right; }
 
 .footer-link{
   margin-left: 10px;
@@ -410,10 +333,5 @@ a:hover{
   font-weight: 800;
 }
 
-.footer-link:visited{
-  color: #6b2f2f;
-}
-
-.footer-link:hover{
-  text-decoration: underline;
-}
+.footer-link:visited{ color: #6b2f2f; }
+.footer-link:hover{ text-decoration: underline; }
