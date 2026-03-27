@@ -1,34 +1,30 @@
-// homework2.js
-// MIS3371 Homework 2 - dynamic date, review panel, insurance provider logic
+// homework2.js — MIS3371 Homework 2
 
 function setText(id, value) {
   const el = document.getElementById(id);
-  if (el) el.innerText = value ?? "";
+  if (el) el.textContent = value ?? "";
 }
 
 function formatName(first, middle, last) {
   const mi = (middle || "").trim();
   const midPart = mi ? mi + "." : "";
-  return `${(first || "").trim()} ${midPart} ${(last || "").trim()}`
-    .replace(/\s+/g, " ")
-    .trim();
+  return `${(first || "").trim()} ${midPart} ${(last || "").trim()}`.replace(/\s+/g, " ").trim();
 }
 
-function getSelectedRadioValue(name) {
-  const checked = document.querySelector(`input[name="${name}"]:checked`);
-  return checked ? checked.value : "";
+function getInsuranceRadios() {
+  return document.querySelectorAll('#patientForm input[name="insurance"]');
 }
 
-/* ---------- Insurance logic ---------- */
 function updateInsuranceFields() {
-  const selectedInsurance = document.querySelector('input[name="insurance"]:checked');
+  const form = document.getElementById("patientForm");
   const provider = document.getElementById("insuranceProvider");
   const otherWrap = document.getElementById("otherProviderWrap");
   const otherInput = document.getElementById("otherProvider");
 
-  if (!provider || !otherWrap || !otherInput) return;
+  if (!form || !provider || !otherWrap || !otherInput) return;
 
-  const hasInsurance = selectedInsurance && selectedInsurance.value === "Yes";
+  const selected = form.querySelector('input[name="insurance"]:checked');
+  const hasInsurance = selected && selected.value === "Yes";
 
   provider.disabled = !hasInsurance;
   provider.required = hasInsurance;
@@ -54,19 +50,14 @@ function updateOtherProviderField() {
   const isOther = provider.value === "Other";
   otherWrap.style.display = isOther ? "flex" : "none";
   otherInput.required = isOther;
-
-  if (!isOther) {
-    otherInput.value = "";
-  }
+  if (!isOther) otherInput.value = "";
 }
 
-/* ---------- Review panel ---------- */
 function showReview() {
   const form = document.getElementById("patientForm");
   const panel = document.getElementById("review-panel");
   if (!form || !panel) return;
 
-  // basic identity/contact
   const firstName = form.elements["firstName"]?.value || "";
   const middleInit = form.elements["middleInit"]?.value || "";
   const lastName = form.elements["lastName"]?.value || "";
@@ -80,17 +71,22 @@ function showReview() {
   const zip = form.elements["zip"]?.value || "";
   const userID = form.elements["userID"]?.value || "";
 
-  // insurance
-  const insurance = getSelectedRadioValue("insurance");
-  const providerSelect = document.getElementById("insuranceProvider");
-  const providerOther = document.getElementById("otherProvider");
-  let provider = providerSelect ? providerSelect.value : "";
+  const ins = form.querySelector('input[name="insurance"]:checked');
+  const insurance = ins ? ins.value : "";
 
-  if (provider === "Other") {
-    provider = providerOther?.value?.trim() || "Other";
+  const providerSel = document.getElementById("insuranceProvider");
+  const otherProv = document.getElementById("otherProvider");
+  let providerText = "";
+  if (insurance === "Yes" && providerSel) {
+    if (providerSel.value === "Other") {
+      providerText = (otherProv && otherProv.value.trim()) ? otherProv.value.trim() : "Other (not specified)";
+    } else {
+      providerText = providerSel.value || "";
+    }
+  } else {
+    providerText = "N/A";
   }
 
-  // format full address line
   const addrLine = [address1, address2].filter(Boolean).join(" ").trim();
   const cityStateZip = [city, state, zip].filter(Boolean).join(" ").trim();
   const fullAddress = [addrLine, cityStateZip].filter(Boolean).join(", ");
@@ -103,61 +99,53 @@ function showReview() {
   setText("rv-state", state);
   setText("rv-zip", zip);
   setText("rv-insurance", insurance || "Not selected");
-  setText("rv-provider", insurance === "Yes" ? (provider || "Not selected") : "N/A");
+  setText("rv-provider", insurance === "Yes" ? providerText : "N/A");
   setText("rv-userid", userID);
 
   panel.style.display = "block";
 }
 
-/* ---------- Init ---------- */
-(function init() {
-  // dynamic date in header
-  const d = new Date();
-  const today = document.getElementById("todayDate");
-  if (today) today.innerHTML = d.toDateString();
+function wireInsurance() {
+  const form = document.getElementById("patientForm");
+  const radios = getInsuranceRadios();
+  const provider = document.getElementById("insuranceProvider");
 
-  // pain slider output (if present)
+  radios.forEach((r) => {
+    r.addEventListener("change", updateInsuranceFields);
+  });
+
+  if (provider) {
+    provider.addEventListener("change", updateOtherProviderField);
+  }
+
+  if (form) {
+    form.addEventListener("reset", () => {
+      window.setTimeout(updateInsuranceFields, 0);
+    });
+  }
+
+  updateInsuranceFields();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const today = document.getElementById("todayDate");
+  if (today) today.textContent = new Date().toDateString();
+
   const painLevel = document.getElementById("painLevel");
   const painOutput = document.getElementById("painOutput");
   if (painLevel && painOutput) {
     painOutput.value = painLevel.value;
-    painLevel.addEventListener("input", () => {
-      painOutput.value = painLevel.value;
-    });
+    painLevel.addEventListener("input", () => { painOutput.value = painLevel.value; });
   }
 
-  // review + clear buttons
-  const reviewBtn = document.getElementById("reviewBtn");
-  const clearBtn = document.getElementById("clearBtn");
+  document.getElementById("reviewBtn")?.addEventListener("click", showReview);
 
-  if (reviewBtn) {
-    reviewBtn.addEventListener("click", showReview);
-  }
-
-  if (clearBtn) {
-    clearBtn.addEventListener("click", () => {
-      const panel = document.getElementById("review-panel");
-      if (panel) panel.style.display = "none";
-
-      // reset insurance/provider UI
-      setTimeout(() => {
-        updateInsuranceFields();
-      }, 0);
-    });
-  }
-
-  // insurance events
-  const insuranceRadios = document.querySelectorAll('input[name="insurance"]');
-  const insuranceProvider = document.getElementById("insuranceProvider");
-
-  insuranceRadios.forEach((radio) => {
-    radio.addEventListener("change", updateInsuranceFields);
+  document.getElementById("clearBtn")?.addEventListener("click", () => {
+    window.setTimeout(() => {
+      document.getElementById("review-panel").style.display = "none";
+      updateInsuranceFields();
+    }, 0);
   });
 
-  if (insuranceProvider) {
-    insuranceProvider.addEventListener("change", updateOtherProviderField);
-  }
-
-  // initialize UI state
-  updateInsuranceFields();
-})();
+  wireInsurance();
+});
