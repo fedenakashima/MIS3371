@@ -1,6 +1,6 @@
 <!--
 Program name: patient-form.html
-Version 2.3
+Version 2.4
 Author: Federica Nakashima
 Date created: 2026-03-01
 Date last edited: 2026-03-25
@@ -18,17 +18,14 @@ Patient registration form for MIS 3371 Homework 2.
 
 <body>
 
-  <!-- TOP BANNER -->
   <div class="top-banner">
     <div class="logo-wrap">
       <img src="heartland-logo.png" alt="Heartland Medical Care Logo" class="logo">
     </div>
-
     <div class="brand-wrap">
       <h1 class="company-name">Heartland Medical Care</h1>
       <p class="slogan">Compassion in Every Heartbeat</p>
     </div>
-
     <div class="info-wrap">
       <p class="doc-line"><strong>Dr. Jake Messinger</strong></p>
       <p class="doc-line">24702 Pinebrook Ridge Ln</p>
@@ -37,38 +34,31 @@ Patient registration form for MIS 3371 Homework 2.
     </div>
   </div>
 
-  <!-- TITLE BAR -->
   <div class="title-bar">
     <h2>Patient Registration Form</h2>
     <p class="form-date">Today is: <span id="todayDate"></span></p>
   </div>
 
-  <!-- PANEL -->
   <div class="form-panel">
     <div class="form-container">
       <div class="core-box">
 
         <form id="patientForm" action="thankyou.html">
 
-          <!-- PATIENT INFORMATION -->
           <h3 class="section-title">Patient Information</h3>
 
           <table class="form-table">
             <tr>
               <td>First Name</td>
-              <td><input type="text" name="firstName" maxlength="30" required></td>
-
+              <td><input type="text" name="firstName" maxlength="30" required title="1–30 characters."></td>
               <td>Middle Initial</td>
-              <td><input type="text" name="middleInit" maxlength="1" class="mi"></td>
-
+              <td><input type="text" name="middleInit" maxlength="1" class="mi" title="One letter, or leave blank."></td>
               <td>Last Name</td>
-              <td><input type="text" name="lastName" maxlength="30" required></td>
+              <td><input type="text" name="lastName" maxlength="30" required title="1–30 characters."></td>
             </tr>
-
             <tr>
               <td>Date of Birth</td>
-              <td><input type="text" name="dob" placeholder="MM/DD/YYYY" required></td>
-
+              <td><input type="text" name="dob" placeholder="MM/DD/YYYY" required title="Format MM/DD/YYYY."></td>
               <td>Sex</td>
               <td colspan="3" class="inline-options">
                 <label><input type="radio" name="sex" value="Male" required> Male</label>
@@ -76,14 +66,10 @@ Patient registration form for MIS 3371 Homework 2.
                 <label><input type="radio" name="sex" value="Other"> Other</label>
               </td>
             </tr>
-
             <tr>
               <td>Social Security</td>
-              <td colspan="5">
-                <input type="password" name="ssn" maxlength="11" placeholder="XXX-XX-XXXX">
-              </td>
+              <td colspan="5"><input type="password" name="ssn" maxlength="11" placeholder="XXX-XX-XXXX" title="Do not use a real SSN for testing."></td>
             </tr>
-
             <tr>
               <td>Race</td>
               <td colspan="5" class="inline-options">
@@ -94,7 +80,6 @@ Patient registration form for MIS 3371 Homework 2.
                 <label><input type="checkbox" name="raceOther" value="Other"> Other</label>
               </td>
             </tr>
-
             <tr>
               <td>Ethnicity</td>
               <td colspan="5" class="inline-options">
@@ -102,24 +87,20 @@ Patient registration form for MIS 3371 Homework 2.
                 <label><input type="radio" name="ethnicity" value="Hispanic"> Hispanic</label>
               </td>
             </tr>
-
             <tr>
               <td>Address Line 1</td>
-              <td colspan="5"><input type="text" name="address1" maxlength="30" class="wide-input" required></td>
+              <td colspan="5"><input type="text" name="address1" maxlength="30" class="wide-input" required title="2–30 characters."></td>
             </tr>
-
             <tr>
               <td>Address Line 2</td>
-              <td colspan="5"><input type="text" name="address2" maxlength="30" class="wide-input"></td>
+              <td colspan="5"><input type="text" name="address2" maxlength="30" class="wide-input" title="Optional."></td>
             </tr>
-
             <tr>
               <td>City</td>
-              <td><input type="text" name="city" maxlength="30" required></td>
-
+              <td><input type="text" name="city" maxlength="30" required title="2–30 characters."></td>
               <td>State</td>
               <td>
-                <select name="state" required>
+                <select name="state" id="patientState" required title="Select your state.">
                   <option value="">Select</option>
                   <option>AL|Alabama</option>
                   <option>AK|Alaska</option>
@@ -175,28 +156,25 @@ Patient registration form for MIS 3371 Homework 2.
                   <option>PR|Puerto Rico</option>
                 </select>
               </td>
-
               <td>Zip Code</td>
-              <td><input type="text" name="zip" pattern="[0-9]{5,10}" required></td>
+              <td><input type="text" name="zip" pattern="[0-9]{5,10}" required title="5 digits or ZIP+4."></td>
             </tr>
-
             <tr>
               <td>Email</td>
-              <td><input type="email" name="email" maxlength="50" required></td>
-
+              <td><input type="email" name="email" maxlength="50" required title="name@domain.tld"></td>
               <td>Phone</td>
               <td colspan="3">
-                <input type="tel" name="phone" placeholder="(123) 456-7890" pattern="\(\d{3}\) \d{3}-\d{4}" required>
+                <input type="tel" name="phone" placeholder="(123) 456-7890" pattern="\(\d{3}\) \d{3}-\d{4}" required title="Format (123) 456-7890">
               </td>
             </tr>
 
-            <!-- NEW INSURANCE ROW -->
-            <tr>
+            <!-- Insurance: ONLY place name="insurance" appears on the page -->
+            <tr class="insurance-row">
               <td>Do you have insurance?</td>
               <td colspan="2" class="inline-options">
                 <label>
                   <input type="radio" name="insurance" value="Yes" id="insuranceYes" required
-                         title="Select Yes if you currently have active insurance.">
+                         title="Select Yes if you have active insurance.">
                   Yes
                 </label>
                 <label>
@@ -205,11 +183,10 @@ Patient registration form for MIS 3371 Homework 2.
                   No
                 </label>
               </td>
-
               <td>Insurance Provider</td>
               <td colspan="2">
                 <select id="insuranceProvider" name="insuranceProvider" disabled
-                        title="Choose your insurance provider.">
+                        title="Choose your insurance provider (enabled when Yes is selected).">
                   <option value="">Select Provider</option>
                   <option value="UnitedHealthcare">UnitedHealthcare</option>
                   <option value="Blue Cross Blue Shield">Blue Cross Blue Shield</option>
@@ -222,38 +199,27 @@ Patient registration form for MIS 3371 Homework 2.
                   <option value="Superior HealthPlan">Superior HealthPlan</option>
                   <option value="Other">Other</option>
                 </select>
-
                 <div id="otherProviderWrap" class="other-provider-wrap" style="display:none;">
                   <label for="otherProvider">If Other, specify:</label>
-                  <input
-                    type="text"
-                    id="otherProvider"
-                    name="otherProvider"
-                    minlength="1"
-                    maxlength="30"
-                    pattern="[A-Za-z0-9 .,&'()-]{1,30}"
-                    title="Enter provider name (1 to 30 characters)."
-                  >
+                  <input type="text" id="otherProvider" name="otherProvider" minlength="1" maxlength="30"
+                         pattern="[A-Za-z0-9 .,&'()-]{1,30}"
+                         title="Enter provider name (1 to 30 characters).">
                 </div>
               </td>
             </tr>
           </table>
 
-          <!-- EMERGENCY CONTACT -->
           <h3 class="section-title">Emergency Contact Information</h3>
 
           <table class="form-table">
             <tr>
               <td>First Name</td>
               <td><input type="text" name="emgFirstName" maxlength="30" required></td>
-
               <td>Middle Initial</td>
               <td><input type="text" name="emgMiddleInit" maxlength="1" class="mi"></td>
-
               <td>Last Name</td>
               <td><input type="text" name="emgLastName" maxlength="30" required></td>
             </tr>
-
             <tr>
               <td>Relationship</td>
               <td colspan="5">
@@ -270,21 +236,17 @@ Patient registration form for MIS 3371 Homework 2.
                 </select>
               </td>
             </tr>
-
             <tr>
               <td>Address Line 1</td>
               <td colspan="5"><input type="text" name="emgAddress1" maxlength="30" class="wide-input" required></td>
             </tr>
-
             <tr>
               <td>Address Line 2</td>
               <td colspan="5"><input type="text" name="emgAddress2" maxlength="30" class="wide-input"></td>
             </tr>
-
             <tr>
               <td>City</td>
               <td><input type="text" name="emgCity" maxlength="30"></td>
-
               <td>State</td>
               <td>
                 <select name="emgState">
@@ -343,15 +305,12 @@ Patient registration form for MIS 3371 Homework 2.
                   <option>PR|Puerto Rico</option>
                 </select>
               </td>
-
               <td>Zip Code</td>
               <td><input type="text" name="emgZip" pattern="[0-9]{5,10}"></td>
             </tr>
-
             <tr>
               <td>Email</td>
               <td><input type="email" name="emgEmail"></td>
-
               <td>Phone</td>
               <td colspan="3">
                 <input type="tel" name="emgPhone" placeholder="(123) 456-7890" pattern="\(\d{3}\) \d{3}-\d{4}">
@@ -359,7 +318,6 @@ Patient registration form for MIS 3371 Homework 2.
             </tr>
           </table>
 
-          <!-- HEART HEALTH EVALUATION -->
           <h3 class="section-title">Heart Health Evaluation</h3>
 
           <table class="form-table heart-eval">
@@ -377,7 +335,6 @@ Patient registration form for MIS 3371 Homework 2.
                 </div>
               </td>
             </tr>
-
             <tr>
               <td colspan="6" class="heart-eval-full">
                 <div class="heart-eval-line heart-eval-split">
@@ -396,7 +353,6 @@ Patient registration form for MIS 3371 Homework 2.
                 </div>
               </td>
             </tr>
-
             <tr>
               <td colspan="6" class="heart-eval-full">
                 <div class="heart-eval-line">
@@ -410,28 +366,23 @@ Patient registration form for MIS 3371 Homework 2.
             </tr>
           </table>
 
-          <!-- ACCOUNT SETUP -->
           <h3 class="section-title">Account Setup</h3>
 
           <table class="form-table">
             <tr>
               <td>Desired User ID</td>
-              <td><input type="text" name="userID" maxlength="20" required></td>
-
+              <td><input type="text" name="userID" maxlength="30" required></td>
               <td>Email (Portal Login)</td>
               <td colspan="3"><input type="email" name="portalEmail" required></td>
             </tr>
-
             <tr>
               <td>Password</td>
               <td><input type="password" name="password" maxlength="30" required></td>
-
               <td>Re-enter Password</td>
               <td colspan="3"><input type="password" name="confirmPassword" maxlength="30" required></td>
             </tr>
           </table>
 
-          <!-- BUTTONS -->
           <div class="button-row">
             <input id="clearBtn" type="reset" value="Clear and Start Over" class="btn">
             <input id="reviewBtn" type="button" value="Review" class="btn">
@@ -440,55 +391,44 @@ Patient registration form for MIS 3371 Homework 2.
 
         </form>
 
-        <!-- REVIEW PANEL -->
         <div id="review-panel" class="review-panel" style="display:none; margin-top:22px;">
           <h3 class="section-title" style="margin-top:0;">PLEASE REVIEW THIS INFORMATION</h3>
-
           <div class="review-row">
             <span class="review-label">First, MI, Last Name</span>
             <span id="rv-name" class="review-value"></span>
           </div>
-
           <div class="review-row">
             <span class="review-label">Date of Birth</span>
             <span id="rv-dob" class="review-value"></span>
           </div>
-
           <div class="review-row">
             <span class="review-label">Email address</span>
             <span id="rv-email" class="review-value"></span>
           </div>
-
           <div class="review-row">
             <span class="review-label">Phone number</span>
             <span id="rv-phone" class="review-value"></span>
           </div>
-
           <div class="review-row">
             <span class="review-label">Address</span>
             <span id="rv-address" class="review-value"></span>
           </div>
-
           <div class="review-row">
             <span class="review-label">State</span>
             <span id="rv-state" class="review-value"></span>
           </div>
-
           <div class="review-row">
             <span class="review-label">Zip Code</span>
             <span id="rv-zip" class="review-value"></span>
           </div>
-
           <div class="review-row">
             <span class="review-label">Insurance</span>
             <span id="rv-insurance" class="review-value"></span>
           </div>
-
           <div class="review-row">
             <span class="review-label">Provider</span>
             <span id="rv-provider" class="review-value"></span>
           </div>
-
           <div class="review-row">
             <span class="review-label">User ID</span>
             <span id="rv-userid" class="review-value"></span>
@@ -499,21 +439,16 @@ Patient registration form for MIS 3371 Homework 2.
     </div>
   </div>
 
-  <!-- FOOTER -->
   <div class="footer">
     <div class="footer-inner">
       <div class="footer-left">
         <div class="footer-title">Heartland Medical Care</div>
         <div class="footer-sub">Compassion in Every Heartbeat</div>
       </div>
-
       <div class="footer-mid">
         <button type="button" class="footer-btn"
-          onclick="alert('Contact us at: contact@heartlandmedicalcare.com')">
-          Contact Us
-        </button>
+          onclick="alert('Contact us at: contact@heartlandmedicalcare.com')">Contact Us</button>
       </div>
-
       <div class="footer-right">
         <a href="#" class="footer-link">Facebook</a>
         <a href="#" class="footer-link">Twitter</a>
