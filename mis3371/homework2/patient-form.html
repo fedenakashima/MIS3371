@@ -59,7 +59,7 @@ Patient registration form for MIS 3371 Homework 2.
               <td><input type="text" name="firstName" maxlength="30" required></td>
 
               <td>Middle Initial</td>
-              <td><input type="text" name="middleInit" maxlength="1" class="mi" required></td>
+              <td><input type="text" name="middleInit" maxlength="1" class="mi"></td>
 
               <td>Last Name</td>
               <td><input type="text" name="lastName" maxlength="30" required></td>
@@ -119,7 +119,7 @@ Patient registration form for MIS 3371 Homework 2.
 
               <td>State</td>
               <td>
-                <select name="emgState">
+                <select name="state" required>
                   <option value="">Select</option>
                   <option>AL|Alabama</option>
                   <option>AK|Alaska</option>
@@ -189,6 +189,54 @@ Patient registration form for MIS 3371 Homework 2.
                 <input type="tel" name="phone" placeholder="(123) 456-7890" pattern="\(\d{3}\) \d{3}-\d{4}" required>
               </td>
             </tr>
+
+            <!-- NEW INSURANCE ROW -->
+            <tr>
+              <td>Do you have insurance?</td>
+              <td colspan="2" class="inline-options">
+                <label>
+                  <input type="radio" name="insurance" value="Yes" id="insuranceYes" required
+                         title="Select Yes if you currently have active insurance.">
+                  Yes
+                </label>
+                <label>
+                  <input type="radio" name="insurance" value="No" id="insuranceNo"
+                         title="Select No if you do not have insurance.">
+                  No
+                </label>
+              </td>
+
+              <td>Insurance Provider</td>
+              <td colspan="2">
+                <select id="insuranceProvider" name="insuranceProvider" disabled
+                        title="Choose your insurance provider.">
+                  <option value="">Select Provider</option>
+                  <option value="UnitedHealthcare">UnitedHealthcare</option>
+                  <option value="Blue Cross Blue Shield">Blue Cross Blue Shield</option>
+                  <option value="Aetna">Aetna</option>
+                  <option value="Cigna">Cigna</option>
+                  <option value="Humana">Humana</option>
+                  <option value="Blue Cross Blue Shield of Texas">Blue Cross Blue Shield of Texas</option>
+                  <option value="Community Health Choice">Community Health Choice</option>
+                  <option value="Molina Healthcare">Molina Healthcare</option>
+                  <option value="Superior HealthPlan">Superior HealthPlan</option>
+                  <option value="Other">Other</option>
+                </select>
+
+                <div id="otherProviderWrap" class="other-provider-wrap" style="display:none;">
+                  <label for="otherProvider">If Other, specify:</label>
+                  <input
+                    type="text"
+                    id="otherProvider"
+                    name="otherProvider"
+                    minlength="1"
+                    maxlength="30"
+                    pattern="[A-Za-z0-9 .,&'()-]{1,30}"
+                    title="Enter provider name (1 to 30 characters)."
+                  >
+                </div>
+              </td>
+            </tr>
           </table>
 
           <!-- EMERGENCY CONTACT -->
@@ -225,12 +273,12 @@ Patient registration form for MIS 3371 Homework 2.
 
             <tr>
               <td>Address Line 1</td>
-              <td colspan="5"><input type="text" name="address1" maxlength="30" class="wide-input" required></td>
+              <td colspan="5"><input type="text" name="emgAddress1" maxlength="30" class="wide-input" required></td>
             </tr>
 
             <tr>
               <td>Address Line 2</td>
-              <td colspan="5"><input type="text" name="address2" maxlength="30" class="wide-input"></td>
+              <td colspan="5"><input type="text" name="emgAddress2" maxlength="30" class="wide-input"></td>
             </tr>
 
             <tr>
@@ -275,7 +323,7 @@ Patient registration form for MIS 3371 Homework 2.
                   <option>NY|New York</option>
                   <option>NC|North Carolina</option>
                   <option>ND|North Dakota</option>
-              <option>OH|Ohio</option>
+                  <option>OH|Ohio</option>
                   <option>OK|Oklahoma</option>
                   <option>OR|Oregon</option>
                   <option>PA|Pennsylvania</option>
@@ -351,31 +399,13 @@ Patient registration form for MIS 3371 Homework 2.
 
             <tr>
               <td colspan="6" class="heart-eval-full">
-                <div class="heart-eval-line heart-eval-split">
-                  <div class="heart-group">
-                    <span class="heart-q">Do you have insurance?</span>
-                    <label><input type="radio" name="insurance" value="Yes" required> Yes</label>
-                    <label><input type="radio" name="insurance" value="No"> No</label>
-                  </div>
-                  <div class="heart-divider" aria-hidden="true"></div>
+                <div class="heart-eval-line">
                   <div class="heart-group">
                     <span class="heart-q">Have you previously been treated for a heart condition?</span>
                     <label><input type="radio" name="vaccinated" value="Yes" required> Yes</label>
                     <label><input type="radio" name="vaccinated" value="No"> No</label>
                   </div>
                 </div>
-              </td>
-            </tr>
-          </table>
-
-          <!-- SYMPTOMS (optional; Homework 2) -->
-          <h3 class="section-title">Current Symptoms (optional)</h3>
-
-          <table class="form-table">
-            <tr>
-              <td>Describe symptoms</td>
-              <td colspan="5">
-                <textarea name="symptoms" class="wide-textarea" rows="3" cols="50" placeholder="Describe your current symptoms (optional)."></textarea>
               </td>
             </tr>
           </table>
@@ -410,84 +440,59 @@ Patient registration form for MIS 3371 Homework 2.
 
         </form>
 
-        <!-- REVIEW PANEL — professor-style layout -->
-        <div id="review-panel" class="review-panel" style="display:none;">
-          <h3 class="review-main-title">PLEASE REVIEW THIS INFORMATION</h3>
+        <!-- REVIEW PANEL -->
+        <div id="review-panel" class="review-panel" style="display:none; margin-top:22px;">
+          <h3 class="section-title" style="margin-top:0;">PLEASE REVIEW THIS INFORMATION</h3>
 
-          <div class="review-prof-grid">
-            <div class="review-prof-row">
-              <span class="review-prof-label">First, MI, Last Name</span>
-              <span id="rv-name" class="review-prof-value"></span>
-              <span id="rv-name-st" class="review-prof-status"></span>
-            </div>
-
-            <div class="review-prof-row">
-              <span class="review-prof-label">Date of Birth</span>
-              <span id="rv-dob" class="review-prof-value"></span>
-              <span id="rv-dob-st" class="review-prof-status"></span>
-            </div>
-
-            <div class="review-prof-row">
-              <span class="review-prof-label">Email address</span>
-              <span id="rv-email" class="review-prof-value"></span>
-              <span id="rv-email-st" class="review-prof-status"></span>
-            </div>
-
-            <div class="review-prof-row">
-              <span class="review-prof-label">Phone number</span>
-              <span id="rv-phone" class="review-prof-value"></span>
-              <span id="rv-phone-st" class="review-prof-status"></span>
-            </div>
-
-            <div class="review-prof-row review-prof-row-address">
-              <span class="review-prof-label">Address</span>
-              <div class="review-prof-value review-prof-address-block">
-                <div id="rv-addr-line1"></div>
-                <div id="rv-addr-line2"></div>
-                <div id="rv-city-line"></div>
-              </div>
-              <span id="rv-address-st" class="review-prof-status"></span>
-            </div>
+          <div class="review-row">
+            <span class="review-label">First, MI, Last Name</span>
+            <span id="rv-name" class="review-value"></span>
           </div>
 
-          <h4 class="review-sub-title">REQUESTED INFO</h4>
-
-          <div class="review-requested-wrap">
-            <div class="review-requested-col">
-              <div class="review-y-row"><span class="review-y-lbl">High Blood Pressure</span><span id="rv-y-bp" class="review-y-val">N</span></div>
-              <div class="review-y-row"><span class="review-y-lbl">High Cholesterol</span><span id="rv-y-chol" class="review-y-val">N</span></div>
-              <div class="review-y-row"><span class="review-y-lbl">Diabetes</span><span id="rv-y-dm" class="review-y-val">N</span></div>
-              <div class="review-y-row"><span class="review-y-lbl">Smoker</span><span id="rv-y-smoke" class="review-y-val">N</span></div>
-              <div class="review-y-row"><span class="review-y-lbl">History of heart disease</span><span id="rv-y-fam" class="review-y-val">N</span></div>
-            </div>
-            <div class="review-requested-col review-requested-right">
-              <div class="review-y-row"><span class="review-y-lbl">Chest pain recently?</span><span id="rv-y-chest" class="review-y-val">—</span></div>
-              <div class="review-y-row"><span class="review-y-lbl">Insurance?</span><span id="rv-y-ins" class="review-y-val">—</span></div>
-              <div class="review-y-row"><span class="review-y-lbl">Prior heart treatment?</span><span id="rv-y-hx" class="review-y-val">—</span></div>
-              <div class="review-y-row"><span class="review-y-lbl">Level of Pain indicated</span><span id="rv-pain-label" class="review-y-val">—</span></div>
-            </div>
+          <div class="review-row">
+            <span class="review-label">Date of Birth</span>
+            <span id="rv-dob" class="review-value"></span>
           </div>
 
-          <div class="review-prof-grid review-prof-grid-tight">
-            <div class="review-prof-row">
-              <span class="review-prof-label">Described Symptoms</span>
-              <span id="rv-symptoms" class="review-prof-value review-prof-multiline"></span>
-              <span id="rv-symptoms-st" class="review-prof-status"></span>
-            </div>
-
-            <div class="review-prof-row">
-              <span class="review-prof-label">User ID</span>
-              <span id="rv-userid" class="review-prof-value"></span>
-              <span id="rv-userid-st" class="review-prof-status"></span>
-            </div>
-
-            <div class="review-prof-row">
-              <span class="review-prof-label">Password</span>
-              <span id="rv-password-note" class="review-prof-value">(shown for assignment only)</span>
-              <span id="rv-password-st" class="review-prof-status"></span>
-            </div>
+          <div class="review-row">
+            <span class="review-label">Email address</span>
+            <span id="rv-email" class="review-value"></span>
           </div>
 
+          <div class="review-row">
+            <span class="review-label">Phone number</span>
+            <span id="rv-phone" class="review-value"></span>
+          </div>
+
+          <div class="review-row">
+            <span class="review-label">Address</span>
+            <span id="rv-address" class="review-value"></span>
+          </div>
+
+          <div class="review-row">
+            <span class="review-label">State</span>
+            <span id="rv-state" class="review-value"></span>
+          </div>
+
+          <div class="review-row">
+            <span class="review-label">Zip Code</span>
+            <span id="rv-zip" class="review-value"></span>
+          </div>
+
+          <div class="review-row">
+            <span class="review-label">Insurance</span>
+            <span id="rv-insurance" class="review-value"></span>
+          </div>
+
+          <div class="review-row">
+            <span class="review-label">Provider</span>
+            <span id="rv-provider" class="review-value"></span>
+          </div>
+
+          <div class="review-row">
+            <span class="review-label">User ID</span>
+            <span id="rv-userid" class="review-value"></span>
+          </div>
         </div>
 
       </div>
@@ -518,7 +523,5 @@ Patient registration form for MIS 3371 Homework 2.
   </div>
 
   <script src="homework2.js"></script>
-
-  <!-- END OF DOCUMENT: patient-form.html -->
 </body>
 </html>
