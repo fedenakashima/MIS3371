@@ -73,14 +73,13 @@ a:hover{ text-decoration: underline; }
 .form-panel{ background: #6fa9ad; padding: 30px 0 50px 0; }
 
 .form-container{
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 0 20px;
 }
 
-/* Slightly wider than HW2’s 980 so the right column doesn’t clip */
 .core-box{
-  max-width: 1120px;
+  max-width: 980px;
   margin: 0 auto;
   padding: 22px 24px 30px 24px;
   border: 2px solid #ffffff;
@@ -91,9 +90,10 @@ a:hover{ text-decoration: underline; }
 
 .section-title{
   width: 100%;
-  max-width: 980px;
+  max-width: 900px;
   margin: 20px auto;
-  padding: 0;
+  padding-left: 0;
+  box-sizing: border-box;
   text-align: left;
   color: #7a3a3a;
   font-size: 22px;
@@ -101,47 +101,31 @@ a:hover{ text-decoration: underline; }
   font-family: "Georgia", "Times New Roman", serif;
 }
 
-/* HW2-like: table is centered and slightly inset inside the white card */
 .form-table{
   width: 100%;
-  max-width: 980px;
-  margin: 0 auto 12px auto;
-
-  /* collapse avoids “extra width” from border-separate spacing */
-  border-collapse: collapse;
-  border-spacing: 0;
-
+  max-width: 900px;
+  margin: 0 auto;
+  border-collapse: separate;
+  border-spacing: 14px 16px;
   color: #000;
-  table-layout: fixed;
+  table-layout: auto;
 }
 
 .form-table td{
-  vertical-align: top;
+  vertical-align: middle;
   font-weight: 700;
-  white-space: normal;
-  word-break: break-word;
-  min-width: 0;
-
-  /* replaces old border-spacing */
-  padding: 10px 10px;
+  white-space: nowrap;
 }
 
-.form-table td[colspan]{
-  min-width: 0;
-}
-
-/* label columns */
 .form-table td:nth-child(1),
 .form-table td:nth-child(3),
 .form-table td:nth-child(5){
-  width: 18%;
+  width: 150px;
 }
 
 .form-table input,
 .form-table select,
 .form-table textarea{
-  width: 100%;
-  max-width: 100%;
   padding: 6px 8px;
   border-radius: 6px;
   border: 1px solid #cfcfcf;
@@ -150,54 +134,19 @@ a:hover{ text-decoration: underline; }
   box-sizing: border-box;
 }
 
-#ssn{
-  display: block;
-  width: 100%;
-  max-width: 420px;
+.mi{ width: 60px; }
+
+.wide-input{
+  width: 520px;
+  max-width: 95%;
 }
 
-.mi{ max-width: 72px; }
+.inline-options label{ margin-right: 14px; }
 
-.wide-input{ width: 100%; max-width: 100%; }
-
-.inline-options{
-  white-space: normal;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  gap: 10px 14px;
-  min-width: 0;
-}
-
-.inline-options label{
-  margin-right: 0;
-  white-space: normal;
+/* Insurance provider */
+#insuranceProvider{
+  min-width: 260px;
   max-width: 100%;
-}
-
-.field-msg{
-  display: block;
-  min-height: 18px;
-  margin-top: 6px;
-  font-size: 12px;
-  font-weight: 800;
-  line-height: 1.2;
-  color: #b00020;
-}
-
-.field-msg--inline{
-  display: inline-block;
-  min-height: 0;
-  margin-top: 0;
-  margin-left: 10px;
-  vertical-align: middle;
-}
-
-input.field-invalid,
-select.field-invalid,
-textarea.field-invalid{
-  border-color: #b00020;
-  outline: none;
 }
 
 #insuranceProvider:disabled{
@@ -213,50 +162,54 @@ textarea.field-invalid{
   flex-wrap: wrap;
 }
 
-/* Heart */
+.other-provider-wrap label{ font-weight: 700; }
+
+#otherProvider{
+  width: 280px;
+  max-width: 100%;
+}
+
+/* Heart Health */
 .form-table.heart-eval > tbody > tr > td:nth-child(1){
   width: auto;
   max-width: 100%;
 }
 
+.form-table.heart-eval td{
+  white-space: normal;
+  vertical-align: middle;
+}
+
 .form-table.heart-eval td.heart-eval-full{
   width: 100%;
   max-width: 100%;
-  padding: 12px 10px;
+  padding: 10px 6px;
   box-sizing: border-box;
 }
 
 .heart-eval-line{
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: center;
   gap: 10px 18px;
 }
 
 .heart-inline-opts{
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: center;
   gap: 8px 16px;
-  min-width: 0;
 }
 
-.form-table.heart-eval .heart-inline-opts label{
-  white-space: nowrap;
-}
+.heart-inline-opts label{ margin-right: 0; white-space: nowrap; }
 
-.heart-eval-split{
-  justify-content: flex-start;
-  gap: 16px 28px;
-  align-items: flex-start;
-}
+.heart-eval-split{ justify-content: flex-start; gap: 16px 28px; }
 
 .heart-group{
   display: inline-flex;
   flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: center;
   gap: 8px 12px;
-  min-width: 0;
 }
 
 .heart-q{ font-weight: 700; }
@@ -270,22 +223,16 @@ textarea.field-invalid{
 }
 
 .form-table.heart-eval input[type="range"]{
-  width: auto;
-  min-width: 160px;
-  max-width: 260px;
+  min-width: 120px;
+  max-width: 220px;
+  vertical-align: middle;
 }
 
-output#salaryOutput{
-  font-weight: 900;
-  min-width: 150px;
-}
-
-/* Buttons */
 .button-row{
   display: flex;
   justify-content: space-between;
   gap: 12px;
-  max-width: 980px;
+  max-width: 760px;
   margin: 30px auto 0;
   flex-wrap: wrap;
 }
@@ -304,9 +251,8 @@ output#salaryOutput{
 
 .btn:hover{ opacity: 0.95; transform: translateY(-1px); }
 
-/* Review */
 .review-panel{
-  max-width: 980px;
+  max-width: 900px;
   margin: 22px auto 0;
   padding: 16px 18px;
   border-radius: 12px;
@@ -320,7 +266,6 @@ output#salaryOutput{
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  gap: 12px;
   padding: 10px 6px;
   border-bottom: 1px solid #e6e6e6;
 }
@@ -331,7 +276,7 @@ output#salaryOutput{
   font-weight: 900;
   color: #0b4a4f;
   font-size: 15px;
-  flex: 0 0 240px;
+  flex: 0 0 260px;
 }
 
 .review-value{
@@ -342,7 +287,6 @@ output#salaryOutput{
   word-break: break-word;
 }
 
-/* Footer */
 .footer{
   background: #ffffff;
   border-top: 2px solid #cfcfcf;
@@ -350,7 +294,7 @@ output#salaryOutput{
 }
 
 .footer-inner{
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
