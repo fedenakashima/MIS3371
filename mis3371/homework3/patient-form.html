@@ -1,10 +1,9 @@
 <!--
-Program name: patient-form.html
-Version 3.0
+Program name: homework3.html
 Author: Federica Nakashima
-Date created: 2026-04-01
+Date created: 2026-03-01
 Date last edited: 2026-04-14
-Patient registration form for MIS 3371 Homework 3.
+MIS 3371 Homework 3 — on-the-fly JS validation (error slots).
 -->
 
 <!DOCTYPE html>
@@ -12,10 +11,9 @@ Patient registration form for MIS 3371 Homework 3.
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Patient Registration Form</title>
+  <title>Patient Registration — Homework 3</title>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
   <div class="top-banner">
@@ -35,7 +33,7 @@ Patient registration form for MIS 3371 Homework 3.
   </div>
 
   <div class="title-bar">
-    <h2>Patient Registration Form</h2>
+    <h2>Patient Registration Form (HW3)</h2>
     <p class="form-date">Today is: <span id="todayDate"></span></p>
   </div>
 
@@ -43,33 +41,58 @@ Patient registration form for MIS 3371 Homework 3.
     <div class="form-container">
       <div class="core-box">
 
-        <form id="patientForm" action="thankyou.html">
+        <form id="patientForm" action="thankyou.html" novalidate>
 
           <h3 class="section-title">Patient Information</h3>
 
           <table class="form-table">
             <tr>
               <td>First Name</td>
-              <td><input type="text" name="firstName" maxlength="30" required title="1–30 characters."></td>
+              <td>
+                <input id="firstName" type="text" name="firstName" maxlength="30" required autocomplete="given-name"
+                       title="1–30 characters. Letters, apostrophes, and dashes only.">
+                <span class="field-msg" id="err-firstName" aria-live="polite"></span>
+              </td>
               <td>Middle Initial</td>
-              <td><input type="text" name="middleInit" maxlength="1" class="mi" title="One letter, or leave blank."></td>
+              <td>
+                <input id="middleInit" type="text" name="middleInit" maxlength="1" class="mi" autocomplete="additional-name"
+                       title="Optional. One letter only (no numbers).">
+                <span class="field-msg" id="err-middleInit" aria-live="polite"></span>
+              </td>
               <td>Last Name</td>
-              <td><input type="text" name="lastName" maxlength="30" required title="1–30 characters."></td>
+              <td>
+                <input id="lastName" type="text" name="lastName" maxlength="30" required autocomplete="family-name"
+                       title="1–30 characters. Letters, apostrophes, and dashes only.">
+                <span class="field-msg" id="err-lastName" aria-live="polite"></span>
+              </td>
             </tr>
+
             <tr>
               <td>Date of Birth</td>
-              <td><input type="text" name="dob" placeholder="MM/DD/YYYY" required title="Format MM/DD/YYYY."></td>
+              <td>
+                <input id="dob" type="text" name="dob" placeholder="MM/DD/YYYY" required autocomplete="bday"
+                       title="Birthday cannot be in the future or more than 120 years ago.">
+                <span class="field-msg" id="err-dob" aria-live="polite"></span>
+              </td>
               <td>Sex</td>
               <td colspan="3" class="inline-options">
                 <label><input type="radio" name="sex" value="Male" required> Male</label>
                 <label><input type="radio" name="sex" value="Female"> Female</label>
                 <label><input type="radio" name="sex" value="Other"> Other</label>
+                <span class="field-msg field-msg--inline" id="err-sex" aria-live="polite"></span>
               </td>
             </tr>
+
             <tr>
-              <td>Social Security</td>
-              <td colspan="5"><input type="password" name="ssn" maxlength="11" placeholder="XXX-XX-XXXX" title="Do not use a real SSN for testing."></td>
+              <td>SSN (testing)</td>
+              <td colspan="5">
+                <input id="ssn" type="password" name="ssn" inputmode="numeric" autocomplete="off" maxlength="11"
+                       placeholder="XXX-XX-XXXX"
+                       title="9 digits only (auto-formatted). Do not use a real SSN.">
+                <span class="field-msg" id="err-ssn" aria-live="polite"></span>
+              </td>
             </tr>
+
             <tr>
               <td>Race</td>
               <td colspan="5" class="inline-options">
@@ -80,95 +103,132 @@ Patient registration form for MIS 3371 Homework 3.
                 <label><input type="checkbox" name="raceOther" value="Other"> Other</label>
               </td>
             </tr>
+
             <tr>
               <td>Ethnicity</td>
               <td colspan="5" class="inline-options">
                 <label><input type="radio" name="ethnicity" value="Non-Hispanic" required> Non-Hispanic</label>
                 <label><input type="radio" name="ethnicity" value="Hispanic"> Hispanic</label>
-              </td>
-            </tr>
-            <tr>
-              <td>Address Line 1</td>
-              <td colspan="5"><input type="text" name="address1" maxlength="30" class="wide-input" required title="2–30 characters."></td>
-            </tr>
-            <tr>
-              <td>Address Line 2</td>
-              <td colspan="5"><input type="text" name="address2" maxlength="30" class="wide-input" title="Optional."></td>
-            </tr>
-            <tr>
-              <td>City</td>
-              <td><input type="text" name="city" maxlength="30" required title="2–30 characters."></td>
-              <td>State</td>
-              <td>
-                <select name="state" id="patientState" required title="Select your state.">
-                  <option value="">Select</option>
-                  <option>AL|Alabama</option>
-                  <option>AK|Alaska</option>
-                  <option>AZ|Arizona</option>
-                  <option>AR|Arkansas</option>
-                  <option>CA|California</option>
-                  <option>CO|Colorado</option>
-                  <option>CT|Connecticut</option>
-                  <option>DE|Delaware</option>
-                  <option>FL|Florida</option>
-                  <option>GA|Georgia</option>
-                  <option>HI|Hawaii</option>
-                  <option>ID|Idaho</option>
-                  <option>IL|Illinois</option>
-                  <option>IN|Indiana</option>
-                  <option>IA|Iowa</option>
-                  <option>KS|Kansas</option>
-                  <option>KY|Kentucky</option>
-                  <option>LA|Louisiana</option>
-                  <option>ME|Maine</option>
-                  <option>MD|Maryland</option>
-                  <option>MA|Massachusetts</option>
-                  <option>MI|Michigan</option>
-                  <option>MN|Minnesota</option>
-                  <option>MS|Mississippi</option>
-                  <option>MO|Missouri</option>
-                  <option>MT|Montana</option>
-                  <option>NE|Nebraska</option>
-                  <option>NV|Nevada</option>
-                  <option>NH|New Hampshire</option>
-                  <option>NJ|New Jersey</option>
-                  <option>NM|New Mexico</option>
-                  <option>NY|New York</option>
-                  <option>NC|North Carolina</option>
-                  <option>ND|North Dakota</option>
-                  <option>OH|Ohio</option>
-                  <option>OK|Oklahoma</option>
-                  <option>OR|Oregon</option>
-                  <option>PA|Pennsylvania</option>
-                  <option>RI|Rhode Island</option>
-                  <option>SC|South Carolina</option>
-                  <option>SD|South Dakota</option>
-                  <option>TN|Tennessee</option>
-                  <option>TX|Texas</option>
-                  <option>UT|Utah</option>
-                  <option>VT|Vermont</option>
-                  <option>VA|Virginia</option>
-                  <option>WA|Washington</option>
-                  <option>WV|West Virginia</option>
-                  <option>WI|Wisconsin</option>
-                  <option>WY|Wyoming</option>
-                  <option>DC|District of Columbia</option>
-                  <option>PR|Puerto Rico</option>
-                </select>
-              </td>
-              <td>Zip Code</td>
-              <td><input type="text" name="zip" pattern="[0-9]{5,10}" required title="5 digits or ZIP+4."></td>
-            </tr>
-            <tr>
-              <td>Email</td>
-              <td><input type="email" name="email" maxlength="50" required title="name@domain.tld"></td>
-              <td>Phone</td>
-              <td colspan="3">
-                <input type="tel" name="phone" placeholder="(123) 456-7890" pattern="\(\d{3}\) \d{3}-\d{4}" required title="Format (123) 456-7890">
+                <span class="field-msg field-msg--inline" id="err-ethnicity" aria-live="polite"></span>
               </td>
             </tr>
 
-            <!-- Insurance: ONLY place name="insurance" appears on the page -->
+            <tr>
+              <td>Address Line 1</td>
+              <td colspan="5">
+                <input id="address1" type="text" name="address1" maxlength="30" class="wide-input" required autocomplete="address-line1"
+                       title="Required. 2–30 characters.">
+                <span class="field-msg" id="err-address1" aria-live="polite"></span>
+              </td>
+            </tr>
+
+            <tr>
+              <td>Address Line 2</td>
+              <td colspan="5">
+                <input id="address2" type="text" name="address2" maxlength="30" class="wide-input" autocomplete="address-line2"
+                       title="Optional. If entered: 2–30 characters.">
+                <span class="field-msg" id="err-address2" aria-live="polite"></span>
+              </td>
+            </tr>
+
+            <tr>
+              <td>City</td>
+              <td>
+                <input id="city" type="text" name="city" maxlength="30" required autocomplete="address-level2"
+                       title="Required. 2–30 characters.">
+                <span class="field-msg" id="err-city" aria-live="polite"></span>
+              </td>
+              <td>State</td>
+              <td>
+                <select id="state" name="state" required autocomplete="address-level1" title="You must select a state.">
+                  <option value="">Select</option>
+                  <option value="AL">AL</option>
+                  <option value="AK">AK</option>
+                  <option value="AZ">AZ</option>
+                  <option value="AR">AR</option>
+                  <option value="CA">CA</option>
+                  <option value="CO">CO</option>
+                  <option value="CT">CT</option>
+                  <option value="DE">DE</option>
+                  <option value="FL">FL</option>
+                  <option value="GA">GA</option>
+                  <option value="HI">HI</option>
+                  <option value="ID">ID</option>
+                  <option value="IL">IL</option>
+                  <option value="IN">IN</option>
+                  <option value="IA">IA</option>
+                  <option value="KS">KS</option>
+                  <option value="KY">KY</option>
+                  <option value="LA">LA</option>
+                  <option value="ME">ME</option>
+                  <option value="MD">MD</option>
+                  <option value="MA">MA</option>
+                  <option value="MI">MI</option>
+                  <option value="MN">MN</option>
+                  <option value="MS">MS</option>
+                  <option value="MO">MO</option>
+                  <option value="MT">MT</option>
+                  <option value="NE">NE</option>
+                  <option value="NV">NV</option>
+                  <option value="NH">NH</option>
+                  <option value="NJ">NJ</option>
+                  <option value="NM">NM</option>
+                  <option value="NY">NY</option>
+                  <option value="NC">NC</option>
+                  <option value="ND">ND</option>
+                  <option value="OH">OH</option>
+                  <option value="OK">OK</option>
+                  <option value="OR">OR</option>
+                  <option value="PA">PA</option>
+                  <option value="RI">RI</option>
+                  <option value="SC">SC</option>
+                  <option value="SD">SD</option>
+                  <option value="TN">TN</option>
+                  <option value="TX">TX</option>
+                  <option value="UT">UT</option>
+                  <option value="VT">VT</option>
+                  <option value="VA">VA</option>
+                  <option value="WA">WA</option>
+                  <option value="WV">WV</option>
+                  <option value="WI">WI</option>
+                  <option value="WY">WY</option>
+                  <option value="DC">DC</option>
+                  <option value="PR">PR</option>
+                </select>
+                <span class="field-msg" id="err-state" aria-live="polite"></span>
+              </td>
+              <td>Zip Code</td>
+              <td>
+                <input id="zip" type="text" name="zip" maxlength="5" inputmode="numeric" required autocomplete="postal-code"
+                       title="Exactly 5 digits (Homework 3 requirement).">
+                <span class="field-msg" id="err-zip" aria-live="polite"></span>
+              </td>
+            </tr>
+
+            <tr>
+              <td>Email</td>
+              <td>
+                <input id="email" type="email" name="email" maxlength="80" required autocomplete="email"
+                       title="Must be name@domain.tld (lowercased automatically).">
+                <span class="field-msg" id="err-email" aria-live="polite"></span>
+              </td>
+              <td>Phone</td>
+              <td colspan="3">
+                <input id="phone" type="tel" name="phone" placeholder="000-000-0000" required autocomplete="tel"
+                       title="Format 000-000-0000 (Homework 3 requirement).">
+                <span class="field-msg" id="err-phone" aria-live="polite"></span>
+              </td>
+            </tr>
+
+            <tr>
+              <td>Symptoms (optional)</td>
+              <td colspan="5">
+                <textarea id="symptoms" name="symptoms" rows="3" cols="50"
+                          title="Optional. Avoid double quotes for database safety."></textarea>
+                <span class="field-msg" id="err-symptoms" aria-live="polite"></span>
+              </td>
+            </tr>
+
             <tr class="insurance-row">
               <td>Do you have insurance?</td>
               <td colspan="2" class="inline-options">
@@ -182,11 +242,12 @@ Patient registration form for MIS 3371 Homework 3.
                          title="Select No if you do not have insurance.">
                   No
                 </label>
+                <span class="field-msg field-msg--inline" id="err-insurance" aria-live="polite"></span>
               </td>
               <td>Insurance Provider</td>
               <td colspan="2">
                 <select id="insuranceProvider" name="insuranceProvider" disabled
-                        title="Choose your insurance provider (enabled when Yes is selected).">
+                        title="Enabled only when insurance is Yes.">
                   <option value="">Select Provider</option>
                   <option value="UnitedHealthcare">UnitedHealthcare</option>
                   <option value="Blue Cross Blue Shield">Blue Cross Blue Shield</option>
@@ -199,11 +260,13 @@ Patient registration form for MIS 3371 Homework 3.
                   <option value="Superior HealthPlan">Superior HealthPlan</option>
                   <option value="Other">Other</option>
                 </select>
+                <span class="field-msg" id="err-insuranceProvider" aria-live="polite"></span>
+
                 <div id="otherProviderWrap" class="other-provider-wrap" style="display:none;">
                   <label for="otherProvider">If Other, specify:</label>
-                  <input type="text" id="otherProvider" name="otherProvider" minlength="1" maxlength="30"
-                         pattern="[A-Za-z0-9 .,&'()-]{1,30}"
-                         title="Enter provider name (1 to 30 characters).">
+                  <input type="text" id="otherProvider" name="otherProvider" maxlength="30"
+                         title="1–30 characters if Other is selected.">
+                  <span class="field-msg" id="err-otherProvider" aria-live="polite"></span>
                 </div>
               </td>
             </tr>
@@ -214,16 +277,26 @@ Patient registration form for MIS 3371 Homework 3.
           <table class="form-table">
             <tr>
               <td>First Name</td>
-              <td><input type="text" name="emgFirstName" maxlength="30" required></td>
+              <td>
+                <input id="emgFirstName" type="text" name="emgFirstName" maxlength="30" required>
+                <span class="field-msg" id="err-emgFirstName" aria-live="polite"></span>
+              </td>
               <td>Middle Initial</td>
-              <td><input type="text" name="emgMiddleInit" maxlength="1" class="mi"></td>
+              <td>
+                <input id="emgMiddleInit" type="text" name="emgMiddleInit" maxlength="1" class="mi">
+                <span class="field-msg" id="err-emgMiddleInit" aria-live="polite"></span>
+              </td>
               <td>Last Name</td>
-              <td><input type="text" name="emgLastName" maxlength="30" required></td>
+              <td>
+                <input id="emgLastName" type="text" name="emgLastName" maxlength="30" required>
+                <span class="field-msg" id="err-emgLastName" aria-live="polite"></span>
+              </td>
             </tr>
+
             <tr>
               <td>Relationship</td>
               <td colspan="5">
-                <select name="relationship" required>
+                <select id="relationship" name="relationship" required>
                   <option value="">Select</option>
                   <option value="Spouse">Spouse</option>
                   <option value="Parent">Parent</option>
@@ -234,86 +307,108 @@ Patient registration form for MIS 3371 Homework 3.
                   <option value="Partner">Significant other/Partner</option>
                   <option value="Other">Other</option>
                 </select>
+                <span class="field-msg" id="err-relationship" aria-live="polite"></span>
               </td>
             </tr>
+
             <tr>
               <td>Address Line 1</td>
-              <td colspan="5"><input type="text" name="emgAddress1" maxlength="30" class="wide-input" required></td>
+              <td colspan="5">
+                <input id="emgAddress1" type="text" name="emgAddress1" maxlength="30" class="wide-input" required>
+                <span class="field-msg" id="err-emgAddress1" aria-live="polite"></span>
+              </td>
             </tr>
+
             <tr>
               <td>Address Line 2</td>
-              <td colspan="5"><input type="text" name="emgAddress2" maxlength="30" class="wide-input"></td>
+              <td colspan="5">
+                <input id="emgAddress2" type="text" name="emgAddress2" maxlength="30" class="wide-input">
+                <span class="field-msg" id="err-emgAddress2" aria-live="polite"></span>
+              </td>
             </tr>
+
             <tr>
               <td>City</td>
-              <td><input type="text" name="emgCity" maxlength="30"></td>
+              <td>
+                <input id="emgCity" type="text" name="emgCity" maxlength="30">
+                <span class="field-msg" id="err-emgCity" aria-live="polite"></span>
+              </td>
               <td>State</td>
               <td>
-                <select name="emgState">
+                <select id="emgState" name="emgState">
                   <option value="">Select</option>
-                  <option>AL|Alabama</option>
-                  <option>AK|Alaska</option>
-                  <option>AZ|Arizona</option>
-                  <option>AR|Arkansas</option>
-                  <option>CA|California</option>
-                  <option>CO|Colorado</option>
-                  <option>CT|Connecticut</option>
-                  <option>DE|Delaware</option>
-                  <option>FL|Florida</option>
-                  <option>GA|Georgia</option>
-                  <option>HI|Hawaii</option>
-                  <option>ID|Idaho</option>
-                  <option>IL|Illinois</option>
-                  <option>IN|Indiana</option>
-                  <option>IA|Iowa</option>
-                  <option>KS|Kansas</option>
-                  <option>KY|Kentucky</option>
-                  <option>LA|Louisiana</option>
-                  <option>ME|Maine</option>
-                  <option>MD|Maryland</option>
-                  <option>MA|Massachusetts</option>
-                  <option>MI|Michigan</option>
-                  <option>MN|Minnesota</option>
-                  <option>MS|Mississippi</option>
-                  <option>MO|Missouri</option>
-                  <option>MT|Montana</option>
-                  <option>NE|Nebraska</option>
-                  <option>NV|Nevada</option>
-                  <option>NH|New Hampshire</option>
-                  <option>NJ|New Jersey</option>
-                  <option>NM|New Mexico</option>
-                  <option>NY|New York</option>
-                  <option>NC|North Carolina</option>
-                  <option>ND|North Dakota</option>
-                  <option>OH|Ohio</option>
-                  <option>OK|Oklahoma</option>
-                  <option>OR|Oregon</option>
-                  <option>PA|Pennsylvania</option>
-                  <option>RI|Rhode Island</option>
-                  <option>SC|South Carolina</option>
-                  <option>SD|South Dakota</option>
-                  <option>TN|Tennessee</option>
-                  <option>TX|Texas</option>
-                  <option>UT|Utah</option>
-                  <option>VT|Vermont</option>
-                  <option>VA|Virginia</option>
-                  <option>WA|Washington</option>
-                  <option>WV|West Virginia</option>
-                  <option>WI|Wisconsin</option>
-                  <option>WY|Wyoming</option>
-                  <option>DC|District of Columbia</option>
-                  <option>PR|Puerto Rico</option>
+                  <option value="AL">AL</option>
+                  <option value="AK">AK</option>
+                  <option value="AZ">AZ</option>
+                  <option value="AR">AR</option>
+                  <option value="CA">CA</option>
+                  <option value="CO">CO</option>
+                  <option value="CT">CT</option>
+                  <option value="DE">DE</option>
+                  <option value="FL">FL</option>
+                  <option value="GA">GA</option>
+                  <option value="HI">HI</option>
+                  <option value="ID">ID</option>
+                  <option value="IL">IL</option>
+                  <option value="IN">IN</option>
+                  <option value="IA">IA</option>
+                  <option value="KS">KS</option>
+                  <option value="KY">KY</option>
+                  <option value="LA">LA</option>
+                  <option value="ME">ME</option>
+                  <option value="MD">MD</option>
+                  <option value="MA">MA</option>
+                  <option value="MI">MI</option>
+                  <option value="MN">MN</option>
+                  <option value="MS">MS</option>
+                  <option value="MO">MO</option>
+                  <option value="MT">MT</option>
+                  <option value="NE">NE</option>
+                  <option value="NV">NV</option>
+                  <option value="NH">NH</option>
+                  <option value="NJ">NJ</option>
+                  <option value="NM">NM</option>
+                  <option value="NY">NY</option>
+                  <option value="NC">NC</option>
+                  <option value="ND">ND</option>
+                  <option value="OH">OH</option>
+                  <option value="OK">OK</option>
+                  <option value="OR">OR</option>
+                  <option value="PA">PA</option>
+                  <option value="RI">RI</option>
+                  <option value="SC">SC</option>
+                  <option value="SD">SD</option>
+                  <option value="TN">TN</option>
+                  <option value="TX">TX</option>
+                  <option value="UT">UT</option>
+                  <option value="VT">VT</option>
+                  <option value="VA">VA</option>
+                  <option value="WA">WA</option>
+                  <option value="WV">WV</option>
+                  <option value="WI">WI</option>
+                  <option value="WY">WY</option>
+                  <option value="DC">DC</option>
+                  <option value="PR">PR</option>
                 </select>
+                <span class="field-msg" id="err-emgState" aria-live="polite"></span>
               </td>
               <td>Zip Code</td>
-              <td><input type="text" name="emgZip" pattern="[0-9]{5,10}"></td>
+              <td>
+                <input id="emgZip" type="text" name="emgZip" maxlength="5" inputmode="numeric">
+                <span class="field-msg" id="err-emgZip" aria-live="polite"></span>
+              </td>
             </tr>
+
             <tr>
               <td>Email</td>
-              <td><input type="email" name="emgEmail"></td>
+              <td>
+                <input id="emgEmail" type="email" name="emgEmail" maxlength="80">
+                <span class="field-msg" id="err-emgEmail" aria-live="polite"></span>
+              </td>
               <td>Phone</td>
               <td colspan="3">
-                <input type="tel" name="emgPhone" placeholder="(123) 456-7890" pattern="\(\d{3}\) \d{3}-\d{4}">
+                <input id="emgPhone" type="tel" name="emgPhone" placeholder="000-000-0000">
+                <span class="field-msg" id="err-emgPhone" aria-live="polite"></span>
               </td>
             </tr>
           </table>
@@ -335,6 +430,7 @@ Patient registration form for MIS 3371 Homework 3.
                 </div>
               </td>
             </tr>
+
             <tr>
               <td colspan="6" class="heart-eval-full">
                 <div class="heart-eval-line heart-eval-split">
@@ -342,17 +438,19 @@ Patient registration form for MIS 3371 Homework 3.
                     <span class="heart-q">Have you recently experienced chest pain?</span>
                     <label><input type="radio" name="chestPain" value="Yes" required> Yes</label>
                     <label><input type="radio" name="chestPain" value="No"> No</label>
+                    <span class="field-msg field-msg--inline" id="err-chestPain" aria-live="polite"></span>
                   </div>
                   <div class="heart-divider" aria-hidden="true"></div>
                   <div class="heart-group">
-                    <span class="heart-q">Rate your pain (1–10)</span>
-                    <input type="range" id="painLevel" name="painLevel" min="1" max="10" step="1" value="1"
-                           oninput="document.getElementById('painOutput').value = this.value;">
-                    <output id="painOutput">1</output>
+                    <span class="heart-q">Desired salary (slide)</span>
+                    <input type="range" id="salaryRange" name="salaryRange" min="20000" max="200000" step="1000" value="20000">
+                    <output id="salaryOutput" for="salaryRange">$20,000 / year</output>
+                    <span class="field-msg field-msg--inline" id="err-salaryRange" aria-live="polite"></span>
                   </div>
                 </div>
               </td>
             </tr>
+
             <tr>
               <td colspan="6" class="heart-eval-full">
                 <div class="heart-eval-line">
@@ -360,8 +458,23 @@ Patient registration form for MIS 3371 Homework 3.
                     <span class="heart-q">Have you previously been treated for a heart condition?</span>
                     <label><input type="radio" name="vaccinated" value="Yes" required> Yes</label>
                     <label><input type="radio" name="vaccinated" value="No"> No</label>
+                    <span class="field-msg field-msg--inline" id="err-vaccinated" aria-live="polite"></span>
                   </div>
                 </div>
+              </td>
+            </tr>
+          </table>
+
+          <h3 class="section-title">Housing</h3>
+
+          <table class="form-table">
+            <tr>
+              <td>Housing</td>
+              <td colspan="5" class="inline-options">
+                <label><input type="radio" name="housing" value="Own" required> Own</label>
+                <label><input type="radio" name="housing" value="Rent"> Rent</label>
+                <label><input type="radio" name="housing" value="Unsure"> Unsure</label>
+                <span class="field-msg field-msg--inline" id="err-housing" aria-live="polite"></span>
               </td>
             </tr>
           </table>
@@ -371,15 +484,31 @@ Patient registration form for MIS 3371 Homework 3.
           <table class="form-table">
             <tr>
               <td>Desired User ID</td>
-              <td><input type="text" name="userID" maxlength="30" required></td>
+              <td>
+                <input id="userID" type="text" name="userID" maxlength="20" required autocomplete="username"
+                       title="5–20 chars; cannot start with a number; letters/numbers/_/- only; auto-lowercased.">
+                <span class="field-msg" id="err-userID" aria-live="polite"></span>
+              </td>
               <td>Email (Portal Login)</td>
-              <td colspan="3"><input type="email" name="portalEmail" required></td>
+              <td colspan="3">
+                <input id="portalEmail" type="email" name="portalEmail" required maxlength="80"
+                       title="Portal email; lowercased automatically.">
+                <span class="field-msg" id="err-portalEmail" aria-live="polite"></span>
+              </td>
             </tr>
             <tr>
               <td>Password</td>
-              <td><input type="password" name="password" maxlength="30" required></td>
+              <td>
+                <input id="password" type="password" name="password" maxlength="30" required autocomplete="new-password"
+                       title="Min 8 chars; must include upper, lower, digit; cannot equal User ID.">
+                <span class="field-msg" id="err-password" aria-live="polite"></span>
+              </td>
               <td>Re-enter Password</td>
-              <td colspan="3"><input type="password" name="confirmPassword" maxlength="30" required></td>
+              <td colspan="3">
+                <input id="confirmPassword" type="password" name="confirmPassword" maxlength="30" required autocomplete="new-password"
+                       title="Must match Password.">
+                <span class="field-msg" id="err-confirmPassword" aria-live="polite"></span>
+              </td>
             </tr>
           </table>
 
@@ -393,46 +522,16 @@ Patient registration form for MIS 3371 Homework 3.
 
         <div id="review-panel" class="review-panel" style="display:none; margin-top:22px;">
           <h3 class="section-title" style="margin-top:0;">PLEASE REVIEW THIS INFORMATION</h3>
-          <div class="review-row">
-            <span class="review-label">First, MI, Last Name</span>
-            <span id="rv-name" class="review-value"></span>
-          </div>
-          <div class="review-row">
-            <span class="review-label">Date of Birth</span>
-            <span id="rv-dob" class="review-value"></span>
-          </div>
-          <div class="review-row">
-            <span class="review-label">Email address</span>
-            <span id="rv-email" class="review-value"></span>
-          </div>
-          <div class="review-row">
-            <span class="review-label">Phone number</span>
-            <span id="rv-phone" class="review-value"></span>
-          </div>
-          <div class="review-row">
-            <span class="review-label">Address</span>
-            <span id="rv-address" class="review-value"></span>
-          </div>
-          <div class="review-row">
-            <span class="review-label">State</span>
-            <span id="rv-state" class="review-value"></span>
-          </div>
-          <div class="review-row">
-            <span class="review-label">Zip Code</span>
-            <span id="rv-zip" class="review-value"></span>
-          </div>
-          <div class="review-row">
-            <span class="review-label">Insurance</span>
-            <span id="rv-insurance" class="review-value"></span>
-          </div>
-          <div class="review-row">
-            <span class="review-label">Provider</span>
-            <span id="rv-provider" class="review-value"></span>
-          </div>
-          <div class="review-row">
-            <span class="review-label">User ID</span>
-            <span id="rv-userid" class="review-value"></span>
-          </div>
+          <div class="review-row"><span class="review-label">First, MI, Last Name</span><span id="rv-name" class="review-value"></span></div>
+          <div class="review-row"><span class="review-label">Date of Birth</span><span id="rv-dob" class="review-value"></span></div>
+          <div class="review-row"><span class="review-label">Email address</span><span id="rv-email" class="review-value"></span></div>
+          <div class="review-row"><span class="review-label">Phone number</span><span id="rv-phone" class="review-value"></span></div>
+          <div class="review-row"><span class="review-label">Address</span><span id="rv-address" class="review-value"></span></div>
+          <div class="review-row"><span class="review-label">State</span><span id="rv-state" class="review-value"></span></div>
+          <div class="review-row"><span class="review-label">Zip Code</span><span id="rv-zip" class="review-value"></span></div>
+          <div class="review-row"><span class="review-label">Insurance</span><span id="rv-insurance" class="review-value"></span></div>
+          <div class="review-row"><span class="review-label">Provider</span><span id="rv-provider" class="review-value"></span></div>
+          <div class="review-row"><span class="review-label">User ID</span><span id="rv-userid" class="review-value"></span></div>
         </div>
 
       </div>
@@ -446,8 +545,7 @@ Patient registration form for MIS 3371 Homework 3.
         <div class="footer-sub">Compassion in Every Heartbeat</div>
       </div>
       <div class="footer-mid">
-        <button type="button" class="footer-btn"
-          onclick="alert('Contact us at: contact@heartlandmedicalcare.com')">Contact Us</button>
+        <button type="button" class="footer-btn" onclick="alert('Contact us at: contact@heartlandmedicalcare.com')">Contact Us</button>
       </div>
       <div class="footer-right">
         <a href="#" class="footer-link">Facebook</a>
@@ -457,6 +555,6 @@ Patient registration form for MIS 3371 Homework 3.
     </div>
   </div>
 
-  <script src="homework2.js"></script>
+  <script src="homework3.js"></script>
 </body>
 </html>
