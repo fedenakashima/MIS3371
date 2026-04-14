@@ -440,12 +440,15 @@ MIS 3371 Homework 3 — on-the-fly JS validation (error slots).
                     <label><input type="radio" name="chestPain" value="No"> No</label>
                     <span class="field-msg field-msg--inline" id="err-chestPain" aria-live="polite"></span>
                   </div>
+
                   <div class="heart-divider" aria-hidden="true"></div>
+
                   <div class="heart-group">
-                    <span class="heart-q">Desired salary (slide)</span>
-                    <input type="range" id="salaryRange" name="salaryRange" min="20000" max="200000" step="1000" value="20000">
-                    <output id="salaryOutput" for="salaryRange">$20,000 / year</output>
-                    <span class="field-msg field-msg--inline" id="err-salaryRange" aria-live="polite"></span>
+                    <span class="heart-q">Rate your pain (1–10)</span>
+                    <input type="range" id="painLevel" name="painLevel" min="1" max="10" step="1" value="1"
+                           oninput="document.getElementById('painOutput').value = this.value;">
+                    <output id="painOutput" for="painLevel">1</output>
+                    <span class="field-msg field-msg--inline" id="err-painLevel" aria-live="polite"></span>
                   </div>
                 </div>
               </td>
@@ -461,20 +464,6 @@ MIS 3371 Homework 3 — on-the-fly JS validation (error slots).
                     <span class="field-msg field-msg--inline" id="err-vaccinated" aria-live="polite"></span>
                   </div>
                 </div>
-              </td>
-            </tr>
-          </table>
-
-          <h3 class="section-title">Housing</h3>
-
-          <table class="form-table">
-            <tr>
-              <td>Housing</td>
-              <td colspan="5" class="inline-options">
-                <label><input type="radio" name="housing" value="Own" required> Own</label>
-                <label><input type="radio" name="housing" value="Rent"> Rent</label>
-                <label><input type="radio" name="housing" value="Unsure"> Unsure</label>
-                <span class="field-msg field-msg--inline" id="err-housing" aria-live="polite"></span>
               </td>
             </tr>
           </table>
