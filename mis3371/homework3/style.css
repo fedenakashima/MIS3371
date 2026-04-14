@@ -3,7 +3,7 @@ Program name: style.css
 Author: Federica Nakashima
 Date created: 2026-03-01
 Date last edited: 2026-04-14
-MIS 3371 Homework 3 — layout + reserved error message space
+MIS 3371 Homework 3 — layout + reserved error message space (layout fixes applied)
 */
 
 body{
@@ -86,7 +86,6 @@ a:hover{ text-decoration: underline; }
   border-radius: 10px;
   background: rgba(255,255,255,0.96);
   box-sizing: border-box;
-  overflow-x: hidden;
 }
 
 .section-title{
@@ -118,6 +117,11 @@ a:hover{ text-decoration: underline; }
   min-width: 0;
 }
 
+/* Helps colspan cells shrink/wrap instead of "exploding" horizontally */
+.form-table td[colspan]{
+  min-width: 0;
+}
+
 .form-table td:nth-child(1),
 .form-table td:nth-child(3),
 .form-table td:nth-child(5){
@@ -137,12 +141,32 @@ a:hover{ text-decoration: underline; }
   box-sizing: border-box;
 }
 
+/* SSN: don't stretch visually across the entire colspan row */
+#ssn{
+  display: block;
+  width: 100%;
+  max-width: 420px;
+}
+
 .mi{ max-width: 72px; }
 
 .wide-input{ width: 100%; max-width: 100%; }
 
-.inline-options{ white-space: normal; }
-.inline-options label{ margin-right: 12px; white-space: nowrap; }
+/* Checkbox/radio rows: wrap long labels (Race/Ethnicity/Sex) */
+.inline-options{
+  white-space: normal;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 10px 14px;
+  min-width: 0;
+}
+
+.inline-options label{
+  margin-right: 0;
+  white-space: normal;
+  max-width: 100%;
+}
 
 /* Reserved message area (reduces layout jump) */
 .field-msg{
@@ -183,7 +207,7 @@ textarea.field-invalid{
   flex-wrap: wrap;
 }
 
-/* Heart */
+/* Heart Health table */
 .form-table.heart-eval > tbody > tr > td:nth-child(1){
   width: auto;
   max-width: 100%;
@@ -199,26 +223,35 @@ textarea.field-invalid{
 .heart-eval-line{
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px 18px;
 }
 
+/* One definition for heart checkbox row (avoid duplicate/conflicting rules) */
 .heart-inline-opts{
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: flex-start;
   gap: 8px 16px;
+  min-width: 0;
 }
 
-.heart-inline-opts label{ margin-right: 0; white-space: nowrap; }
+.form-table.heart-eval .heart-inline-opts label{
+  white-space: nowrap; /* heart labels are short; keeps the row compact */
+}
 
-.heart-eval-split{ justify-content: flex-start; gap: 16px 28px; }
+.heart-eval-split{
+  justify-content: flex-start;
+  gap: 16px 28px;
+  align-items: flex-start;
+}
 
 .heart-group{
   display: inline-flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: flex-start;
   gap: 8px 12px;
+  min-width: 0;
 }
 
 .heart-q{ font-weight: 700; }
