@@ -1,1 +1,337 @@
+/*
+Program name: style.css
+Author: Federica Nakashima
+Date created: 2026-03-01
+Date last edited: 2026-03-25
+Patient registration form for MIS 3371 Homework 2.
+*/
 
+body{
+  margin: 0;
+  padding: 0;
+  font-family: "Trebuchet MS", "Verdana", Arial, sans-serif;
+  background: linear-gradient(180deg, #f3f6f7 0%, #e7f1f2 60%, #f3f6f7 100%);
+  color: #0d1b1f;
+}
+
+a:link{ color: #0b4a4f; text-decoration: none; font-weight: 700; }
+a:visited{ color: #6b2f2f; }
+a:hover{ text-decoration: underline; }
+
+.top-banner{
+  background: #ffffff;
+  display: grid;
+  grid-template-columns: 170px 1fr 260px;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 22px;
+  border-bottom: 2px solid #cfcfcf;
+}
+
+.logo{ width: 130px; height: auto; display: block; }
+.brand-wrap{ text-align: center; }
+
+.company-name{
+  margin: 0;
+  font-size: 54px;
+  font-weight: 900;
+  font-family: "Georgia", "Times New Roman", serif;
+  color: #0b4a4f;
+}
+
+.slogan{
+  margin: 8px 0 0 0;
+  font-size: 22px;
+  font-weight: 800;
+  color: #7a3a3a;
+}
+
+.info-wrap{ text-align: right; font-size: 14px; line-height: 1.35; color: #111; }
+.doc-line{ margin: 2px 0; }
+
+.title-bar{
+  background: #6fa9ad;
+  text-align: center;
+  padding: 14px 10px 16px 10px;
+}
+
+.title-bar h2{
+  margin: 0;
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 900;
+  font-family: "Georgia", "Times New Roman", serif;
+}
+
+.form-date{
+  margin: 6px 0 0 0;
+  font-size: 16px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.form-panel{ background: #6fa9ad; padding: 30px 0 50px 0; }
+
+.form-container{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.core-box{
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 22px 24px 30px 24px;
+  border: 2px solid #ffffff;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.96);
+  box-sizing: border-box;
+}
+
+.section-title{
+  width: 100%;
+  max-width: 900px;
+  margin: 20px auto;
+  padding-left: 0;
+  box-sizing: border-box;
+  text-align: left;
+  color: #7a3a3a;
+  font-size: 22px;
+  font-weight: 900;
+  font-family: "Georgia", "Times New Roman", serif;
+}
+
+.form-table{
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  border-collapse: separate;
+  border-spacing: 14px 16px;
+  color: #000;
+  table-layout: auto;
+}
+
+.form-table td{
+  vertical-align: middle;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.form-table td:nth-child(1),
+.form-table td:nth-child(3),
+.form-table td:nth-child(5){
+  width: 150px;
+}
+
+.form-table input,
+.form-table select,
+.form-table textarea{
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid #cfcfcf;
+  background: #ffffff;
+  color: #0d1b1f;
+  box-sizing: border-box;
+}
+
+.mi{ width: 60px; }
+
+.wide-input{
+  width: 520px;
+  max-width: 95%;
+}
+
+.inline-options label{ margin-right: 14px; }
+
+/* Insurance provider */
+#insuranceProvider{
+  min-width: 260px;
+  max-width: 100%;
+}
+
+#insuranceProvider:disabled{
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.other-provider-wrap{
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.other-provider-wrap label{ font-weight: 700; }
+
+#otherProvider{
+  width: 280px;
+  max-width: 100%;
+}
+
+/* Heart Health */
+.form-table.heart-eval > tbody > tr > td:nth-child(1){
+  width: auto;
+  max-width: 100%;
+}
+
+.form-table.heart-eval td{
+  white-space: normal;
+  vertical-align: middle;
+}
+
+.form-table.heart-eval td.heart-eval-full{
+  width: 100%;
+  max-width: 100%;
+  padding: 10px 6px;
+  box-sizing: border-box;
+}
+
+.heart-eval-line{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 18px;
+}
+
+.heart-inline-opts{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+}
+
+.heart-inline-opts label{ margin-right: 0; white-space: nowrap; }
+
+.heart-eval-split{ justify-content: flex-start; gap: 16px 28px; }
+
+.heart-group{
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+}
+
+.heart-q{ font-weight: 700; }
+
+.heart-divider{
+  width: 1px;
+  align-self: stretch;
+  min-height: 28px;
+  background: #bdbdbd;
+  flex: 0 0 auto;
+}
+
+.form-table.heart-eval input[type="range"]{
+  min-width: 120px;
+  max-width: 220px;
+  vertical-align: middle;
+}
+
+.button-row{
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  max-width: 760px;
+  margin: 30px auto 0;
+  flex-wrap: wrap;
+}
+
+.btn{
+  background: #8b3a3a;
+  color: #ffffff;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 22px;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 2px 0 rgba(0,0,0,0.08);
+  min-width: 190px;
+}
+
+.btn:hover{ opacity: 0.95; transform: translateY(-1px); }
+
+.review-panel{
+  max-width: 900px;
+  margin: 22px auto 0;
+  padding: 16px 18px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 2px solid #cfcfcf;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  box-sizing: border-box;
+}
+
+.review-row{
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 10px 6px;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.review-row:last-child{ border-bottom: none; }
+
+.review-label{
+  font-weight: 900;
+  color: #0b4a4f;
+  font-size: 15px;
+  flex: 0 0 260px;
+}
+
+.review-value{
+  font-weight: 800;
+  color: #111;
+  text-align: right;
+  flex: 1;
+  word-break: break-word;
+}
+
+.footer{
+  background: #ffffff;
+  border-top: 2px solid #cfcfcf;
+  padding: 16px 18px;
+}
+
+.footer-inner{
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-title{
+  font-weight: 900;
+  font-size: 18px;
+  font-family: "Georgia", "Times New Roman", serif;
+  color: #000;
+}
+
+.footer-sub{ font-weight: 800; font-size: 13px; color: #7a3a3a; }
+
+.footer-mid{ text-align: center; }
+
+.footer-btn{
+  background: #8b3a3a;
+  color: #ffffff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 20px;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 2px 0 rgba(0,0,0,0.08);
+}
+
+.footer-right{ text-align: right; }
+
+.footer-link{
+  margin-left: 10px;
+  color: #0b4a4f;
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.footer-link:visited{ color: #6b2f2f; }
+.footer-link:hover{ text-decoration: underline; }
