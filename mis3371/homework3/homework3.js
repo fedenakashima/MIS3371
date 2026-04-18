@@ -639,4 +639,153 @@ document.addEventListener("DOMContentLoaded", () => {
   $("dob").addEventListener("input", () => { validateDOB($("dob"), "err-dob"); lockSubmitAfterEdits(); });
   $("dob").addEventListener("blur", () => validateDOB($("dob"), "err-dob"));
 
-  $("ssn").addEventListener
+  $("ssn").addEventListener("input", () => {
+    formatSSNWhileTyping($("ssn"));
+    validateSSN($("ssn"), "err-ssn");
+    lockSubmitAfterEdits();
+  });
+  $("ssn").addEventListener("blur", () => validateSSN($("ssn"), "err-ssn"));
+
+  $("address1").addEventListener("input", () => { validateAddressLine($("address1"), "err-address1", "Address line 1", true); lockSubmitAfterEdits(); });
+  $("address1").addEventListener("blur", () => validateAddressLine($("address1"), "err-address1", "Address line 1", true));
+
+  $("address2").addEventListener("input", () => { validateAddressLine($("address2"), "err-address2", "Address line 2", false); lockSubmitAfterEdits(); });
+  $("address2").addEventListener("blur", () => validateAddressLine($("address2"), "err-address2", "Address line 2", false));
+
+  $("city").addEventListener("input", () => { validateCity($("city"), "err-city", true); lockSubmitAfterEdits(); });
+  $("city").addEventListener("blur", () => validateCity($("city"), "err-city", true));
+
+  $("state").addEventListener("change", () => { validateState($("state"), "err-state", true); lockSubmitAfterEdits(); });
+  $("state").addEventListener("blur", () => validateState($("state"), "err-state", true));
+
+  $("zip").addEventListener("input", () => { validateZip5($("zip"), "err-zip", true); lockSubmitAfterEdits(); });
+  $("zip").addEventListener("blur", () => validateZip5($("zip"), "err-zip", true));
+
+  $("email").addEventListener("input", () => { validateEmailLike($("email"), "err-email", true, true); lockSubmitAfterEdits(); });
+  $("email").addEventListener("blur", () => validateEmailLike($("email"), "err-email", true, true));
+
+  $("phone").addEventListener("input", () => {
+    normalizePhoneAsYouType($("phone"));
+    validatePhone10($("phone"), "err-phone", true);
+    lockSubmitAfterEdits();
+  });
+  $("phone").addEventListener("blur", () => validatePhone10($("phone"), "err-phone", true));
+
+  $("symptoms").addEventListener("input", () => { validateSymptoms($("symptoms"), "err-symptoms"); lockSubmitAfterEdits(); });
+  $("symptoms").addEventListener("blur", () => validateSymptoms($("symptoms"), "err-symptoms"));
+
+  wireRadioGroupLiveValidation("sex", "err-sex");
+  wireRadioGroupLiveValidation("ethnicity", "err-ethnicity");
+  wireRadioGroupLiveValidation("insurance", "err-insurance");
+  wireRadioGroupLiveValidation("chestPain", "err-chestPain");
+  wireRadioGroupLiveValidation("vaccinated", "err-vaccinated");
+
+  // Any radio change should lock submit until re-validate
+  form.querySelectorAll("input[type='radio']").forEach((r) => {
+    r.addEventListener("change", lockSubmitAfterEdits);
+  });
+  form.querySelectorAll("input[type='checkbox']").forEach((c) => {
+    c.addEventListener("change", lockSubmitAfterEdits);
+  });
+
+  $("emgFirstName").addEventListener("input", () => { validateFirstLast($("emgFirstName"), "err-emgFirstName", "First name"); lockSubmitAfterEdits(); });
+  $("emgFirstName").addEventListener("blur", () => validateFirstLast($("emgFirstName"), "err-emgFirstName", "First name"));
+
+  $("emgMiddleInit").addEventListener("input", () => { validateMiddle($("emgMiddleInit"), "err-emgMiddleInit"); lockSubmitAfterEdits(); });
+  $("emgMiddleInit").addEventListener("blur", () => validateMiddle($("emgMiddleInit"), "err-emgMiddleInit"));
+
+  $("emgLastName").addEventListener("input", () => { validateFirstLast($("emgLastName"), "err-emgLastName", "Last name"); lockSubmitAfterEdits(); });
+  $("emgLastName").addEventListener("blur", () => validateFirstLast($("emgLastName"), "err-emgLastName", "Last name"));
+
+  $("relationship").addEventListener("change", () => { validateRelationship($("relationship"), "err-relationship"); lockSubmitAfterEdits(); });
+
+  $("emgAddress1").addEventListener("input", () => { validateAddressLine($("emgAddress1"), "err-emgAddress1", "Address line 1", true); lockSubmitAfterEdits(); });
+  $("emgAddress1").addEventListener("blur", () => validateAddressLine($("emgAddress1"), "err-emgAddress1", "Address line 1", true));
+
+  $("emgAddress2").addEventListener("input", () => { validateAddressLine($("emgAddress2"), "err-emgAddress2", "Address line 2", false); lockSubmitAfterEdits(); });
+  $("emgAddress2").addEventListener("blur", () => validateAddressLine($("emgAddress2"), "err-emgAddress2", "Address line 2", false));
+
+  $("emgCity").addEventListener("input", () => { validateCity($("emgCity"), "err-emgCity", false); lockSubmitAfterEdits(); });
+  $("emgCity").addEventListener("blur", () => validateCity($("emgCity"), "err-emgCity", false));
+
+  $("emgState").addEventListener("change", () => { validateState($("emgState"), "err-emgState", false); lockSubmitAfterEdits(); });
+  $("emgZip").addEventListener("input", () => { validateZip5($("emgZip"), "err-emgZip", false); lockSubmitAfterEdits(); });
+  $("emgZip").addEventListener("blur", () => validateZip5($("emgZip"), "err-emgZip", false));
+
+  $("emgEmail").addEventListener("input", () => { validateEmailLike($("emgEmail"), "err-emgEmail", true, false); lockSubmitAfterEdits(); });
+  $("emgEmail").addEventListener("blur", () => validateEmailLike($("emgEmail"), "err-emgEmail", true, false));
+
+  $("emgPhone").addEventListener("input", () => {
+    normalizePhoneAsYouType($("emgPhone"));
+    validatePhone10($("emgPhone"), "err-emgPhone", false);
+    lockSubmitAfterEdits();
+  });
+  $("emgPhone").addEventListener("blur", () => validatePhone10($("emgPhone"), "err-emgPhone", false));
+
+  $("userID").addEventListener("input", () => {
+    validateUserID($("userID"), "err-userID");
+    validatePassword($("password"), "err-password");
+    validateConfirmPassword($("password"), $("confirmPassword"), "err-confirmPassword");
+    lockSubmitAfterEdits();
+  });
+  $("userID").addEventListener("blur", () => {
+    validateUserID($("userID"), "err-userID");
+    validatePassword($("password"), "err-password");
+  });
+
+  $("portalEmail").addEventListener("input", () => { validateEmailLike($("portalEmail"), "err-portalEmail", true, true); lockSubmitAfterEdits(); });
+  $("portalEmail").addEventListener("blur", () => validateEmailLike($("portalEmail"), "err-portalEmail", true, true));
+
+  $("password").addEventListener("input", () => {
+    validatePassword($("password"), "err-password");
+    validateConfirmPassword($("password"), $("confirmPassword"), "err-confirmPassword");
+    lockSubmitAfterEdits();
+  });
+  $("password").addEventListener("blur", () => {
+    validatePassword($("password"), "err-password");
+    validateConfirmPassword($("password"), $("confirmPassword"), "err-confirmPassword");
+  });
+
+  $("confirmPassword").addEventListener("input", () => {
+    validateConfirmPassword($("password"), $("confirmPassword"), "err-confirmPassword");
+    lockSubmitAfterEdits();
+  });
+  $("confirmPassword").addEventListener("blur", () => validateConfirmPassword($("password"), $("confirmPassword"), "err-confirmPassword"));
+
+  $("painLevel")?.addEventListener("input", lockSubmitAfterEdits);
+
+  $("validateBtn")?.addEventListener("click", () => {
+    const allOk = runFullValidation();
+    if (allOk) {
+      setSubmitEnabled(true);
+      setMsg("validateStatus", "All checks passed — Submit is now enabled.");
+    } else {
+      setSubmitEnabled(false);
+      setMsg("validateStatus", "Fix the highlighted errors, then press Validate again.");
+    }
+  });
+
+  form.addEventListener("submit", (e) => {
+    if ($("submitBtn").disabled) {
+      e.preventDefault();
+      return;
+    }
+    if (!runFullValidation()) {
+      e.preventDefault();
+      setSubmitEnabled(false);
+      setMsg("validateStatus", "Submit blocked — validation failed. Fix errors and press Validate.");
+    }
+  });
+
+  $("reviewBtn")?.addEventListener("click", showReview);
+  $("clearBtn")?.addEventListener("click", () => {
+    window.setTimeout(() => {
+      $("review-panel").style.display = "none";
+    }, 0);
+  });
+
+  wireInsurance();
+
+  setSubmitEnabled(false);
+  setMsg("validateStatus", "Press Validate to enable Submit.");
+});
