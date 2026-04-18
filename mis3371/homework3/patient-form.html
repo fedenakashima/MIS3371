@@ -2,8 +2,8 @@
 Program name: homework3.html
 Author: Federica Nakashima
 Date created: 2026-03-01
-Date last edited: 2026-04-14
-MIS 3371 Homework 3 — on-the-fly JS validation (error slots).
+Date last edited: 2026-04-18
+MIS 3371 Homework 3 — Validate + Submit flow (HTML shell).
 -->
 
 <!DOCTYPE html>
@@ -41,7 +41,8 @@ MIS 3371 Homework 3 — on-the-fly JS validation (error slots).
     <div class="form-container">
       <div class="core-box">
 
-        <form id="patientForm" action="thankyou.html" novalidate>
+        <!-- novalidate: HW3 wants JS-first validation; keep HTML attributes as backup -->
+        <form id="patientForm" action="thankyou.html" method="get" novalidate>
 
           <h3 class="section-title">Patient Information</h3>
 
@@ -96,11 +97,11 @@ MIS 3371 Homework 3 — on-the-fly JS validation (error slots).
             <tr>
               <td>Race</td>
               <td colspan="5" class="inline-options">
-                <label><input type="checkbox" name="raceWhite" value="White"> White</label>
-                <label><input type="checkbox" name="raceBlack" value="Black/African American"> Black/African American</label>
-                <label><input type="checkbox" name="raceAsian" value="Asian"> Asian</label>
-                <label><input type="checkbox" name="raceNHPI" value="Native Hawaiian/Other Pacific Islander"> Native Hawaiian/Other Pacific Islander</label>
-                <label><input type="checkbox" name="raceOther" value="Other"> Other</label>
+                <label><input type="checkbox" name="hxHighBP" value="High Blood Pressure"> High Blood Pressure</label>
+                <label><input type="checkbox" name="hxHighChol" value="High Cholesterol"> High Cholesterol</label>
+                <label><input type="checkbox" name="hxDiabetes" value="Diabetes"> Diabetes</label>
+                <label><input type="checkbox" name="hxSmoker" value="Smoker"> Smoker</label>
+                <label><input type="checkbox" name="hxFamily" value="Family History"> History of heart disease</label>
               </td>
             </tr>
 
@@ -215,7 +216,7 @@ MIS 3371 Homework 3 — on-the-fly JS validation (error slots).
               <td>Phone</td>
               <td colspan="3">
                 <input id="phone" type="tel" name="phone" placeholder="000-000-0000" required autocomplete="tel"
-                       title="Format 000-000-0000 (Homework 3 requirement).">
+                       title="Format 000-000-0000">
                 <span class="field-msg" id="err-phone" aria-live="polite"></span>
               </td>
             </tr>
@@ -501,10 +502,12 @@ MIS 3371 Homework 3 — on-the-fly JS validation (error slots).
             </tr>
           </table>
 
+          <!-- STEP 1 (HTML): Validate + Submit flow -->
           <div class="button-row">
             <input id="clearBtn" type="reset" value="Clear and Start Over" class="btn">
             <input id="reviewBtn" type="button" value="Review" class="btn">
-            <input id="submitBtn" type="submit" value="Submit" class="btn">
+            <input id="validateBtn" type="button" value="Validate" class="btn">
+            <input id="submitBtn" type="submit" value="Submit" class="btn" disabled>
           </div>
 
         </form>
