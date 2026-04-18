@@ -3,7 +3,7 @@ Program name: style.css
 Author: Federica Nakashima
 Date created: 2026-03-01
 Date last edited: 2026-04-18
-MIS 3371 Homework 3 — layout + validation UI + Validate/Submit buttons
+MIS 3371 Homework 3 — layout + validation UI + header/card + horizontal radios
 */
 
 body{
@@ -41,8 +41,9 @@ a:hover{ text-decoration: underline; }
 
 .slogan{
   margin: 8px 0 0 0;
-  font-size: 22px;
-  font-weight: 800;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: "Trebuchet MS", "Verdana", Arial, sans-serif;
   color: #7a3a3a;
 }
 
@@ -50,7 +51,7 @@ a:hover{ text-decoration: underline; }
 .doc-line{ margin: 2px 0; }
 
 .title-bar{
-  background: #6fa9ad;
+  background: #77a6a6;
   text-align: center;
   padding: 14px 10px 16px 10px;
 }
@@ -66,30 +67,38 @@ a:hover{ text-decoration: underline; }
 .form-date{
   margin: 6px 0 0 0;
   font-size: 16px;
-  font-weight: 800;
+  font-weight: 700;
+  font-family: "Trebuchet MS", "Verdana", Arial, sans-serif;
   color: #ffffff;
 }
 
-.form-panel{ background: #6fa9ad; padding: 30px 0 50px 0; }
+.form-panel{
+  background: #77a6a6;
+  padding: 10px 0 48px 0;
+}
 
 .form-container{
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
+  position: relative;
+  z-index: 1;
 }
 
-/* White card */
+/* White card — overlaps teal bar */
 .core-box{
   max-width: 1120px;
-  margin: 0 auto;
+  margin: -18px auto 0 auto;
   padding: 22px 24px 30px 24px;
-  border: 2px solid #ffffff;
-  border-radius: 10px;
-  background: rgba(255,255,255,0.96);
+  border: 1px solid #e4e4e4;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.14);
   box-sizing: border-box;
+  position: relative;
+  z-index: 2;
 }
 
-/* Match table inset width */
 .section-title{
   width: 100%;
   max-width: 980px;
@@ -103,7 +112,6 @@ a:hover{ text-decoration: underline; }
   font-family: "Georgia", "Times New Roman", serif;
 }
 
-/* Tables: centered inside card + stable column behavior */
 .form-table{
   width: 100%;
   max-width: 980px;
@@ -146,7 +154,15 @@ a:hover{ text-decoration: underline; }
   box-sizing: border-box;
 }
 
-/* SSN shouldn’t visually span the entire colspan row */
+/* Radios/checkboxes must not inherit full-width from rule above */
+.form-table input[type="radio"],
+.form-table input[type="checkbox"]{
+  width: auto;
+  max-width: none;
+  flex: 0 0 auto;
+  vertical-align: middle;
+}
+
 #ssn{
   display: block;
   width: 100%;
@@ -160,12 +176,11 @@ a:hover{ text-decoration: underline; }
   max-width: 100%;
 }
 
-/* Checkbox/radio rows: allow wrapping for long labels */
 .inline-options{
   white-space: normal;
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: center;
   gap: 10px 14px;
   min-width: 0;
 }
@@ -176,7 +191,14 @@ a:hover{ text-decoration: underline; }
   max-width: 100%;
 }
 
-/* Inline error next to radios */
+.form-table .inline-options label{
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
 .field-msg{
   display: block;
   min-height: 18px;
@@ -202,7 +224,6 @@ textarea.field-invalid{
   outline: none;
 }
 
-/* Validate status line (under Account Setup / above buttons) */
 .validate-status{
   max-width: 980px;
   margin: 10px auto 0 auto;
@@ -211,7 +232,6 @@ textarea.field-invalid{
   color: #0b4a4f;
 }
 
-/* Insurance provider */
 #insuranceProvider{
   min-width: 220px;
   max-width: 100%;
@@ -237,7 +257,6 @@ textarea.field-invalid{
   max-width: 320px;
 }
 
-/* Heart Health */
 .form-table.heart-eval > tbody > tr > td:nth-child(1){
   width: auto;
   max-width: 100%;
@@ -265,7 +284,6 @@ textarea.field-invalid{
   min-width: 0;
 }
 
-/* Heart labels are short — keep compact */
 .form-table.heart-eval .heart-inline-opts label{
   white-space: nowrap;
 }
@@ -306,7 +324,6 @@ output#painOutput{
   min-width: 22px;
 }
 
-/* Buttons */
 .button-row{
   display: flex;
   justify-content: space-between;
@@ -339,7 +356,6 @@ input.btn:disabled{
   transform: none;
 }
 
-/* Review */
 .review-panel{
   max-width: 980px;
   margin: 22px auto 0;
@@ -377,7 +393,6 @@ input.btn:disabled{
   word-break: break-word;
 }
 
-/* Footer */
 .footer{
   background: #ffffff;
   border-top: 2px solid #cfcfcf;
@@ -426,3 +441,4 @@ input.btn:disabled{
 
 .footer-link:visited{ color: #6b2f2f; }
 .footer-link:hover{ text-decoration: underline; }
+
