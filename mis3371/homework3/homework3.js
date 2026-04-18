@@ -1,8 +1,6 @@
-// homework3.js — MIS 3371 Homework 3
-// On-the-fly validation + Validate/Submit gate
 
 const NAME_RE = /^[A-Za-z'\-]{1,30}$/;
-const ADDRESS_RE = /^[\s\S]{2,30}$/;
+const ADDRESS_RE = /^[A-Za-z0-9\s\.,#'\-\/]{2,30}$/;
 
 function $(id) {
   return document.getElementById(id);
@@ -140,7 +138,7 @@ function validateAddressLine(input, errId, requiredLabel, required) {
     return true;
   }
   if (v.length < 2 || v.length > 30 || !ADDRESS_RE.test(v)) {
-    setMsg(errId, "Must be 2–30 characters.");
+    setMsg(errId, "Use 2–30 characters: letters, numbers, spaces, . , # ' - /");
     setInvalid(input, true);
     return false;
   }
@@ -511,7 +509,7 @@ function runFullValidation() {
   ok.push(validatePhone10($("emgPhone"), "err-emgPhone", false));
 
   ok.push(validateRadioGroup("chestPain", "err-chestPain"));
-  ok.push(validateRadioGroup("vaccinated", "err-vaccinated"));
+  ok.push(validateRadioGroup("priorHeartTreatment", "err-priorHeartTreatment"));
 
   ok.push(validateUserID($("userID"), "err-userID"));
   ok.push(validateEmailLike($("portalEmail"), "err-portalEmail", true, true));
@@ -618,15 +616,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const today = $("todayDate");
   if (today) today.textContent = new Date().toDateString();
 
-  // Pain slider
   const painLevel = $("painLevel");
   const painOutput = $("painOutput");
   if (painLevel && painOutput) {
     syncPainOutput();
-    painLevel.addEventListener("input", syncPainOutput);
+    painLevel.addEventListener("input", () => {
+      syncPainOutput();
+      lockSubmitAfterEdits();
+    });
   }
 
-  // Live field validation (same as before, but returns handled inside functions)
   $("firstName").addEventListener("input", () => { validateFirstLast($("firstName"), "err-firstName", "First name"); lockSubmitAfterEdits(); });
   $("firstName").addEventListener("blur", () => validateFirstLast($("firstName"), "err-firstName", "First name"));
 
@@ -678,9 +677,8 @@ document.addEventListener("DOMContentLoaded", () => {
   wireRadioGroupLiveValidation("ethnicity", "err-ethnicity");
   wireRadioGroupLiveValidation("insurance", "err-insurance");
   wireRadioGroupLiveValidation("chestPain", "err-chestPain");
-  wireRadioGroupLiveValidation("vaccinated", "err-vaccinated");
+  wireRadioGroupLiveValidation("priorHeartTreatment", "err-priorHeartTreatment");
 
-  // Any radio change should lock submit until re-validate
   form.querySelectorAll("input[type='radio']").forEach((r) => {
     r.addEventListener("change", lockSubmitAfterEdits);
   });
@@ -751,8 +749,6 @@ document.addEventListener("DOMContentLoaded", () => {
     lockSubmitAfterEdits();
   });
   $("confirmPassword").addEventListener("blur", () => validateConfirmPassword($("password"), $("confirmPassword"), "err-confirmPassword"));
-
-  $("painLevel")?.addEventListener("input", lockSubmitAfterEdits);
 
   $("validateBtn")?.addEventListener("click", () => {
     const allOk = runFullValidation();
