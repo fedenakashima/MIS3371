@@ -1,3 +1,10 @@
+/*
+Program name: homework.js
+Author: Federica Nakashima
+Date created: 2026-03-01
+Date last edited: 2026-04-18
+MIS 3371 Homework 3 Java 
+*/
 
 const NAME_RE = /^[A-Za-z'\-]{1,30}$/;
 const ADDRESS_RE = /^[A-Za-z0-9\s\.,#'\-\/]{2,30}$/;
