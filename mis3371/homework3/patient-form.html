@@ -3,7 +3,7 @@ Program name: homework3.html
 Author: Federica Nakashima
 Date created: 2026-03-01
 Date last edited: 2026-04-18
-MIS 3371 Homework 3 — Validate + Submit flow (HTML shell).
+MIS 3371 Homework 3 — Validate + Submit flow (aligned with homework3.js).
 -->
 
 <!DOCTYPE html>
@@ -41,8 +41,7 @@ MIS 3371 Homework 3 — Validate + Submit flow (HTML shell).
     <div class="form-container">
       <div class="core-box">
 
-        <!-- novalidate: HW3 wants JS-first validation; keep HTML attributes as backup -->
-        <form id="patientForm" action="thankyou.html" method="get" novalidate>
+        <form id="patientForm" action="thankyou.html" method="post" novalidate>
 
           <h3 class="section-title">Patient Information</h3>
 
@@ -95,17 +94,6 @@ MIS 3371 Homework 3 — Validate + Submit flow (HTML shell).
             </tr>
 
             <tr>
-              <td>Race</td>
-              <td colspan="5" class="inline-options">
-                <label><input type="checkbox" name="hxHighBP" value="High Blood Pressure"> High Blood Pressure</label>
-                <label><input type="checkbox" name="hxHighChol" value="High Cholesterol"> High Cholesterol</label>
-                <label><input type="checkbox" name="hxDiabetes" value="Diabetes"> Diabetes</label>
-                <label><input type="checkbox" name="hxSmoker" value="Smoker"> Smoker</label>
-                <label><input type="checkbox" name="hxFamily" value="Family History"> History of heart disease</label>
-              </td>
-            </tr>
-
-            <tr>
               <td>Ethnicity</td>
               <td colspan="5" class="inline-options">
                 <label><input type="radio" name="ethnicity" value="Non-Hispanic" required> Non-Hispanic</label>
@@ -118,7 +106,7 @@ MIS 3371 Homework 3 — Validate + Submit flow (HTML shell).
               <td>Address Line 1</td>
               <td colspan="5">
                 <input id="address1" type="text" name="address1" maxlength="30" class="wide-input" required autocomplete="address-line1"
-                       title="Required. 2–30 characters.">
+                       title="Required. 2–30 characters. Letters, numbers, spaces, . , # ' - /">
                 <span class="field-msg" id="err-address1" aria-live="polite"></span>
               </td>
             </tr>
@@ -127,7 +115,7 @@ MIS 3371 Homework 3 — Validate + Submit flow (HTML shell).
               <td>Address Line 2</td>
               <td colspan="5">
                 <input id="address2" type="text" name="address2" maxlength="30" class="wide-input" autocomplete="address-line2"
-                       title="Optional. If entered: 2–30 characters.">
+                       title="Optional. If entered: 2–30 characters. Same allowed characters as address line 1.">
                 <span class="field-msg" id="err-address2" aria-live="polite"></span>
               </td>
             </tr>
@@ -279,17 +267,20 @@ MIS 3371 Homework 3 — Validate + Submit flow (HTML shell).
             <tr>
               <td>First Name</td>
               <td>
-                <input id="emgFirstName" type="text" name="emgFirstName" maxlength="30" required>
+                <input id="emgFirstName" type="text" name="emgFirstName" maxlength="30" required
+                       title="1–30 characters. Letters, apostrophes, and dashes only.">
                 <span class="field-msg" id="err-emgFirstName" aria-live="polite"></span>
               </td>
               <td>Middle Initial</td>
               <td>
-                <input id="emgMiddleInit" type="text" name="emgMiddleInit" maxlength="1" class="mi">
+                <input id="emgMiddleInit" type="text" name="emgMiddleInit" maxlength="1" class="mi"
+                       title="Optional. One letter only.">
                 <span class="field-msg" id="err-emgMiddleInit" aria-live="polite"></span>
               </td>
               <td>Last Name</td>
               <td>
-                <input id="emgLastName" type="text" name="emgLastName" maxlength="30" required>
+                <input id="emgLastName" type="text" name="emgLastName" maxlength="30" required
+                       title="1–30 characters. Letters, apostrophes, and dashes only.">
                 <span class="field-msg" id="err-emgLastName" aria-live="polite"></span>
               </td>
             </tr>
@@ -297,7 +288,7 @@ MIS 3371 Homework 3 — Validate + Submit flow (HTML shell).
             <tr>
               <td>Relationship</td>
               <td colspan="5">
-                <select id="relationship" name="relationship" required>
+                <select id="relationship" name="relationship" required title="Select the emergency contact relationship.">
                   <option value="">Select</option>
                   <option value="Spouse">Spouse</option>
                   <option value="Parent">Parent</option>
@@ -315,7 +306,8 @@ MIS 3371 Homework 3 — Validate + Submit flow (HTML shell).
             <tr>
               <td>Address Line 1</td>
               <td colspan="5">
-                <input id="emgAddress1" type="text" name="emgAddress1" maxlength="30" class="wide-input" required>
+                <input id="emgAddress1" type="text" name="emgAddress1" maxlength="30" class="wide-input" required
+                       title="Required. 2–30 characters. Letters, numbers, spaces, . , # ' - /">
                 <span class="field-msg" id="err-emgAddress1" aria-live="polite"></span>
               </td>
             </tr>
@@ -323,7 +315,8 @@ MIS 3371 Homework 3 — Validate + Submit flow (HTML shell).
             <tr>
               <td>Address Line 2</td>
               <td colspan="5">
-                <input id="emgAddress2" type="text" name="emgAddress2" maxlength="30" class="wide-input">
+                <input id="emgAddress2" type="text" name="emgAddress2" maxlength="30" class="wide-input"
+                       title="Optional. If entered: 2–30 characters.">
                 <span class="field-msg" id="err-emgAddress2" aria-live="polite"></span>
               </td>
             </tr>
@@ -331,12 +324,13 @@ MIS 3371 Homework 3 — Validate + Submit flow (HTML shell).
             <tr>
               <td>City</td>
               <td>
-                <input id="emgCity" type="text" name="emgCity" maxlength="30">
+                <input id="emgCity" type="text" name="emgCity" maxlength="30"
+                       title="Optional. If entered: 2–30 characters.">
                 <span class="field-msg" id="err-emgCity" aria-live="polite"></span>
               </td>
               <td>State</td>
               <td>
-                <select id="emgState" name="emgState">
+                <select id="emgState" name="emgState" title="Optional. Select a state if you enter a city or ZIP.">
                   <option value="">Select</option>
                   <option value="AL">AL</option>
                   <option value="AK">AK</option>
@@ -395,7 +389,8 @@ MIS 3371 Homework 3 — Validate + Submit flow (HTML shell).
               </td>
               <td>Zip Code</td>
               <td>
-                <input id="emgZip" type="text" name="emgZip" maxlength="5" inputmode="numeric">
+                <input id="emgZip" type="text" name="emgZip" maxlength="5" inputmode="numeric"
+                       title="Optional. Exactly 5 digits if entered.">
                 <span class="field-msg" id="err-emgZip" aria-live="polite"></span>
               </td>
             </tr>
@@ -403,12 +398,14 @@ MIS 3371 Homework 3 — Validate + Submit flow (HTML shell).
             <tr>
               <td>Email</td>
               <td>
-                <input id="emgEmail" type="email" name="emgEmail" maxlength="80">
+                <input id="emgEmail" type="email" name="emgEmail" maxlength="80"
+                       title="Optional. name@domain.tld; lowercased when entered.">
                 <span class="field-msg" id="err-emgEmail" aria-live="polite"></span>
               </td>
               <td>Phone</td>
               <td colspan="3">
-                <input id="emgPhone" type="tel" name="emgPhone" placeholder="000-000-0000">
+                <input id="emgPhone" type="tel" name="emgPhone" placeholder="000-000-0000"
+                       title="Optional. Format 000-000-0000 if entered.">
                 <span class="field-msg" id="err-emgPhone" aria-live="polite"></span>
               </td>
             </tr>
@@ -447,7 +444,7 @@ MIS 3371 Homework 3 — Validate + Submit flow (HTML shell).
                   <div class="heart-group">
                     <span class="heart-q">Rate your pain (1–10)</span>
                     <input type="range" id="painLevel" name="painLevel" min="1" max="10" step="1" value="1"
-                           oninput="document.getElementById('painOutput').value = this.value;">
+                           title="Slide to rate pain; value updates next to the slider.">
                     <output id="painOutput" for="painLevel">1</output>
                     <span class="field-msg field-msg--inline" id="err-painLevel" aria-live="polite"></span>
                   </div>
@@ -460,9 +457,9 @@ MIS 3371 Homework 3 — Validate + Submit flow (HTML shell).
                 <div class="heart-eval-line">
                   <div class="heart-group">
                     <span class="heart-q">Have you previously been treated for a heart condition?</span>
-                    <label><input type="radio" name="vaccinated" value="Yes" required> Yes</label>
-                    <label><input type="radio" name="vaccinated" value="No"> No</label>
-                    <span class="field-msg field-msg--inline" id="err-vaccinated" aria-live="polite"></span>
+                    <label><input type="radio" name="priorHeartTreatment" value="Yes" required> Yes</label>
+                    <label><input type="radio" name="priorHeartTreatment" value="No"> No</label>
+                    <span class="field-msg field-msg--inline" id="err-priorHeartTreatment" aria-live="polite"></span>
                   </div>
                 </div>
               </td>
@@ -502,7 +499,557 @@ MIS 3371 Homework 3 — Validate + Submit flow (HTML shell).
             </tr>
           </table>
 
-          <!-- STEP 1 (HTML): Validate + Submit flow -->
+          <p id="validateStatus" class="validate-status" aria-live="polite"></p>
+
+          <div class="button-row">
+            <input id="clearBtn" type="reset" value="Clear and Start Over" class="btn">
+            <input id="reviewBtn" type="button" value="Review" class="btn">
+            <input id="validateBtn" type="button" value="Validate" class="btn">
+            <input id="submitBtn" type="submit" value="Submit" class="btn" disabled>
+          </div>
+
+        </form>
+
+        <div id="review-panel" class="review-panel" style="display:none; margin-top:22px;">
+          <h3 class="section-title" style="margin-top:0;">PLEASE REVIEW THIS INFORMATION</h3>
+          <div class="review-row"><span class="review-label">First, MI, Last Name</span><span id="rv-name" class="review-value"></span></div>
+          <div class="review-row"><span class="review-label">Date of Birth</span><span id="rv-dob" class="review-value"></span></div>
+          <div class="review-row"><span class="review-label">Email address</span><span id="rv-email" class="review-value"></span></div>
+          <div class="review-row"><span class="review-label">Phone number</span><span id="rv-phone" class="review-value"></span></div>
+          <div class="review-row"><span class="review-label">Address</span><span id="rv-address" class="review-value"></span></div>
+          <div class="review-row"><span class="review-label">State</span><span id="rv-state" class="review-value"></span></div>
+          <div class="review-row"><span class="review-label">Zip Code</span><span id="rv-zip" class="review-value"></span></div>
+          <div class="review-row"><span class="review-label">Insurance</span><span id="rv-insurance" class="review-value"></span></div>
+          <div class="review-row"><span class="review-label">Provider</span><span id="rv-provider" class="review-value"></span></div>
+          <div class="review-row"><span class="review-label">User ID</span><span id="rv-userid" class="review-value"></span></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <div class="footer-title">Heartland Medical Care</div>
+        <div class="footer-sub">Compassion in Every Heartbeat</div>
+      </div>
+      <div class="footer-mid">
+        <button type="button" class="footer-btn" onclick="alert('Contact us at: contact@heartlandmedicalcare.com')">Contact Us</button>
+      </div>
+      <div class="footer-right">
+        <a href="#" class="footer-link">Facebook</a>
+        <a href="#" class="footer-link">Twitter</a>
+        <a href="#" class="footer-link">Instagram</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="homework3.js"></script>
+</body>
+</html><!--
+Program name: homework3.html
+Author: Federica Nakashima
+Date created: 2026-03-01
+Date last edited: 2026-04-18
+MIS 3371 Homework 3 — Validate + Submit flow (aligned with homework3.js).
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Registration — Homework 3</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="top-banner">
+    <div class="logo-wrap">
+      <img src="heartland-logo.png" alt="Heartland Medical Care Logo" class="logo">
+    </div>
+    <div class="brand-wrap">
+      <h1 class="company-name">Heartland Medical Care</h1>
+      <p class="slogan">Compassion in Every Heartbeat</p>
+    </div>
+    <div class="info-wrap">
+      <p class="doc-line"><strong>Dr. Jake Messinger</strong></p>
+      <p class="doc-line">24702 Pinebrook Ridge Ln</p>
+      <p class="doc-line">The Woodlands, TX 77381</p>
+      <p class="doc-line">Phone: (281) 555-0199</p>
+    </div>
+  </div>
+
+  <div class="title-bar">
+    <h2>Patient Registration Form (HW3)</h2>
+    <p class="form-date">Today is: <span id="todayDate"></span></p>
+  </div>
+
+  <div class="form-panel">
+    <div class="form-container">
+      <div class="core-box">
+
+        <form id="patientForm" action="thankyou.html" method="post" novalidate>
+
+          <h3 class="section-title">Patient Information</h3>
+
+          <table class="form-table">
+            <tr>
+              <td>First Name</td>
+              <td>
+                <input id="firstName" type="text" name="firstName" maxlength="30" required autocomplete="given-name"
+                       title="1–30 characters. Letters, apostrophes, and dashes only.">
+                <span class="field-msg" id="err-firstName" aria-live="polite"></span>
+              </td>
+              <td>Middle Initial</td>
+              <td>
+                <input id="middleInit" type="text" name="middleInit" maxlength="1" class="mi" autocomplete="additional-name"
+                       title="Optional. One letter only (no numbers).">
+                <span class="field-msg" id="err-middleInit" aria-live="polite"></span>
+              </td>
+              <td>Last Name</td>
+              <td>
+                <input id="lastName" type="text" name="lastName" maxlength="30" required autocomplete="family-name"
+                       title="1–30 characters. Letters, apostrophes, and dashes only.">
+                <span class="field-msg" id="err-lastName" aria-live="polite"></span>
+              </td>
+            </tr>
+
+            <tr>
+              <td>Date of Birth</td>
+              <td>
+                <input id="dob" type="text" name="dob" placeholder="MM/DD/YYYY" required autocomplete="bday"
+                       title="Birthday cannot be in the future or more than 120 years ago.">
+                <span class="field-msg" id="err-dob" aria-live="polite"></span>
+              </td>
+              <td>Sex</td>
+              <td colspan="3" class="inline-options">
+                <label><input type="radio" name="sex" value="Male" required> Male</label>
+                <label><input type="radio" name="sex" value="Female"> Female</label>
+                <label><input type="radio" name="sex" value="Other"> Other</label>
+                <span class="field-msg field-msg--inline" id="err-sex" aria-live="polite"></span>
+              </td>
+            </tr>
+
+            <tr>
+              <td>SSN (testing)</td>
+              <td colspan="5">
+                <input id="ssn" type="password" name="ssn" inputmode="numeric" autocomplete="off" maxlength="11"
+                       placeholder="XXX-XX-XXXX"
+                       title="9 digits only (auto-formatted). Do not use a real SSN.">
+                <span class="field-msg" id="err-ssn" aria-live="polite"></span>
+              </td>
+            </tr>
+
+            <tr>
+              <td>Ethnicity</td>
+              <td colspan="5" class="inline-options">
+                <label><input type="radio" name="ethnicity" value="Non-Hispanic" required> Non-Hispanic</label>
+                <label><input type="radio" name="ethnicity" value="Hispanic"> Hispanic</label>
+                <span class="field-msg field-msg--inline" id="err-ethnicity" aria-live="polite"></span>
+              </td>
+            </tr>
+
+            <tr>
+              <td>Address Line 1</td>
+              <td colspan="5">
+                <input id="address1" type="text" name="address1" maxlength="30" class="wide-input" required autocomplete="address-line1"
+                       title="Required. 2–30 characters. Letters, numbers, spaces, . , # ' - /">
+                <span class="field-msg" id="err-address1" aria-live="polite"></span>
+              </td>
+            </tr>
+
+            <tr>
+              <td>Address Line 2</td>
+              <td colspan="5">
+                <input id="address2" type="text" name="address2" maxlength="30" class="wide-input" autocomplete="address-line2"
+                       title="Optional. If entered: 2–30 characters. Same allowed characters as address line 1.">
+                <span class="field-msg" id="err-address2" aria-live="polite"></span>
+              </td>
+            </tr>
+
+            <tr>
+              <td>City</td>
+              <td>
+                <input id="city" type="text" name="city" maxlength="30" required autocomplete="address-level2"
+                       title="Required. 2–30 characters.">
+                <span class="field-msg" id="err-city" aria-live="polite"></span>
+              </td>
+              <td>State</td>
+              <td>
+                <select id="state" name="state" required autocomplete="address-level1" title="You must select a state.">
+                  <option value="">Select</option>
+                  <option value="AL">AL</option>
+                  <option value="AK">AK</option>
+                  <option value="AZ">AZ</option>
+                  <option value="AR">AR</option>
+                  <option value="CA">CA</option>
+                  <option value="CO">CO</option>
+                  <option value="CT">CT</option>
+                  <option value="DE">DE</option>
+                  <option value="FL">FL</option>
+                  <option value="GA">GA</option>
+                  <option value="HI">HI</option>
+                  <option value="ID">ID</option>
+                  <option value="IL">IL</option>
+                  <option value="IN">IN</option>
+                  <option value="IA">IA</option>
+                  <option value="KS">KS</option>
+                  <option value="KY">KY</option>
+                  <option value="LA">LA</option>
+                  <option value="ME">ME</option>
+                  <option value="MD">MD</option>
+                  <option value="MA">MA</option>
+                  <option value="MI">MI</option>
+                  <option value="MN">MN</option>
+                  <option value="MS">MS</option>
+                  <option value="MO">MO</option>
+                  <option value="MT">MT</option>
+                  <option value="NE">NE</option>
+                  <option value="NV">NV</option>
+                  <option value="NH">NH</option>
+                  <option value="NJ">NJ</option>
+                  <option value="NM">NM</option>
+                  <option value="NY">NY</option>
+                  <option value="NC">NC</option>
+                  <option value="ND">ND</option>
+                  <option value="OH">OH</option>
+                  <option value="OK">OK</option>
+                  <option value="OR">OR</option>
+                  <option value="PA">PA</option>
+                  <option value="RI">RI</option>
+                  <option value="SC">SC</option>
+                  <option value="SD">SD</option>
+                  <option value="TN">TN</option>
+                  <option value="TX">TX</option>
+                  <option value="UT">UT</option>
+                  <option value="VT">VT</option>
+                  <option value="VA">VA</option>
+                  <option value="WA">WA</option>
+                  <option value="WV">WV</option>
+                  <option value="WI">WI</option>
+                  <option value="WY">WY</option>
+                  <option value="DC">DC</option>
+                  <option value="PR">PR</option>
+                </select>
+                <span class="field-msg" id="err-state" aria-live="polite"></span>
+              </td>
+              <td>Zip Code</td>
+              <td>
+                <input id="zip" type="text" name="zip" maxlength="5" inputmode="numeric" required autocomplete="postal-code"
+                       title="Exactly 5 digits (Homework 3 requirement).">
+                <span class="field-msg" id="err-zip" aria-live="polite"></span>
+              </td>
+            </tr>
+
+            <tr>
+              <td>Email</td>
+              <td>
+                <input id="email" type="email" name="email" maxlength="80" required autocomplete="email"
+                       title="Must be name@domain.tld (lowercased automatically).">
+                <span class="field-msg" id="err-email" aria-live="polite"></span>
+              </td>
+              <td>Phone</td>
+              <td colspan="3">
+                <input id="phone" type="tel" name="phone" placeholder="000-000-0000" required autocomplete="tel"
+                       title="Format 000-000-0000">
+                <span class="field-msg" id="err-phone" aria-live="polite"></span>
+              </td>
+            </tr>
+
+            <tr>
+              <td>Symptoms (optional)</td>
+              <td colspan="5">
+                <textarea id="symptoms" name="symptoms" rows="3" cols="50"
+                          title="Optional. Avoid double quotes for database safety."></textarea>
+                <span class="field-msg" id="err-symptoms" aria-live="polite"></span>
+              </td>
+            </tr>
+
+            <tr class="insurance-row">
+              <td>Do you have insurance?</td>
+              <td colspan="2" class="inline-options">
+                <label>
+                  <input type="radio" name="insurance" value="Yes" id="insuranceYes" required
+                         title="Select Yes if you have active insurance.">
+                  Yes
+                </label>
+                <label>
+                  <input type="radio" name="insurance" value="No" id="insuranceNo"
+                         title="Select No if you do not have insurance.">
+                  No
+                </label>
+                <span class="field-msg field-msg--inline" id="err-insurance" aria-live="polite"></span>
+              </td>
+              <td>Insurance Provider</td>
+              <td colspan="2">
+                <select id="insuranceProvider" name="insuranceProvider" disabled
+                        title="Enabled only when insurance is Yes.">
+                  <option value="">Select Provider</option>
+                  <option value="UnitedHealthcare">UnitedHealthcare</option>
+                  <option value="Blue Cross Blue Shield">Blue Cross Blue Shield</option>
+                  <option value="Aetna">Aetna</option>
+                  <option value="Cigna">Cigna</option>
+                  <option value="Humana">Humana</option>
+                  <option value="Blue Cross Blue Shield of Texas">Blue Cross Blue Shield of Texas</option>
+                  <option value="Community Health Choice">Community Health Choice</option>
+                  <option value="Molina Healthcare">Molina Healthcare</option>
+                  <option value="Superior HealthPlan">Superior HealthPlan</option>
+                  <option value="Other">Other</option>
+                </select>
+                <span class="field-msg" id="err-insuranceProvider" aria-live="polite"></span>
+
+                <div id="otherProviderWrap" class="other-provider-wrap" style="display:none;">
+                  <label for="otherProvider">If Other, specify:</label>
+                  <input type="text" id="otherProvider" name="otherProvider" maxlength="30"
+                         title="1–30 characters if Other is selected.">
+                  <span class="field-msg" id="err-otherProvider" aria-live="polite"></span>
+                </div>
+              </td>
+            </tr>
+          </table>
+
+          <h3 class="section-title">Emergency Contact Information</h3>
+
+          <table class="form-table">
+            <tr>
+              <td>First Name</td>
+              <td>
+                <input id="emgFirstName" type="text" name="emgFirstName" maxlength="30" required
+                       title="1–30 characters. Letters, apostrophes, and dashes only.">
+                <span class="field-msg" id="err-emgFirstName" aria-live="polite"></span>
+              </td>
+              <td>Middle Initial</td>
+              <td>
+                <input id="emgMiddleInit" type="text" name="emgMiddleInit" maxlength="1" class="mi"
+                       title="Optional. One letter only.">
+                <span class="field-msg" id="err-emgMiddleInit" aria-live="polite"></span>
+              </td>
+              <td>Last Name</td>
+              <td>
+                <input id="emgLastName" type="text" name="emgLastName" maxlength="30" required
+                       title="1–30 characters. Letters, apostrophes, and dashes only.">
+                <span class="field-msg" id="err-emgLastName" aria-live="polite"></span>
+              </td>
+            </tr>
+
+            <tr>
+              <td>Relationship</td>
+              <td colspan="5">
+                <select id="relationship" name="relationship" required title="Select the emergency contact relationship.">
+                  <option value="">Select</option>
+                  <option value="Spouse">Spouse</option>
+                  <option value="Parent">Parent</option>
+                  <option value="Child">Child</option>
+                  <option value="Sibling">Sibling</option>
+                  <option value="Friend">Friend</option>
+                  <option value="Guardian">Guardian</option>
+                  <option value="Partner">Significant other/Partner</option>
+                  <option value="Other">Other</option>
+                </select>
+                <span class="field-msg" id="err-relationship" aria-live="polite"></span>
+              </td>
+            </tr>
+
+            <tr>
+              <td>Address Line 1</td>
+              <td colspan="5">
+                <input id="emgAddress1" type="text" name="emgAddress1" maxlength="30" class="wide-input" required
+                       title="Required. 2–30 characters. Letters, numbers, spaces, . , # ' - /">
+                <span class="field-msg" id="err-emgAddress1" aria-live="polite"></span>
+              </td>
+            </tr>
+
+            <tr>
+              <td>Address Line 2</td>
+              <td colspan="5">
+                <input id="emgAddress2" type="text" name="emgAddress2" maxlength="30" class="wide-input"
+                       title="Optional. If entered: 2–30 characters.">
+                <span class="field-msg" id="err-emgAddress2" aria-live="polite"></span>
+              </td>
+            </tr>
+
+            <tr>
+              <td>City</td>
+              <td>
+                <input id="emgCity" type="text" name="emgCity" maxlength="30"
+                       title="Optional. If entered: 2–30 characters.">
+                <span class="field-msg" id="err-emgCity" aria-live="polite"></span>
+              </td>
+              <td>State</td>
+              <td>
+                <select id="emgState" name="emgState" title="Optional. Select a state if you enter a city or ZIP.">
+                  <option value="">Select</option>
+                  <option value="AL">AL</option>
+                  <option value="AK">AK</option>
+                  <option value="AZ">AZ</option>
+                  <option value="AR">AR</option>
+                  <option value="CA">CA</option>
+                  <option value="CO">CO</option>
+                  <option value="CT">CT</option>
+                  <option value="DE">DE</option>
+                  <option value="FL">FL</option>
+                  <option value="GA">GA</option>
+                  <option value="HI">HI</option>
+                  <option value="ID">ID</option>
+                  <option value="IL">IL</option>
+                  <option value="IN">IN</option>
+                  <option value="IA">IA</option>
+                  <option value="KS">KS</option>
+                  <option value="KY">KY</option>
+                  <option value="LA">LA</option>
+                  <option value="ME">ME</option>
+                  <option value="MD">MD</option>
+                  <option value="MA">MA</option>
+                  <option value="MI">MI</option>
+                  <option value="MN">MN</option>
+                  <option value="MS">MS</option>
+                  <option value="MO">MO</option>
+                  <option value="MT">MT</option>
+                  <option value="NE">NE</option>
+                  <option value="NV">NV</option>
+                  <option value="NH">NH</option>
+                  <option value="NJ">NJ</option>
+                  <option value="NM">NM</option>
+                  <option value="NY">NY</option>
+                  <option value="NC">NC</option>
+                  <option value="ND">ND</option>
+                  <option value="OH">OH</option>
+                  <option value="OK">OK</option>
+                  <option value="OR">OR</option>
+                  <option value="PA">PA</option>
+                  <option value="RI">RI</option>
+                  <option value="SC">SC</option>
+                  <option value="SD">SD</option>
+                  <option value="TN">TN</option>
+                  <option value="TX">TX</option>
+                  <option value="UT">UT</option>
+                  <option value="VT">VT</option>
+                  <option value="VA">VA</option>
+                  <option value="WA">WA</option>
+                  <option value="WV">WV</option>
+                  <option value="WI">WI</option>
+                  <option value="WY">WY</option>
+                  <option value="DC">DC</option>
+                  <option value="PR">PR</option>
+                </select>
+                <span class="field-msg" id="err-emgState" aria-live="polite"></span>
+              </td>
+              <td>Zip Code</td>
+              <td>
+                <input id="emgZip" type="text" name="emgZip" maxlength="5" inputmode="numeric"
+                       title="Optional. Exactly 5 digits if entered.">
+                <span class="field-msg" id="err-emgZip" aria-live="polite"></span>
+              </td>
+            </tr>
+
+            <tr>
+              <td>Email</td>
+              <td>
+                <input id="emgEmail" type="email" name="emgEmail" maxlength="80"
+                       title="Optional. name@domain.tld; lowercased when entered.">
+                <span class="field-msg" id="err-emgEmail" aria-live="polite"></span>
+              </td>
+              <td>Phone</td>
+              <td colspan="3">
+                <input id="emgPhone" type="tel" name="emgPhone" placeholder="000-000-0000"
+                       title="Optional. Format 000-000-0000 if entered.">
+                <span class="field-msg" id="err-emgPhone" aria-live="polite"></span>
+              </td>
+            </tr>
+          </table>
+
+          <h3 class="section-title">Heart Health Evaluation</h3>
+
+          <table class="form-table heart-eval">
+            <tr>
+              <td colspan="6" class="heart-eval-full">
+                <div class="heart-eval-line">
+                  <span class="heart-lead"><strong>Check all that apply</strong></span>
+                  <span class="heart-inline-opts">
+                    <label><input type="checkbox" name="hxHighBP" value="High Blood Pressure"> High Blood Pressure</label>
+                    <label><input type="checkbox" name="hxHighChol" value="High Cholesterol"> High Cholesterol</label>
+                    <label><input type="checkbox" name="hxDiabetes" value="Diabetes"> Diabetes</label>
+                    <label><input type="checkbox" name="hxSmoker" value="Smoker"> Smoker</label>
+                    <label><input type="checkbox" name="hxFamily" value="Family History"> History of heart disease</label>
+                  </span>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="6" class="heart-eval-full">
+                <div class="heart-eval-line heart-eval-split">
+                  <div class="heart-group">
+                    <span class="heart-q">Have you recently experienced chest pain?</span>
+                    <label><input type="radio" name="chestPain" value="Yes" required> Yes</label>
+                    <label><input type="radio" name="chestPain" value="No"> No</label>
+                    <span class="field-msg field-msg--inline" id="err-chestPain" aria-live="polite"></span>
+                  </div>
+
+                  <div class="heart-divider" aria-hidden="true"></div>
+
+                  <div class="heart-group">
+                    <span class="heart-q">Rate your pain (1–10)</span>
+                    <input type="range" id="painLevel" name="painLevel" min="1" max="10" step="1" value="1"
+                           title="Slide to rate pain; value updates next to the slider.">
+                    <output id="painOutput" for="painLevel">1</output>
+                    <span class="field-msg field-msg--inline" id="err-painLevel" aria-live="polite"></span>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="6" class="heart-eval-full">
+                <div class="heart-eval-line">
+                  <div class="heart-group">
+                    <span class="heart-q">Have you previously been treated for a heart condition?</span>
+                    <label><input type="radio" name="priorHeartTreatment" value="Yes" required> Yes</label>
+                    <label><input type="radio" name="priorHeartTreatment" value="No"> No</label>
+                    <span class="field-msg field-msg--inline" id="err-priorHeartTreatment" aria-live="polite"></span>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </table>
+
+          <h3 class="section-title">Account Setup</h3>
+
+          <table class="form-table">
+            <tr>
+              <td>Desired User ID</td>
+              <td>
+                <input id="userID" type="text" name="userID" maxlength="20" required autocomplete="username"
+                       title="5–20 chars; cannot start with a number; letters/numbers/_/- only; auto-lowercased.">
+                <span class="field-msg" id="err-userID" aria-live="polite"></span>
+              </td>
+              <td>Email (Portal Login)</td>
+              <td colspan="3">
+                <input id="portalEmail" type="email" name="portalEmail" required maxlength="80"
+                       title="Portal email; lowercased automatically.">
+                <span class="field-msg" id="err-portalEmail" aria-live="polite"></span>
+              </td>
+            </tr>
+            <tr>
+              <td>Password</td>
+              <td>
+                <input id="password" type="password" name="password" maxlength="30" required autocomplete="new-password"
+                       title="Min 8 chars; must include upper, lower, digit; cannot equal User ID.">
+                <span class="field-msg" id="err-password" aria-live="polite"></span>
+              </td>
+              <td>Re-enter Password</td>
+              <td colspan="3">
+                <input id="confirmPassword" type="password" name="confirmPassword" maxlength="30" required autocomplete="new-password"
+                       title="Must match Password.">
+                <span class="field-msg" id="err-confirmPassword" aria-live="polite"></span>
+              </td>
+            </tr>
+          </table>
+
+          <p id="validateStatus" class="validate-status" aria-live="polite"></p>
+
           <div class="button-row">
             <input id="clearBtn" type="reset" value="Clear and Start Over" class="btn">
             <input id="reviewBtn" type="button" value="Review" class="btn">
