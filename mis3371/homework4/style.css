@@ -6,12 +6,52 @@ Date last edited: 2026-05-08
 MIS 3371 Homework 4
 */
 
+:root{
+  --site-header-h: 220px;
+  --site-footer-h: 104px;
+}
+
 body{
   margin: 0;
   padding: 0;
   font-family: "Trebuchet MS", "Verdana", Arial, sans-serif;
   background: linear-gradient(180deg, #f3f6f7 0%, #e7f1f2 60%, #f3f6f7 100%);
   color: #0d1b1f;
+}
+
+body.layout-fixed-hf{
+  padding-bottom: calc(var(--site-footer-h) + 20px);
+  box-sizing: border-box;
+}
+
+.site-header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.site-main{
+  padding-top: var(--site-header-h);
+  min-height: calc(100vh - var(--site-header-h) - var(--site-footer-h));
+  box-sizing: border-box;
+}
+
+.layout-fixed-hf .footer{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 900px){
+  :root{
+    --site-header-h: 260px;
+  }
 }
 
 a:link{ color: #0b4a4f; text-decoration: none; font-weight: 700; }
