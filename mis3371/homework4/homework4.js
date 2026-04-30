@@ -792,4 +792,3 @@ document.addEventListener("DOMContentLoaded", () => {
   setSubmitEnabled(false);
   setMsg("validateStatus", "Press Validate to enable Submit.");
 });
-
