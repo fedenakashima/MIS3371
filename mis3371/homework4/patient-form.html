@@ -8,127 +8,118 @@ Date last edited: 2026-05-08
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Patient Registration</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Heartland Medical Care — Patient Registration (Homework 4)</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body class="layout-fixed-hf">
 
-  <div class="top-banner">
-    <div class="logo-wrap">
-      <img src="heartland-logo.png" alt="Heartland Medical Care Logo" class="logo">
+  <header class="site-header">
+    <div class="top-banner">
+      <div>
+        <img class="logo" src="logo.png" alt="Heartland Medical Care logo" />
+      </div>
+      <div class="brand-wrap">
+        <h1 class="company-name">Heartland Medical Care</h1>
+        <p class="slogan">The best care, for the best life.</p>
+      </div>
+      <div class="info-wrap">
+        <div class="doc-line">1234 Medical Drive</div>
+        <div class="doc-line">Houston, TX 77004</div>
+        <div class="doc-line">(713) 555-1212</div>
+      </div>
     </div>
-    <div class="brand-wrap">
-      <h1 class="company-name">Heartland Medical Care</h1>
-      <p class="slogan">Compassion in Every Heartbeat</p>
+    <div class="title-bar">
+      <h2>Patient Registration</h2>
+      <p class="form-date">Today is: <span id="todayDate"></span></p>
     </div>
-    <div class="info-wrap">
-      <p class="doc-line"><strong>Dr. Jake Messinger</strong></p>
-      <p class="doc-line">24702 Pinebrook Ridge Ln</p>
-      <p class="doc-line">The Woodlands, TX 77381</p>
-      <p class="doc-line">Phone: (281) 555-0199</p>
-    </div>
-  </div>
+  </header>
 
-  <div class="title-bar">
-    <h2>Patient Registration Form</h2>
-    <p class="form-date">Today is: <span id="todayDate"></span></p>
-  </div>
+  <main class="site-main">
+    <div class="form-panel">
+      <div class="form-container">
+        <div class="core-box">
 
-  <div class="form-panel">
-    <div class="form-container">
-      <div class="core-box">
+          <form id="patientForm" method="post" action="https://httpbin.org/post" novalidate>
 
-        <form id="patientForm" action="thankyou.html" method="post" novalidate>
+            <h3 class="section-title">Patient information</h3>
+            <table class="form-table" summary="Patient information">
+              <tr>
+                <td><label for="firstName">First name</label></td>
+                <td>
+                  <input type="text" id="firstName" name="firstName" maxlength="30" />
+                  <span id="err-firstName" class="field-msg" role="alert"></span>
+                </td>
+                <td><label for="middleInit">M.I.</label></td>
+                <td>
+                  <input type="text" id="middleInit" name="middleInit" class="mi" maxlength="1" />
+                  <span id="err-middleInit" class="field-msg" role="alert"></span>
+                </td>
+                <td><label for="lastName">Last name</label></td>
+                <td>
+                  <input type="text" id="lastName" name="lastName" maxlength="30" />
+                  <span id="err-lastName" class="field-msg" role="alert"></span>
+                </td>
+              </tr>
+              <tr>
+                <td><label for="dob">Date of birth (MM/DD/YYYY)</label></td>
+                <td>
+                  <input type="text" id="dob" name="dob" placeholder="MM/DD/YYYY" />
+                  <span id="err-dob" class="field-msg" role="alert"></span>
+                </td>
+                <td><label for="ssn">Social Security Number</label></td>
+                <td colspan="3">
+                  <input type="text" id="ssn" name="ssn" inputmode="numeric" autocomplete="off" />
+                  <span id="err-ssn" class="field-msg" role="alert"></span>
+                </td>
+              </tr>
+              <tr>
+                <td>Sex</td>
+                <td colspan="5" class="inline-options">
+                  <label><input type="radio" name="sex" value="Female" /> Female</label>
+                  <label><input type="radio" name="sex" value="Male" /> Male</label>
+                  <label><input type="radio" name="sex" value="Other" /> Other</label>
+                  <span id="err-sex" class="field-msg field-msg--inline" role="alert"></span>
+                </td>
+              </tr>
+              <tr>
+                <td>Ethnicity</td>
+                <td colspan="5" class="inline-options">
+                  <label><input type="radio" name="ethnicity" value="Hispanic or Latino" /> Hispanic or Latino</label>
+                  <label><input type="radio" name="ethnicity" value="Not Hispanic or Latino" /> Not Hispanic or Latino</label>
+                  <label><input type="radio" name="ethnicity" value="Unknown" /> Unknown</label>
+                  <span id="err-ethnicity" class="field-msg field-msg--inline" role="alert"></span>
+                </td>
+              </tr>
+            </table>
 
-          <h3 class="section-title">Patient Information</h3>
-
-          <table class="form-table">
-            <tr>
-              <td>First Name</td>
-              <td>
-                <input id="firstName" type="text" name="firstName" maxlength="30" required autocomplete="given-name"
-                       title="1–30 characters. Letters, apostrophes, and dashes only.">
-                <span class="field-msg" id="err-firstName" aria-live="polite"></span>
-              </td>
-              <td>Middle Initial</td>
-              <td>
-                <input id="middleInit" type="text" name="middleInit" maxlength="1" class="mi" autocomplete="additional-name"
-                       title="Optional. One letter only (no numbers).">
-                <span class="field-msg" id="err-middleInit" aria-live="polite"></span>
-              </td>
-              <td>Last Name</td>
-              <td>
-                <input id="lastName" type="text" name="lastName" maxlength="30" required autocomplete="family-name"
-                       title="1–30 characters. Letters, apostrophes, and dashes only.">
-                <span class="field-msg" id="err-lastName" aria-live="polite"></span>
-              </td>
-            </tr>
-
-            <tr>
-              <td>Date of Birth</td>
-              <td>
-                <input id="dob" type="text" name="dob" placeholder="MM/DD/YYYY" required autocomplete="bday"
-                       title="Birthday cannot be in the future or more than 120 years ago.">
-                <span class="field-msg" id="err-dob" aria-live="polite"></span>
-              </td>
-              <td>Sex</td>
-              <td colspan="3" class="inline-options">
-                <label><input type="radio" name="sex" value="Male" required> Male</label>
-                <label><input type="radio" name="sex" value="Female"> Female</label>
-                <label><input type="radio" name="sex" value="Other"> Other</label>
-                <span class="field-msg field-msg--inline" id="err-sex" aria-live="polite"></span>
-              </td>
-            </tr>
-
-            <tr>
-              <td>SSN</td>
-              <td colspan="5">
-                <input id="ssn" type="password" name="ssn" inputmode="numeric" autocomplete="off" maxlength="11"
-                       placeholder="XXX-XX-XXXX"
-                       title="9 digits only (auto-formatted). Do not use a real SSN.">
-                <span class="field-msg" id="err-ssn" aria-live="polite"></span>
-              </td>
-            </tr>
-
-            <tr>
-              <td>Ethnicity</td>
-              <td colspan="5" class="inline-options">
-                <label><input type="radio" name="ethnicity" value="Non-Hispanic" required> Non-Hispanic</label>
-                <label><input type="radio" name="ethnicity" value="Hispanic"> Hispanic</label>
-                <span class="field-msg field-msg--inline" id="err-ethnicity" aria-live="polite"></span>
-              </td>
-            </tr>
-
-            <tr>
-              <td>Address Line 1</td>
-              <td colspan="5">
-                <input id="address1" type="text" name="address1" maxlength="30" class="wide-input" required autocomplete="address-line1"
-                       title="Required. 2–30 characters. Letters, numbers, spaces, . , # ' - /">
-                <span class="field-msg" id="err-address1" aria-live="polite"></span>
-              </td>
-            </tr>
-
-            <tr>
-              <td>Address Line 2</td>
-              <td colspan="5">
-                <input id="address2" type="text" name="address2" maxlength="30" class="wide-input" autocomplete="address-line2"
-                       title="Optional. If entered: 2–30 characters. Same allowed characters as address line 1.">
-                <span class="field-msg" id="err-address2" aria-live="polite"></span>
-              </td>
-            </tr>
-
-            <tr>
-              <td>City</td>
-              <td>
-                <input id="city" type="text" name="city" maxlength="30" required autocomplete="address-level2"
-                       title="Required. 2–30 characters.">
-                <span class="field-msg" id="err-city" aria-live="polite"></span>
-              </td>
-              <td>State</td>
-              <td>
-                <select id="state" name="state" required autocomplete="address-level1" title="You must select a state.">
+            <h3 class="section-title">Address</h3>
+            <table class="form-table" summary="Address">
+              <tr>
+                <td><label for="address1">Address line 1</label></td>
+                <td colspan="5">
+                  <input type="text" id="address1" name="address1" class="wide-input" maxlength="30" />
+                  <span id="err-address1" class="field-msg" role="alert"></span>
+                </td>
+              </tr>
+              <tr>
+                <td><label for="address2">Address line 2</label></td>
+                <td colspan="5">
+                  <input type="text" id="address2" name="address2" class="wide-input" maxlength="30" />
+                  <span id="err-address2" class="field-msg" role="alert"></span>
+                </td>
+              </tr>
+              <tr>
+                <td><label for="city">City</label></td>
+                <td>
+                  <input type="text" id="city" name="city" maxlength="30" />
+                  <span id="err-city" class="field-msg" role="alert"></span>
+                </td>
+                <td><label for="state">State</label></td>
+                <td>
+                  <select id="state" name="state">
+                    <option value="">Select state</option>
                   <option value="">Select</option>
                   <option value="AL">AL</option>
                   <option value="AK">AK</option>
@@ -182,154 +173,128 @@ Date last edited: 2026-05-08
                   <option value="WY">WY</option>
                   <option value="DC">DC</option>
                   <option value="PR">PR</option>
-                </select>
-                <span class="field-msg" id="err-state" aria-live="polite"></span>
-              </td>
-              <td>Zip Code</td>
-              <td>
-                <input id="zip" type="text" name="zip" maxlength="5" inputmode="numeric" required autocomplete="postal-code"
-                       title="Exactly 5 digits (Homework 3 requirement).">
-                <span class="field-msg" id="err-zip" aria-live="polite"></span>
-              </td>
-            </tr>
+                  </select>
+                  <span id="err-state" class="field-msg" role="alert"></span>
+                </td>
+                <td><label for="zip">ZIP</label></td>
+                <td>
+                  <input type="text" id="zip" name="zip" inputmode="numeric" maxlength="5" />
+                  <span id="err-zip" class="field-msg" role="alert"></span>
+                </td>
+              </tr>
+            </table>
 
-            <tr>
-              <td>Email</td>
-              <td>
-                <input id="email" type="email" name="email" maxlength="80" required autocomplete="email"
-                       title="Must be name@domain.tld (lowercased automatically).">
-                <span class="field-msg" id="err-email" aria-live="polite"></span>
-              </td>
-              <td>Phone</td>
-              <td colspan="3">
-                <input id="phone" type="tel" name="phone" placeholder="000-000-0000" required autocomplete="tel"
-                       title="Format 000-000-0000">
-                <span class="field-msg" id="err-phone" aria-live="polite"></span>
-              </td>
-            </tr>
+            <h3 class="section-title">Contact</h3>
+            <table class="form-table" summary="Contact">
+              <tr>
+                <td><label for="email">Email</label></td>
+                <td>
+                  <input type="email" id="email" name="email" class="wide-input" />
+                  <span id="err-email" class="field-msg" role="alert"></span>
+                </td>
+                <td><label for="phone">Phone</label></td>
+                <td colspan="3">
+                  <input type="text" id="phone" name="phone" placeholder="000-000-0000" />
+                  <span id="err-phone" class="field-msg" role="alert"></span>
+                </td>
+              </tr>
+              <tr>
+                <td><label for="symptoms">Symptoms / reason for visit</label></td>
+                <td colspan="5">
+                  <textarea id="symptoms" name="symptoms" rows="4" class="wide-input"></textarea>
+                  <span id="err-symptoms" class="field-msg" role="alert"></span>
+                </td>
+              </tr>
+            </table>
 
-            <tr>
-              <td>Symptoms (optional)</td>
-              <td colspan="5">
-                <textarea id="symptoms" name="symptoms" rows="3" cols="50"
-                          title="Optional. Avoid double quotes for database safety."></textarea>
-                <span class="field-msg" id="err-symptoms" aria-live="polite"></span>
-              </td>
-            </tr>
+            <h3 class="section-title">Insurance</h3>
+            <table class="form-table" summary="Insurance">
+              <tr>
+                <td>Do you have medical insurance?</td>
+                <td colspan="5" class="inline-options">
+                  <label><input type="radio" name="insurance" value="Yes" /> Yes</label>
+                  <label><input type="radio" name="insurance" value="No" /> No</label>
+                  <span id="err-insurance" class="field-msg field-msg--inline" role="alert"></span>
+                </td>
+              </tr>
+              <tr>
+                <td><label for="insuranceProvider">Insurance provider</label></td>
+                <td colspan="5">
+                  <select id="insuranceProvider" name="insuranceProvider" disabled>
+                    <option value="">Select provider</option>
+                    <option value="Aetna">Aetna</option>
+                    <option value="Blue Cross">Blue Cross</option>
+                    <option value="UnitedHealthcare">UnitedHealthcare</option>
+                    <option value="Other">Other</option>
+                  </select>
+                  <span id="err-insuranceProvider" class="field-msg" role="alert"></span>
+                  <div id="otherProviderWrap" class="other-provider-wrap" style="display:none;">
+                    <label for="otherProvider">Specify</label>
+                    <input type="text" id="otherProvider" name="otherProvider" maxlength="30" />
+                    <span id="err-otherProvider" class="field-msg" role="alert"></span>
+                  </div>
+                </td>
+              </tr>
+            </table>
 
-            <tr class="insurance-row">
-              <td>Do you have insurance?</td>
-              <td colspan="2" class="inline-options">
-                <label>
-                  <input type="radio" name="insurance" value="Yes" id="insuranceYes" required
-                         title="Select Yes if you have active insurance.">
-                  Yes
-                </label>
-                <label>
-                  <input type="radio" name="insurance" value="No" id="insuranceNo"
-                         title="Select No if you do not have insurance.">
-                  No
-                </label>
-                <span class="field-msg field-msg--inline" id="err-insurance" aria-live="polite"></span>
-              </td>
-              <td>Insurance Provider</td>
-              <td colspan="2">
-                <select id="insuranceProvider" name="insuranceProvider" disabled
-                        title="Enabled only when insurance is Yes.">
-                  <option value="">Select Provider</option>
-                  <option value="UnitedHealthcare">UnitedHealthcare</option>
-                  <option value="Blue Cross Blue Shield">Blue Cross Blue Shield</option>
-                  <option value="Aetna">Aetna</option>
-                  <option value="Cigna">Cigna</option>
-                  <option value="Humana">Humana</option>
-                  <option value="Blue Cross Blue Shield of Texas">Blue Cross Blue Shield of Texas</option>
-                  <option value="Community Health Choice">Community Health Choice</option>
-                  <option value="Molina Healthcare">Molina Healthcare</option>
-                  <option value="Superior HealthPlan">Superior HealthPlan</option>
-                  <option value="Other">Other</option>
-                </select>
-                <span class="field-msg" id="err-insuranceProvider" aria-live="polite"></span>
-
-                <div id="otherProviderWrap" class="other-provider-wrap" style="display:none;">
-                  <label for="otherProvider">If Other, specify:</label>
-                  <input type="text" id="otherProvider" name="otherProvider" maxlength="30"
-                         title="1–30 characters if Other is selected.">
-                  <span class="field-msg" id="err-otherProvider" aria-live="polite"></span>
-                </div>
-              </td>
-            </tr>
-          </table>
-
-          <h3 class="section-title">Emergency Contact Information</h3>
-
-          <table class="form-table">
-            <tr>
-              <td>First Name</td>
-              <td>
-                <input id="emgFirstName" type="text" name="emgFirstName" maxlength="30" required
-                       title="1–30 characters. Letters, apostrophes, and dashes only.">
-                <span class="field-msg" id="err-emgFirstName" aria-live="polite"></span>
-              </td>
-              <td>Middle Initial</td>
-              <td>
-                <input id="emgMiddleInit" type="text" name="emgMiddleInit" maxlength="1" class="mi"
-                       title="Optional. One letter only.">
-                <span class="field-msg" id="err-emgMiddleInit" aria-live="polite"></span>
-              </td>
-              <td>Last Name</td>
-              <td>
-                <input id="emgLastName" type="text" name="emgLastName" maxlength="30" required
-                       title="1–30 characters. Letters, apostrophes, and dashes only.">
-                <span class="field-msg" id="err-emgLastName" aria-live="polite"></span>
-              </td>
-            </tr>
-
-            <tr>
-              <td>Relationship</td>
-              <td colspan="5">
-                <select id="relationship" name="relationship" required title="Select the emergency contact relationship.">
-                  <option value="">Select</option>
-                  <option value="Spouse">Spouse</option>
-                  <option value="Parent">Parent</option>
-                  <option value="Child">Child</option>
-                  <option value="Sibling">Sibling</option>
-                  <option value="Friend">Friend</option>
-                  <option value="Guardian">Guardian</option>
-                  <option value="Partner">Significant other/Partner</option>
-                  <option value="Other">Other</option>
-                </select>
-                <span class="field-msg" id="err-relationship" aria-live="polite"></span>
-              </td>
-            </tr>
-
-            <tr>
-              <td>Address Line 1</td>
-              <td colspan="5">
-                <input id="emgAddress1" type="text" name="emgAddress1" maxlength="30" class="wide-input" required
-                       title="Required. 2–30 characters. Letters, numbers, spaces, . , # ' - /">
-                <span class="field-msg" id="err-emgAddress1" aria-live="polite"></span>
-              </td>
-            </tr>
-
-            <tr>
-              <td>Address Line 2</td>
-              <td colspan="5">
-                <input id="emgAddress2" type="text" name="emgAddress2" maxlength="30" class="wide-input"
-                       title="Optional. If entered: 2–30 characters.">
-                <span class="field-msg" id="err-emgAddress2" aria-live="polite"></span>
-              </td>
-            </tr>
-
-            <tr>
-              <td>City</td>
-              <td>
-                <input id="emgCity" type="text" name="emgCity" maxlength="30"
-                       title="Optional. If entered: 2–30 characters.">
-                <span class="field-msg" id="err-emgCity" aria-live="polite"></span>
-              </td>
-              <td>State</td>
-              <td>
-                <select id="emgState" name="emgState" title="Optional. Select a state if you enter a city or ZIP.">
+            <h3 class="section-title">Emergency contact</h3>
+            <table class="form-table" summary="Emergency contact">
+              <tr>
+                <td><label for="emgFirstName">First name</label></td>
+                <td>
+                  <input type="text" id="emgFirstName" name="emgFirstName" maxlength="30" />
+                  <span id="err-emgFirstName" class="field-msg" role="alert"></span>
+                </td>
+                <td><label for="emgMiddleInit">M.I.</label></td>
+                <td>
+                  <input type="text" id="emgMiddleInit" name="emgMiddleInit" class="mi" maxlength="1" />
+                  <span id="err-emgMiddleInit" class="field-msg" role="alert"></span>
+                </td>
+                <td><label for="emgLastName">Last name</label></td>
+                <td>
+                  <input type="text" id="emgLastName" name="emgLastName" maxlength="30" />
+                  <span id="err-emgLastName" class="field-msg" role="alert"></span>
+                </td>
+              </tr>
+              <tr>
+                <td><label for="relationship">Relationship to patient</label></td>
+                <td colspan="5">
+                  <select id="relationship" name="relationship">
+                    <option value="">Select</option>
+                    <option value="Spouse">Spouse</option>
+                    <option value="Parent">Parent</option>
+                    <option value="Child">Child</option>
+                    <option value="Sibling">Sibling</option>
+                    <option value="Friend">Friend</option>
+                    <option value="Other">Other</option>
+                  </select>
+                  <span id="err-relationship" class="field-msg" role="alert"></span>
+                </td>
+              </tr>
+              <tr>
+                <td><label for="emgAddress1">Address line 1</label></td>
+                <td colspan="5">
+                  <input type="text" id="emgAddress1" name="emgAddress1" class="wide-input" maxlength="30" />
+                  <span id="err-emgAddress1" class="field-msg" role="alert"></span>
+                </td>
+              </tr>
+              <tr>
+                <td><label for="emgAddress2">Address line 2</label></td>
+                <td colspan="5">
+                  <input type="text" id="emgAddress2" name="emgAddress2" class="wide-input" maxlength="30" />
+                  <span id="err-emgAddress2" class="field-msg" role="alert"></span>
+                </td>
+              </tr>
+              <tr>
+                <td><label for="emgCity">City</label></td>
+                <td>
+                  <input type="text" id="emgCity" name="emgCity" maxlength="30" />
+                  <span id="err-emgCity" class="field-msg" role="alert"></span>
+                </td>
+                <td><label for="emgState">State</label></td>
+                <td>
+                  <select id="emgState" name="emgState">
+                    <option value="">Select state</option>
                   <option value="">Select</option>
                   <option value="AL">AL</option>
                   <option value="AK">AK</option>
@@ -383,167 +348,142 @@ Date last edited: 2026-05-08
                   <option value="WY">WY</option>
                   <option value="DC">DC</option>
                   <option value="PR">PR</option>
-                </select>
-                <span class="field-msg" id="err-emgState" aria-live="polite"></span>
-              </td>
-              <td>Zip Code</td>
-              <td>
-                <input id="emgZip" type="text" name="emgZip" maxlength="5" inputmode="numeric"
-                       title="Optional. Exactly 5 digits if entered.">
-                <span class="field-msg" id="err-emgZip" aria-live="polite"></span>
-              </td>
-            </tr>
+                  </select>
+                  <span id="err-emgState" class="field-msg" role="alert"></span>
+                </td>
+                <td><label for="emgZip">ZIP</label></td>
+                <td>
+                  <input type="text" id="emgZip" name="emgZip" maxlength="5" />
+                  <span id="err-emgZip" class="field-msg" role="alert"></span>
+                </td>
+              </tr>
+              <tr>
+                <td><label for="emgEmail">Email</label></td>
+                <td>
+                  <input type="email" id="emgEmail" name="emgEmail" />
+                  <span id="err-emgEmail" class="field-msg" role="alert"></span>
+                </td>
+                <td><label for="emgPhone">Phone</label></td>
+                <td colspan="3">
+                  <input type="text" id="emgPhone" name="emgPhone" placeholder="000-000-0000" />
+                  <span id="err-emgPhone" class="field-msg" role="alert"></span>
+                </td>
+              </tr>
+            </table>
 
-            <tr>
-              <td>Email</td>
-              <td>
-                <input id="emgEmail" type="email" name="emgEmail" maxlength="80"
-                       title="Optional. name@domain.tld; lowercased when entered.">
-                <span class="field-msg" id="err-emgEmail" aria-live="polite"></span>
-              </td>
-              <td>Phone</td>
-              <td colspan="3">
-                <input id="emgPhone" type="tel" name="emgPhone" placeholder="000-000-0000"
-                       title="Optional. Format 000-000-0000 if entered.">
-                <span class="field-msg" id="err-emgPhone" aria-live="polite"></span>
-              </td>
-            </tr>
-          </table>
-
-          <h3 class="section-title">Heart Health Evaluation</h3>
-
-          <table class="form-table heart-eval">
-            <tr>
-              <td colspan="6" class="heart-eval-full">
-                <div class="heart-eval-line">
-                  <span class="heart-lead"><strong>Check all that apply</strong></span>
-                  <span class="heart-inline-opts">
-                    <label><input type="checkbox" name="hxHighBP" value="High Blood Pressure"> High Blood Pressure</label>
-                    <label><input type="checkbox" name="hxHighChol" value="High Cholesterol"> High Cholesterol</label>
-                    <label><input type="checkbox" name="hxDiabetes" value="Diabetes"> Diabetes</label>
-                    <label><input type="checkbox" name="hxSmoker" value="Smoker"> Smoker</label>
-                    <label><input type="checkbox" name="hxFamily" value="Family History"> History of heart disease</label>
-                  </span>
-                </div>
-              </td>
-            </tr>
-
-            <tr>
-              <td colspan="6" class="heart-eval-full">
-                <div class="heart-eval-line heart-eval-split">
-                  <div class="heart-group">
-                    <span class="heart-q">Have you recently experienced chest pain?</span>
-                    <label><input type="radio" name="chestPain" value="Yes" required> Yes</label>
-                    <label><input type="radio" name="chestPain" value="No"> No</label>
-                    <span class="field-msg field-msg--inline" id="err-chestPain" aria-live="polite"></span>
+            <h3 class="section-title">Heart health evaluation</h3>
+            <table class="form-table heart-eval" summary="Heart evaluation">
+              <tr>
+                <td colspan="6" class="heart-eval-full">
+                  <div class="heart-eval-line heart-eval-split">
+                    <div class="heart-group">
+                      <span class="heart-q">Any chest pain?</span>
+                      <div class="heart-inline-opts">
+                        <label><input type="radio" name="chestPain" value="Yes" /> Yes</label>
+                        <label><input type="radio" name="chestPain" value="No" /> No</label>
+                      </div>
+                      <span id="err-chestPain" class="field-msg" role="alert"></span>
+                    </div>
+                    <div class="heart-divider" aria-hidden="true"></div>
+                    <div class="heart-group">
+                      <span class="heart-q">Prior heart treatment?</span>
+                      <div class="heart-inline-opts">
+                        <label><input type="radio" name="priorHeartTreatment" value="Yes" /> Yes</label>
+                        <label><input type="radio" name="priorHeartTreatment" value="No" /> No</label>
+                      </div>
+                      <span id="err-priorHeartTreatment" class="field-msg" role="alert"></span>
+                    </div>
                   </div>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="6" class="heart-eval-full">
+                  <label for="painLevel">Pain level (0–10)</label>
+                  <input type="range" id="painLevel" name="painLevel" min="0" max="10" value="0" />
+                  <output id="painOutput" for="painLevel">0</output>
+                  <span id="err-painLevel" class="field-msg" role="alert"></span>
+                </td>
+              </tr>
+            </table>
 
-                  <div class="heart-divider" aria-hidden="true"></div>
+            <h3 class="section-title">Patient portal credentials</h3>
+            <table class="form-table" summary="Portal credentials">
+              <tr>
+                <td><label for="userID">User ID</label></td>
+                <td colspan="5">
+                  <input type="text" id="userID" name="userID" maxlength="20" autocomplete="username" />
+                  <span id="err-userID" class="field-msg" role="alert"></span>
+                </td>
+              </tr>
+              <tr>
+                <td><label for="portalEmail">Portal email</label></td>
+                <td colspan="5">
+                  <input type="email" id="portalEmail" name="portalEmail" />
+                  <span id="err-portalEmail" class="field-msg" role="alert"></span>
+                </td>
+              </tr>
+              <tr>
+                <td><label for="password">Password</label></td>
+                <td>
+                  <input type="password" id="password" name="password" autocomplete="new-password" />
+                  <span id="err-password" class="field-msg" role="alert"></span>
+                </td>
+                <td><label for="confirmPassword">Confirm password</label></td>
+                <td colspan="3">
+                  <input type="password" id="confirmPassword" name="confirmPassword" autocomplete="new-password" />
+                  <span id="err-confirmPassword" class="field-msg" role="alert"></span>
+                </td>
+              </tr>
+            </table>
 
-                  <div class="heart-group">
-                    <span class="heart-q">Rate your pain (1–10)</span>
-                    <input type="range" id="painLevel" name="painLevel" min="1" max="10" step="1" value="1"
-                           title="Slide to rate pain; value updates next to the slider.">
-                    <output id="painOutput" for="painLevel">1</output>
-                    <span class="field-msg field-msg--inline" id="err-painLevel" aria-live="polite"></span>
-                  </div>
-                </div>
-              </td>
-            </tr>
+            <p id="validateStatus" class="validate-status" role="status"></p>
 
-            <tr>
-              <td colspan="6" class="heart-eval-full">
-                <div class="heart-eval-line">
-                  <div class="heart-group">
-                    <span class="heart-q">Have you previously been treated for a heart condition?</span>
-                    <label><input type="radio" name="priorHeartTreatment" value="Yes" required> Yes</label>
-                    <label><input type="radio" name="priorHeartTreatment" value="No"> No</label>
-                    <span class="field-msg field-msg--inline" id="err-priorHeartTreatment" aria-live="polite"></span>
-                  </div>
-                </div>
-              </td>
-            </tr>
-          </table>
+            <div class="button-row">
+              <input type="button" class="btn" id="validateBtn" value="Validate" />
+              <input type="submit" class="btn" id="submitBtn" value="Submit" disabled />
+              <input type="button" class="btn" id="reviewBtn" value="Review" />
+              <input type="reset" class="btn" id="clearBtn" value="Clear form" />
+            </div>
 
-          <h3 class="section-title">Account Setup</h3>
+          </form>
 
-          <table class="form-table">
-            <tr>
-              <td>Desired User ID</td>
-              <td>
-                <input id="userID" type="text" name="userID" maxlength="20" required autocomplete="username"
-                       title="5–20 chars; cannot start with a number; letters/numbers/_/- only; auto-lowercased.">
-                <span class="field-msg" id="err-userID" aria-live="polite"></span>
-              </td>
-              <td>Email (Portal Login)</td>
-              <td colspan="3">
-                <input id="portalEmail" type="email" name="portalEmail" required maxlength="80"
-                       title="Portal email; lowercased automatically.">
-                <span class="field-msg" id="err-portalEmail" aria-live="polite"></span>
-              </td>
-            </tr>
-            <tr>
-              <td>Password</td>
-              <td>
-                <input id="password" type="password" name="password" maxlength="30" required autocomplete="new-password"
-                       title="Min 8 chars; must include upper, lower, digit; cannot equal User ID.">
-                <span class="field-msg" id="err-password" aria-live="polite"></span>
-              </td>
-              <td>Re-enter Password</td>
-              <td colspan="3">
-                <input id="confirmPassword" type="password" name="confirmPassword" maxlength="30" required autocomplete="new-password"
-                       title="Must match Password.">
-                <span class="field-msg" id="err-confirmPassword" aria-live="polite"></span>
-              </td>
-            </tr>
-          </table>
-
-          <p id="validateStatus" class="validate-status" aria-live="polite"></p>
-
-          <div class="button-row">
-            <input id="clearBtn" type="reset" value="Clear and Start Over" class="btn">
-            <input id="reviewBtn" type="button" value="Review" class="btn">
-            <input id="validateBtn" type="button" value="Validate" class="btn">
-            <input id="submitBtn" type="submit" value="Submit" class="btn" disabled>
+          <div id="review-panel" class="review-panel" style="display:none;">
+            <h3 class="section-title">Review your information</h3>
+            <div class="review-row"><span class="review-label">Name</span><span class="review-value" id="rv-name"></span></div>
+            <div class="review-row"><span class="review-label">Date of birth</span><span class="review-value" id="rv-dob"></span></div>
+            <div class="review-row"><span class="review-label">Email</span><span class="review-value" id="rv-email"></span></div>
+            <div class="review-row"><span class="review-label">Phone</span><span class="review-value" id="rv-phone"></span></div>
+            <div class="review-row"><span class="review-label">Address</span><span class="review-value" id="rv-address"></span></div>
+            <div class="review-row"><span class="review-label">State</span><span class="review-value" id="rv-state"></span></div>
+            <div class="review-row"><span class="review-label">ZIP</span><span class="review-value" id="rv-zip"></span></div>
+            <div class="review-row"><span class="review-label">Insurance</span><span class="review-value" id="rv-insurance"></span></div>
+            <div class="review-row"><span class="review-label">Provider</span><span class="review-value" id="rv-provider"></span></div>
+            <div class="review-row"><span class="review-label">User ID</span><span class="review-value" id="rv-userid"></span></div>
           </div>
 
-        </form>
-
-        <div id="review-panel" class="review-panel" style="display:none; margin-top:22px;">
-          <h3 class="section-title" style="margin-top:0;">PLEASE REVIEW THIS INFORMATION</h3>
-          <div class="review-row"><span class="review-label">First, MI, Last Name</span><span id="rv-name" class="review-value"></span></div>
-          <div class="review-row"><span class="review-label">Date of Birth</span><span id="rv-dob" class="review-value"></span></div>
-          <div class="review-row"><span class="review-label">Email address</span><span id="rv-email" class="review-value"></span></div>
-          <div class="review-row"><span class="review-label">Phone number</span><span id="rv-phone" class="review-value"></span></div>
-          <div class="review-row"><span class="review-label">Address</span><span id="rv-address" class="review-value"></span></div>
-          <div class="review-row"><span class="review-label">State</span><span id="rv-state" class="review-value"></span></div>
-          <div class="review-row"><span class="review-label">Zip Code</span><span id="rv-zip" class="review-value"></span></div>
-          <div class="review-row"><span class="review-label">Insurance</span><span id="rv-insurance" class="review-value"></span></div>
-          <div class="review-row"><span class="review-label">Provider</span><span id="rv-provider" class="review-value"></span></div>
-          <div class="review-row"><span class="review-label">User ID</span><span id="rv-userid" class="review-value"></span></div>
         </div>
-
       </div>
     </div>
-  </div>
+  </main>
 
-  <div class="footer">
+  <footer class="footer">
     <div class="footer-inner">
-      <div class="footer-left">
+      <div>
         <div class="footer-title">Heartland Medical Care</div>
-        <div class="footer-sub">Compassion in Every Heartbeat</div>
+        <div class="footer-sub">Patient registration</div>
       </div>
       <div class="footer-mid">
-        <button type="button" class="footer-btn" onclick="alert('Contact us at: contact@heartlandmedicalcare.com')">Contact Us</button>
+        <button type="button" class="footer-btn" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">Back to top</button>
       </div>
       <div class="footer-right">
-        <a href="#" class="footer-link">Facebook</a>
-        <a href="#" class="footer-link">Twitter</a>
-        <a href="#" class="footer-link">Instagram</a>
+        <a class="footer-link" href="#">Privacy</a>
+        <a class="footer-link" href="#">Contact</a>
       </div>
     </div>
-  </div>
+  </footer>
 
   <script src="homework4.js"></script>
 </body>
 </html>
+
+
