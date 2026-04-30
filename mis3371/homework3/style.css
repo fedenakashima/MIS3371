@@ -154,7 +154,6 @@ a:hover{ text-decoration: underline; }
   box-sizing: border-box;
 }
 
-/* Radios/checkboxes must not inherit full-width from rule above */
 .form-table input[type="radio"],
 .form-table input[type="checkbox"]{
   width: auto;
