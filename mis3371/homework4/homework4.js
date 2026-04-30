@@ -1,5 +1,5 @@
 /*
-Program name: homework.js
+Program name: homework4.js
 Author: Federica Nakashima
 Date created: 2026-03-01
 Date last edited: 2026-04-18
